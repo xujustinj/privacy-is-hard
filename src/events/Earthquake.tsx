@@ -1,4 +1,4 @@
-function Earthquake() {
+export function Earthquake() {
   return (
     <div>
       <p>A small earthquake has struck Jollywood!</p>
@@ -9,5 +9,3 @@ function Earthquake() {
     </div>
   );
 }
-
-export default Earthquake;

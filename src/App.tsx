@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import "./App.css";
-import Feed from "./game/Feed";
+import { Feed } from "./game/Feed";
 import { DemoGame } from "./game/Example";
 import { GameEvent, GameEventWrapper } from "./game/Event";
 import { Game } from "./game/Game";

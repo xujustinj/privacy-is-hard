@@ -1,4 +1,4 @@
-import Earthquake from "../events/Earthquake";
+import { Earthquake } from "../events/Earthquake";
 import { Interactive, InteractiveProps } from "../events/InteractiveExample";
 import { GameEvent } from "./Event";
 import { Game } from "./Game";

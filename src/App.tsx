@@ -18,10 +18,9 @@ function App() {
   return (
     <div className="App">
       <h1>Events Feed</h1>
-      <button onClick={nextEvent}>Next Event</button> {/* temporary */}
-      <Feed>
+      <Feed onEmpty={nextEvent} onScrollToBottom={nextEvent}>
         {events.map((event) => (
-          <GameEventWrapper event={event} />
+          <GameEventWrapper key={event.id} event={event} />
         ))}
       </Feed>
     </div>

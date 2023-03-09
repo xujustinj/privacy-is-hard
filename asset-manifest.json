@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/privacy-is-hard/static/css/main.073c9b0a.css",
+    "main.js": "/privacy-is-hard/static/js/main.11f13cf4.js",
+    "static/js/787.8cfda21d.chunk.js": "/privacy-is-hard/static/js/787.8cfda21d.chunk.js",
+    "index.html": "/privacy-is-hard/index.html",
+    "main.073c9b0a.css.map": "/privacy-is-hard/static/css/main.073c9b0a.css.map",
+    "main.11f13cf4.js.map": "/privacy-is-hard/static/js/main.11f13cf4.js.map",
+    "787.8cfda21d.chunk.js.map": "/privacy-is-hard/static/js/787.8cfda21d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.11f13cf4.js"
+  ]
+}

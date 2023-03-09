@@ -1,11 +1,9 @@
-import Earthquake from "./events/Earthquake";
+import { PropsWithChildren } from "react";
 
-function Feed() {
-  return (
-    <div>
-      <Earthquake />
-    </div>
-  );
+export interface FeedProps extends PropsWithChildren {}
+
+function Feed({ children }: PropsWithChildren) {
+  return <div>{children}</div>;
 }
 
 export default Feed;

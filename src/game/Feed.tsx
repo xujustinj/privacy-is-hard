@@ -5,11 +5,25 @@ import {
   useCallback,
   useEffect,
 } from "react";
+import styled from "styled-components";
 
 export interface FeedProps extends PropsWithChildren {
   onEmpty: () => void;
   onScrollToBottom: () => void;
 }
+
+const FeedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  background-color: beige;
+  width: 50vw;
+  height: 0;
+  padding-top: 25vh;
+  padding-bottom: 25vh;
+  overflow-y: scroll;
+  margin: auto;
+`;
 
 export function Feed({ children, onEmpty, onScrollToBottom }: FeedProps) {
   useEffect(() => {
@@ -32,9 +46,5 @@ export function Feed({ children, onEmpty, onScrollToBottom }: FeedProps) {
     [onScrollToBottom]
   );
 
-  return (
-    <div className="feed" onScroll={onScroll}>
-      {children}
-    </div>
-  );
+  return <FeedContainer onScroll={onScroll}>{children}</FeedContainer>;
 }

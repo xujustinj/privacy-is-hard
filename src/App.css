@@ -36,16 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-.feed {
-  display: flex;
-  flex-direction: column;
-  row-gap: 16px;
-  background-color: beige;
-  width: 50vw;
-  height: 0;
-  padding-top: 25vh;
-  padding-bottom: 25vh;
-  overflow-y: scroll;
-  margin: auto;
-}

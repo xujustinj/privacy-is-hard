@@ -1,12 +1,13 @@
 import { useCallback, useMemo, useState } from "react";
 import "./App.css";
-import Feed from "./Feed";
-import { EarthquakeGame } from "./game/EarthquakeGame";
-import { Game, GameEvent } from "./game/Game";
+import Feed from "./game/Feed";
+import { DemoGame } from "./game/Example";
+import { GameEvent, GameEventWrapper } from "./game/Event";
+import { Game } from "./game/Game";
 
 function App() {
-  const game: Game = useMemo(() => new EarthquakeGame(), []);
-  const [events, setEvents] = useState<Array<GameEvent>>([]);
+  const game: Game = useMemo(() => new DemoGame(), []);
+  const [events, setEvents] = useState<Array<GameEvent<any>>>([]);
   const nextEvent = useCallback(() => {
     const event = game.nextEvent();
     if (event !== null) {
@@ -18,7 +19,11 @@ function App() {
     <div className="App">
       <h1>Events Feed</h1>
       <button onClick={nextEvent}>Next Event</button> {/* temporary */}
-      <Feed>{events.map(({ component, props }) => component(props))}</Feed>
+      <Feed>
+        {events.map((event) => (
+          <GameEventWrapper event={event} />
+        ))}
+      </Feed>
     </div>
   );
 }

@@ -1,19 +1,27 @@
 import { FunctionComponent } from "react";
 
-export interface GameEvent<Props = any> {
+export interface BaseEventProps {
+  onCompleteEvent(): void;
+}
+
+export interface GameEvent<Props extends BaseEventProps = any> {
   id: string;
-  component: FunctionComponent<Props>;
+  Component: FunctionComponent<Props>;
   props: Props;
 }
 
 export interface GameEventWrapperProps {
-  onCompleteEvent(): void;
+  finish: () => void;
   event: GameEvent;
 }
 
 export function GameEventWrapper({
-  onCompleteEvent,
-  event: { component, props },
+  finish,
+  event: { Component, props },
 }: GameEventWrapperProps) {
-  return <div>{component({ ...props, onCompleteEvent })}</div>;
+  return (
+    <div>
+      <Component {...props} finish={finish}></Component>
+    </div>
+  );
 }

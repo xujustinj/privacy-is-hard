@@ -1,16 +1,16 @@
 import { useCallback, useState } from "react";
+import { BaseEventProps } from "./BaseEvent";
 
-export interface InteractiveProps {
-  onCompleteEvent: () => void;
+export interface InteractiveProps extends BaseEventProps {
   message: string;
 }
 
-export function Interactive({ onCompleteEvent, message }: InteractiveProps) {
+export function Interactive({ finish, message }: InteractiveProps) {
   const [timesClicked, setTimesClicked] = useState(0);
   const click = useCallback(() => {
     setTimesClicked(timesClicked + 1);
-    onCompleteEvent();
-  }, [timesClicked, setTimesClicked, onCompleteEvent]);
+    finish();
+  }, [timesClicked, setTimesClicked, finish]);
 
   return (
     <div>

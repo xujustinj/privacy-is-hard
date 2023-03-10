@@ -1,11 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { GeneratorStateContext } from "../game/Generator";
+import { BaseEventProps } from "./BaseEvent";
 
-export interface EarthquakeProps {
-  onCompleteEvent: () => void;
-}
+export interface EarthquakeProps extends BaseEventProps {}
 
-export function Earthquake({ onCompleteEvent }: EarthquakeProps) {
-  useEffect(onCompleteEvent, [onCompleteEvent]);
+export function Earthquake({ finish }: EarthquakeProps) {
+  const state = useContext(GeneratorStateContext);
+  useEffect(() => {
+    state.earthquake = true;
+    finish();
+  }, [finish, state]);
+
   return (
     <div>
       <p>A small earthquake has struck Jollywood!</p>

@@ -1,4 +1,11 @@
-export function Earthquake() {
+import { useEffect } from "react";
+
+export interface EarthquakeProps {
+  onCompleteEvent: () => void;
+}
+
+export function Earthquake({ onCompleteEvent }: EarthquakeProps) {
+  useEffect(onCompleteEvent, [onCompleteEvent]);
   return (
     <div>
       <p>A small earthquake has struck Jollywood!</p>

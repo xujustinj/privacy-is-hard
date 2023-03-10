@@ -1,14 +1,16 @@
 import { useCallback, useState } from "react";
 
 export interface InteractiveProps {
+  onCompleteEvent: () => void;
   message: string;
 }
 
-export function Interactive({ message }: InteractiveProps) {
+export function Interactive({ onCompleteEvent, message }: InteractiveProps) {
   const [timesClicked, setTimesClicked] = useState(0);
   const click = useCallback(() => {
     setTimesClicked(timesClicked + 1);
-  }, [timesClicked, setTimesClicked]);
+    onCompleteEvent();
+  }, [timesClicked, setTimesClicked, onCompleteEvent]);
 
   return (
     <div>

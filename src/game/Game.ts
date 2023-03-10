@@ -1,5 +1,10 @@
 import { GameEvent } from "./Event";
 
 export interface Game {
-  nextEvent(): GameEvent<any> | null;
+  readonly events: ReadonlyArray<GameEvent>;
+  completeEvent(event: GameEvent): Game;
+  isActive(event: GameEvent): boolean;
+
+  readonly canAdvance: boolean;
+  advance(): Game;
 }

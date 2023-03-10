@@ -1,15 +1,8 @@
-import {
-  Children,
-  PropsWithChildren,
-  UIEvent,
-  useCallback,
-  useEffect,
-} from "react";
+import { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 export interface FeedProps extends PropsWithChildren {
-  onEmpty: () => void;
-  onScrollToBottom: () => void;
+  onAdvance: (() => void) | null;
 }
 
 const FeedContainer = styled.div`
@@ -18,33 +11,19 @@ const FeedContainer = styled.div`
   row-gap: 16px;
   background-color: beige;
   width: 50vw;
-  height: 0;
-  padding-top: 25vh;
-  padding-bottom: 25vh;
+  height: 50vh;
+  padding: 32px;
   overflow-y: scroll;
   margin: auto;
 `;
 
-export function Feed({ children, onEmpty, onScrollToBottom }: FeedProps) {
-  useEffect(() => {
-    if (Children.count(children) === 0) {
-      onEmpty();
-    }
-  }, [children, onEmpty]);
-
-  // https://stackoverflow.com/a/49573628
-  const onScroll = useCallback(
-    (e: UIEvent<HTMLElement>) => {
-      const { scrollHeight, scrollTop, clientHeight } = e.target as HTMLElement;
-      const y = scrollHeight - Math.ceil(scrollTop);
-      console.log(y, clientHeight);
-      if (y <= clientHeight) {
-        console.log("BOTTOM");
-        onScrollToBottom();
-      }
-    },
-    [onScrollToBottom]
+export function Feed({ children, onAdvance }: FeedProps) {
+  return (
+    <FeedContainer>
+      {children}
+      <button onClick={onAdvance ?? (() => {})} disabled={onAdvance === null}>
+        Continue
+      </button>
+    </FeedContainer>
   );
-
-  return <FeedContainer onScroll={onScroll}>{children}</FeedContainer>;
 }

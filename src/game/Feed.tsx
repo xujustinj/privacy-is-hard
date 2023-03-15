@@ -8,14 +8,13 @@ export interface FeedProps extends PropsWithChildren {
 const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 16px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  padding: 32px;
   overflow-y: scroll;
   margin: auto;
   flex-grow: 1;
   width: 100%;
+  align-items: center;
 `;
 
 const ContinueButton = styled.button`
@@ -23,10 +22,9 @@ const ContinueButton = styled.button`
   border-radius: 8px;
   font-size: medium;
   padding: 8px 16px;
+  margin: 32px auto;
   color: rgb(16, 16, 16);
   background-color: rgb(255, 157, 50);
-  margin-left: auto;
-  margin-right: auto;
 
   &:disabled {
     background-color: rgb(128, 128, 128);

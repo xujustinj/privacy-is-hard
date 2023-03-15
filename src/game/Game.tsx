@@ -4,6 +4,13 @@ import { Generator, GeneratorStateContext, RandomGenerator } from "./Generator";
 import { Feed } from "./Feed";
 import styled from "styled-components";
 import GameBackground from "../images/background.jpg";
+import {
+  ScoreCategory,
+  ScoreBar,
+  Scores,
+  ScoreChangeFunction,
+  ScoresContext,
+} from "./Score";
 
 const GameContainer = styled.div`
   background-image: url(${GameBackground});
@@ -11,6 +18,7 @@ const GameContainer = styled.div`
   width: 100vw;
   padding: 64px;
   display: flex;
+  row-gap: 16px;
   flex-direction: column;
 `;
 
@@ -39,19 +47,34 @@ export function Game() {
     [activeEvent, setActiveEvent]
   );
 
+  const [scores, setScores] = useState<Scores>(
+    () => new Map(Object.values(ScoreCategory).map((value) => [value, 100]))
+  );
+  const addScore = useCallback<ScoreChangeFunction>(
+    (category: ScoreCategory, change: number) => {
+      const newScores = new Map(scores);
+      newScores.set(category, (scores.get(category) ?? 0) + change);
+      setScores(newScores);
+    },
+    [scores, setScores]
+  );
+
   return (
-    <GeneratorStateContext.Provider value={generator.state}>
-      <GameContainer>
-        <Feed onAdvance={canAdvance ? onAdvance : null}>
-          {events.map((event) => (
-            <GameEventWrapper
-              key={event.id}
-              event={event}
-              finish={() => onFinish(event)}
-            />
-          ))}
-        </Feed>
-      </GameContainer>
-    </GeneratorStateContext.Provider>
+    <ScoresContext.Provider value={[scores, addScore]}>
+      <GeneratorStateContext.Provider value={generator.state}>
+        <GameContainer>
+          <ScoreBar scores={scores} />
+          <Feed onAdvance={canAdvance ? onAdvance : null}>
+            {events.map((event) => (
+              <GameEventWrapper
+                key={event.id}
+                event={event}
+                finish={() => onFinish(event)}
+              />
+            ))}
+          </Feed>
+        </GameContainer>
+      </GeneratorStateContext.Provider>
+    </ScoresContext.Provider>
   );
 }

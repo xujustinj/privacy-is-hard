@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import { Game } from "./Game";
+import { Game } from "./game/Game";
 import reportWebVitals from "./reportWebVitals";
+import GlobalStyle from "./globalStyles";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <Game />
   </React.StrictMode>
 );

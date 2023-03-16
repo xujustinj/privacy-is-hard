@@ -8,12 +8,17 @@ export interface InteractiveProps extends BaseEventProps {
 
 export function Interactive({ finish, message }: InteractiveProps) {
   const [timesClicked, setTimesClicked] = useState(0);
-  const addScore = useContext(ScoresContext)[1];
+  const addScores = useContext(ScoresContext)[1];
   const click = useCallback(() => {
     setTimesClicked(timesClicked + 1);
-    addScore(ScoreCategory.PRIVACY, -1);
+    addScores(
+      new Map([
+        [ScoreCategory.PRIVACY, -1],
+        [ScoreCategory.CAREER, 1],
+      ])
+    );
     finish();
-  }, [timesClicked, setTimesClicked, addScore, finish]);
+  }, [timesClicked, setTimesClicked, addScores, finish]);
 
   return (
     <div>

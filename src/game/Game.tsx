@@ -7,9 +7,9 @@ import { Generator, GeneratorStateContext, RandomGenerator } from "./Generator";
 import {
   ScoreBar,
   ScoreCategory,
-  ScoreChangeFunction,
   Scores,
   ScoresContext,
+  ScoresUpdater,
 } from "./Score";
 
 const GameContainer = styled.div`
@@ -50,17 +50,19 @@ export function Game() {
   const [scores, setScores] = useState<Scores>(
     () => new Map(Object.values(ScoreCategory).map((value) => [value, 100]))
   );
-  const addScore = useCallback<ScoreChangeFunction>(
-    (category: ScoreCategory, change: number) => {
+  const addScores = useCallback<ScoresUpdater>(
+    (updates: Scores) => {
       const newScores = new Map(scores);
-      newScores.set(category, (scores.get(category) ?? 0) + change);
+      for (const [category, update] of updates) {
+        newScores.set(category, (scores.get(category) ?? 0) + update);
+      }
       setScores(newScores);
     },
     [scores, setScores]
   );
 
   return (
-    <ScoresContext.Provider value={[scores, addScore]}>
+    <ScoresContext.Provider value={[scores, addScores]}>
       <GeneratorStateContext.Provider value={generator.state}>
         <GameContainer>
           <ScoreBar scores={scores} />

@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/privacy-is-hard/static/css/main.e6c13ad2.css",
-    "main.js": "/privacy-is-hard/static/js/main.05ddad6c.js",
+    "main.js": "/privacy-is-hard/static/js/main.2a4e1c24.js",
     "static/js/787.8cfda21d.chunk.js": "/privacy-is-hard/static/js/787.8cfda21d.chunk.js",
+    "static/media/background.jpg": "/privacy-is-hard/static/media/background.b59d49fa66e4f8e40d8c.jpg",
+    "static/media/social.png": "/privacy-is-hard/static/media/social.7f971edd25f105d44b73.png",
+    "static/media/career.png": "/privacy-is-hard/static/media/career.ddc6d414d1d13a874786.png",
+    "static/media/privacy.png": "/privacy-is-hard/static/media/privacy.ddfbc5c13ee0566713a7.png",
+    "static/media/health.png": "/privacy-is-hard/static/media/health.d725d390010f1a9e270e.png",
+    "static/media/happiness.png": "/privacy-is-hard/static/media/happiness.751f13e7342a1d67ed6a.png",
     "index.html": "/privacy-is-hard/index.html",
-    "main.e6c13ad2.css.map": "/privacy-is-hard/static/css/main.e6c13ad2.css.map",
-    "main.05ddad6c.js.map": "/privacy-is-hard/static/js/main.05ddad6c.js.map",
+    "main.2a4e1c24.js.map": "/privacy-is-hard/static/js/main.2a4e1c24.js.map",
     "787.8cfda21d.chunk.js.map": "/privacy-is-hard/static/js/787.8cfda21d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.05ddad6c.js"
+    "static/js/main.2a4e1c24.js"
   ]
 }

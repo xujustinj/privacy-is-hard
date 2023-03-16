@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
+import { Colors } from "../util/colors";
 
 export interface FeedProps extends PropsWithChildren {
   onAdvance: (() => void) | null;
@@ -8,7 +9,7 @@ export interface FeedProps extends PropsWithChildren {
 const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${Colors.sectionBackground};
   color: white;
   overflow-y: scroll;
   margin: auto;

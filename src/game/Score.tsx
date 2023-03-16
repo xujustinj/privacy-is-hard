@@ -5,6 +5,7 @@ import Happiness from "../images/happiness.png";
 import Health from "../images/health.png";
 import Privacy from "../images/privacy.png";
 import Social from "../images/social.png";
+import { Colors, rgb } from "../util/colors";
 
 export enum ScoreCategory {
   PRIVACY = "privacy",
@@ -18,32 +19,32 @@ export const ScoreCategoryDetails = {
   [ScoreCategory.PRIVACY]: {
     displayName: "Privacy",
     iconSrc: Privacy,
-    iconColor: "rgb(0, 128, 255)",
+    iconColor: rgb({ r: 0.0, g: 0.5, b: 1.0 }),
   },
   [ScoreCategory.CAREER]: {
     displayName: "Career",
     iconSrc: Career,
-    iconColor: "rgb(255, 191, 0)",
+    iconColor: rgb({ r: 1.0, g: 0.75, b: 0.0 }),
   },
   [ScoreCategory.HEALTH]: {
     displayName: "Health",
     iconSrc: Health,
-    iconColor: "rgb(255, 0, 0)",
+    iconColor: rgb({ r: 1.0, g: 0.0, b: 0.0 }),
   },
   [ScoreCategory.SOCIAL]: {
     displayName: "Social",
     iconSrc: Social,
-    iconColor: "rgb(255, 0, 128)",
+    iconColor: rgb({ r: 1.0, g: 0.0, b: 0.5 }),
   },
   [ScoreCategory.HAPPINESS]: {
     displayName: "Happiness",
     iconSrc: Happiness,
-    iconColor: "rgb(128, 255, 0)",
+    iconColor: rgb({ r: 0.5, g: 1.0, b: 0.0 }),
   },
 } as const;
 
 export type Scores = ReadonlyMap<ScoreCategory, number>;
-export type ScoresUpdater = (changes: Scores) => void;
+export type ScoresUpdater = (updates: Scores) => void;
 
 export const ScoresContext = createContext<[Scores, ScoresUpdater]>([
   new Map(),
@@ -54,7 +55,7 @@ export interface ScoresProps {
   scores: Scores;
 }
 
-const Icon = styled.span<{ src: string; color: any }>`
+const Icon = styled.span<{ src: string; color: string }>`
   display: inline-block;
   mask-image: url(${(props) => props.src});
   mask-size: contain;
@@ -64,7 +65,7 @@ const Icon = styled.span<{ src: string; color: any }>`
 `;
 
 const ScoresContainer = styled.div`
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${Colors.sectionBackground};
   padding: 16px 64px;
   display: flex;
   flex-direction: row;
@@ -88,16 +89,6 @@ const ScoreNumber = styled.span<{ color: any }>`
   text-align: end;
   color: ${(props) => props.color};
 `;
-
-interface RGB {
-  r: number;
-  g: number;
-  b: number;
-}
-
-function rgb({ r, g, b }: RGB) {
-  return `rgb(${255 * r}, ${255 * g}, ${255 * b})`;
-}
 
 function Score({ category, score }: ScoreProps) {
   const { displayName, iconSrc, iconColor } = ScoreCategoryDetails[category];

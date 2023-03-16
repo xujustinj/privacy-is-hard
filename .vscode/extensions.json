@@ -1,7 +1,8 @@
 {
   "recommendations": [
-    "ms-vsliveshare.vsliveshare",
+    "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "rvest.vs-code-prettier-eslint"
+    "ms-vsliveshare.vsliveshare",
+    "rvest.vs-code-prettier-eslint",
   ]
 }

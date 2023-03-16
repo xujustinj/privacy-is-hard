@@ -1,14 +1,14 @@
 import { useCallback, useMemo, useState } from "react";
-import { GameEvent, GameEventWrapper } from "./Event";
-import { Generator, GeneratorStateContext, RandomGenerator } from "./Generator";
-import { Feed } from "./Feed";
 import styled from "styled-components";
 import GameBackground from "../images/background.jpg";
+import { GameEvent, GameEventWrapper } from "./Event";
+import { Feed } from "./Feed";
+import { Generator, GeneratorStateContext, RandomGenerator } from "./Generator";
 import {
-  ScoreCategory,
   ScoreBar,
-  Scores,
+  ScoreCategory,
   ScoreChangeFunction,
+  Scores,
   ScoresContext,
 } from "./Score";
 

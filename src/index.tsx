@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Game } from "./game/Game";
-import reportWebVitals from "./reportWebVitals";
 import GlobalStyle from "./globalStyles";
+import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

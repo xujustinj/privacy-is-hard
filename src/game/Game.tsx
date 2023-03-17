@@ -14,6 +14,7 @@ import {
 
 const GameContainer = styled.div`
   background-image: url(${GameBackground});
+  background-size: cover;
   height: 100vh;
   width: 100vw;
   padding: 64px;

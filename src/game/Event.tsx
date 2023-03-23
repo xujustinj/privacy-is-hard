@@ -1,22 +1,17 @@
-import { FunctionComponent } from "react";
 import styled from "styled-components";
+import { RenderProps } from "../util/Render";
 
 export interface BaseEventProps {
   onCompleteEvent(): void;
 }
 
-export interface GameEvent<Props extends BaseEventProps = any> {
+export interface GameEvent<EProps extends BaseEventProps = any, IProps = any> {
   id: string;
-  Component: FunctionComponent<Props>;
-  props: Props;
+  eventRender: RenderProps<EProps>;
+  infoRender: RenderProps<IProps> | null;
 }
 
-export interface GameEventWrapperProps {
-  finish: () => void;
-  event: GameEvent;
-}
-
-const GameEventContainer = styled.div`
+export const GameEventContainer = styled.div`
   width: 100%;
   padding: 32px 64px;
   background-color: none;
@@ -25,14 +20,3 @@ const GameEventContainer = styled.div`
     background-color: rgba(53, 117, 142, 0.5);
   }
 `;
-
-export function GameEventWrapper({
-  finish,
-  event: { Component, props },
-}: GameEventWrapperProps) {
-  return (
-    <GameEventContainer>
-      <Component {...props} finish={finish}></Component>
-    </GameEventContainer>
-  );
-}

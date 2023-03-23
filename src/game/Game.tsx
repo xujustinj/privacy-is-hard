@@ -1,9 +1,11 @@
 import { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import GameBackground from "../images/background.jpg";
-import { GameEvent, GameEventWrapper } from "./Event";
+import { Render, RenderProps } from "../util/Render";
+import { GameEvent, GameEventContainer } from "./Event";
 import { Feed } from "./Feed";
 import { Generator, GeneratorStateContext, RandomGenerator } from "./Generator";
+import { InfoPanelContainer } from "./InfoPanel";
 import {
   ScoreBar,
   ScoreCategory,
@@ -21,6 +23,14 @@ const GameContainer = styled.div`
   display: flex;
   row-gap: 16px;
   flex-direction: column;
+`;
+
+const BodyContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+  height: 100%;
+  align-items: stretch;
 `;
 
 export function Game() {
@@ -62,20 +72,31 @@ export function Game() {
     [scores, setScores]
   );
 
+  const [info, setInfo] = useState<RenderProps | null>(() => null);
+
   return (
     <ScoresContext.Provider value={[scores, addScores]}>
       <GeneratorStateContext.Provider value={generator.state}>
         <GameContainer>
           <ScoreBar scores={scores} />
-          <Feed onAdvance={canAdvance ? onAdvance : null}>
-            {events.map((event) => (
-              <GameEventWrapper
-                key={event.id}
-                event={event}
-                finish={() => onFinish(event)}
-              />
-            ))}
-          </Feed>
+          <BodyContainer>
+            <Feed onAdvance={canAdvance ? onAdvance : null}>
+              {events.map((event) => {
+                const { id, eventRender, infoRender } = event;
+                return (
+                  <GameEventContainer
+                    key={id}
+                    onMouseOver={() => setInfo(infoRender)}
+                  >
+                    <Render finish={() => onFinish(event)} {...eventRender} />
+                  </GameEventContainer>
+                );
+              })}
+            </Feed>
+            <InfoPanelContainer>
+              {info !== null && <Render {...info} />}
+            </InfoPanelContainer>
+          </BodyContainer>
         </GameContainer>
       </GeneratorStateContext.Provider>
     </ScoresContext.Provider>

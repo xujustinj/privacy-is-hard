@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { Earthquake } from "../events/Earthquake";
 import { Interactive } from "../events/InteractiveExample";
+import { EarthquakeInfo } from "../info/EarthquakeInfo";
 import { GameEvent } from "./Event";
 
 export class GeneratorState {
@@ -28,21 +29,22 @@ export class RandomGenerator implements Generator {
 
   public next(): GameEvent | null {
     this.state.count++;
-    if (!this.state.earthquake && Math.random() < 0.1) {
+    if (!this.state.earthquake && Math.random() < 0.3) {
       return {
         id: `earthquake-${this.state.count}`,
-        Component: Earthquake,
-        props: {},
+        eventRender: { Component: Earthquake },
+        infoRender: { Component: EarthquakeInfo },
       };
     }
     return {
       id: `interactive-${this.state.count}`,
-      Component: Interactive,
-      props: {
+      eventRender: {
+        Component: Interactive,
         message: `Event #${this.state.count}. There ${
           this.state.earthquake ? "has" : "has not"
         } been an earthquake.`,
       },
+      infoRender: null,
     };
   }
 }

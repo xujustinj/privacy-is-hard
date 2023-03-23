@@ -14,7 +14,8 @@ const FeedContainer = styled.div`
   overflow-y: scroll;
   margin: auto;
   flex-grow: 1;
-  width: 100%;
+  height: 100%;
+  width: 60%;
   align-items: center;
 `;
 

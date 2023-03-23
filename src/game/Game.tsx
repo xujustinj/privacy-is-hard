@@ -4,7 +4,7 @@ import GameBackground from "../images/background.jpg";
 import { Render, RenderProps } from "../util/Render";
 import { GameEvent, GameEventContainer } from "./Event";
 import { Feed } from "./Feed";
-import { Generator, GeneratorStateContext, RandomGenerator } from "./Generator";
+import { Generator, GeneratorStateContext, SequenceGenerator } from "./Generator";
 import { InfoPanelContainer } from "./InfoPanel";
 import {
   ScoreBar,
@@ -34,7 +34,7 @@ const BodyContainer = styled.div`
 `;
 
 export function Game() {
-  const generator = useMemo<Generator>(() => new RandomGenerator(), []);
+  const generator = useMemo<Generator>(() => new SequenceGenerator(), []);
   const [events, setEvents] = useState<ReadonlyArray<GameEvent>>([]);
   const [activeEvent, setActiveEvent] = useState<GameEvent | null>(null);
 

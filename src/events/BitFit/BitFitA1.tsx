@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
-import { AddScore, ScoreCategory, SubScore } from "../../game/Score";
+import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from ".././BaseEvent";
 
 export interface BitFitA1 extends BaseEventProps {}

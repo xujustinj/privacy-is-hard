@@ -119,21 +119,42 @@ export function ScoreBar({ scores }: ScoresProps) {
   );
 }
 
-export interface AddScoreProps {
-  category: ScoreCategory,
-  amount: number,
+export interface ChangeScoreProps {
+  category: ScoreCategory;
+  amount: number;
 }
 
 const GreenText = styled.p`
-  color: green
-`
+  color: green;
+  font-weight: bold;
+`;
 
-export function AddScore({ category, amount }: AddScoreProps) {
+const RedText = styled.p`
+  color: red;
+  font-weight: bold;
+`;
+
+export function AddScore({ category, amount }: ChangeScoreProps) {
   const addScores = useContext(ScoresContext)[1];
   useEffect(() => {
     addScores(new Map([[category, amount]]));
-  }, [])
-  return <GreenText>
-    +{amount} {category}
-  </GreenText>
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  return (
+    <GreenText>
+      +{amount} {category}
+    </GreenText>
+  );
+}
+
+export function SubScore({ category, amount }: ChangeScoreProps) {
+  const addScores = useContext(ScoresContext)[1];
+  useEffect(() => {
+    addScores(new Map([[category, -amount]]));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
+    <RedText>
+      -{amount} {category}
+    </RedText>
+  );
 }

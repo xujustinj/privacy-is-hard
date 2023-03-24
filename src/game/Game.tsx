@@ -4,7 +4,11 @@ import GameBackground from "../images/background.jpg";
 import { Render, RenderProps } from "../util/Render";
 import { GameEvent, GameEventContainer } from "./Event";
 import { Feed } from "./Feed";
-import { Generator, GeneratorStateContext, SequenceGenerator } from "./Generator";
+import {
+  Generator,
+  GeneratorStateContext,
+  SequenceGenerator,
+} from "./Generator";
 import { InfoPanelContainer } from "./InfoPanel";
 import {
   ScoreBar,

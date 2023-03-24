@@ -1,14 +1,11 @@
 import { createContext } from "react";
-import { Earthquake } from "../events/Earthquake";
 import { Balantir } from "../events/Balantir";
 import { BitFit } from "../events/BitFit";
-import { Interactive } from "../events/InteractiveExample";
+import { CreditCash } from "../events/CreditCash";
 import { BalantirInfo } from "../info/BalantirInfo";
 import { CreditCashInfo } from "../info/CreditCashInfo";
-import { EarthquakeInfo } from "../info/EarthquakeInfo";
 
 import { GameEvent } from "./Event";
-import { CreditCashInteractive } from "../events/CreditCard/CreditCashInteractive"
 
 export class GeneratorState {
   count = 0;
@@ -35,29 +32,23 @@ export class SequenceGenerator implements Generator {
   protected readonly events = [
     {
       id: `bitfit`,
-      eventRender: {
-        Component: BitFit
-      },
+      eventRender: { Component: BitFit },
       infoRender: null,
     },
     {
-      id: `creditcashinteractive-${this.state.count}`,
-      eventRender: {
-        Component: CreditCashInteractive,
-        message: `Event #${this.state.count}. On a pit stop to WcDonald's, you get two number 9s, a number 9 large,
-        a number 6 with extra dip, a number 7, two number 45s, one with cheese, and a large soda. How would you like to pay?`
-      },
+      id: `creditcash`,
+      eventRender: { Component: CreditCash },
       infoRender: { Component: CreditCashInfo },
     },
     {
-      id: `balantir-${this.state.count}`,
+      id: `balantir`,
       eventRender: { Component: Balantir },
       infoRender: { Component: BalantirInfo },
-    }
+    },
   ];
 
   public next(): GameEvent | null {
-    if(this.state.count < this.events.length) {
+    if (this.state.count < this.events.length) {
       const event = this.events[this.state.count];
       this.state.count++;
       return event;
@@ -66,56 +57,3 @@ export class SequenceGenerator implements Generator {
     }
   }
 }
-
-/**export class RandomGenerator implements Generator {
-  // The generator state only affects what event comes next (if any).
-  // We don't have to let React know about any changes to that state;
-  // it can just be edited directly.
-  public readonly state = new GeneratorState();
-
-  public next(): GameEvent | null {
-    this.state.count++;
-    if (!this.state.earthquake && Math.random() < 0.3) {
-      return {
-        id: `earthquake-${this.state.count}`,
-        eventRender: { Component: Earthquake },
-        infoRender: { Component: EarthquakeInfo },
-      };
-    }
-    if (!this.state.balantir && Math.random() > 0.3) {
-      return {
-        id: `balantir-${this.state.count}`,
-        eventRender: { Component: Balantir },
-        infoRender: { Component: BalantirInfo },
-      };
-    }
-    if (!this.state.creditcashinteractive && Math.random() > 0.7) {
-      return {
-        id: `creditcashinteractive-${this.state.count}`,
-        eventRender: {
-          Component: CreditCashInteractive,
-          message: `Event #${this.state.count}. On a pit stop to WcDonald's, you get two number 9s, a number 9 large,
-          a number 6 with extra dip, a number 7, two number 45s, one with cheese, and a large soda. How would you like to pay?`
-        },
-        infoRender: { Component: CreditCashInfo },
-      };
-    }
-    if (!this.state.creditcashpost && this.state.creditcashinteractive && Math.random() > 0.7) {
-      return {
-        id: `creditcashpostcondition-${this.state.count}`,
-        eventRender: { Component: CreditCashPostcondition },
-        infoRender: { Component: CreditCashInfo },
-      };
-    }
-    return {
-      id: `interactive-${this.state.count}`,
-      eventRender: {
-        Component: Interactive,
-        message: `Event #${this.state.count}. There ${
-          this.state.earthquake ? "has" : "has not"
-        } been an earthquake.`,
-      },
-      infoRender: null,
-    };
-  }
-} **/

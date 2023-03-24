@@ -44,9 +44,18 @@ export const ScoreCategoryDetails = {
 } as const;
 
 export type Scores = ReadonlyMap<ScoreCategory, number>;
-export type ScoresUpdater = (updates: Scores) => void;
+export type ScoreUpdater = (category: ScoreCategory, amount: number) => void;
+export function addScore(
+  scores: Scores,
+  category: ScoreCategory,
+  amount: number
+): Scores {
+  const newScores = new Map(scores);
+  newScores.set(category, newScores.get(category)! + amount);
+  return newScores;
+}
 
-export const ScoresContext = createContext<[Scores, ScoresUpdater]>([
+export const ScoresContext = createContext<[Scores, ScoreUpdater]>([
   new Map(),
   () => {},
 ]);
@@ -119,42 +128,26 @@ export function ScoreBar({ scores }: ScoresProps) {
   );
 }
 
-export interface ChangeScoreProps {
+export interface UpdateScoreProps {
   category: ScoreCategory;
   amount: number;
 }
 
-const GreenText = styled.p`
-  color: green;
+const ScoreText = styled.p<{ color: string }>`
+  color: ${(props) => props.color};
   font-weight: bold;
 `;
 
-const RedText = styled.p`
-  color: red;
-  font-weight: bold;
-`;
-
-export function AddScore({ category, amount }: ChangeScoreProps) {
-  const addScores = useContext(ScoresContext)[1];
+export function AddScore({ category, amount }: UpdateScoreProps) {
+  const addScore = useContext(ScoresContext)[1];
   useEffect(() => {
-    addScores(new Map([[category, amount]]));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+    addScore(category, amount);
+  }, [addScore, category, amount]);
+  const { displayName } = ScoreCategoryDetails[category];
   return (
-    <GreenText>
-      +{amount} {category}
-    </GreenText>
-  );
-}
-
-export function SubScore({ category, amount }: ChangeScoreProps) {
-  const addScores = useContext(ScoresContext)[1];
-  useEffect(() => {
-    addScores(new Map([[category, -amount]]));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-  return (
-    <RedText>
-      -{amount} {category}
-    </RedText>
+    <ScoreText color={amount >= 0 ? "green" : "red"}>
+      {amount >= 0 ? "+" : "-"}
+      {amount} {displayName}
+    </ScoreText>
   );
 }

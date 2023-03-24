@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { AddScore, ScoreCategory, SubScore } from "../game/Score";
+import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
 export function CreditCash({ finish }: BaseEventProps) {
@@ -26,7 +26,7 @@ export function CreditCash({ finish }: BaseEventProps) {
         <>
           <p>Thank you. Your order will be ready at the next window.</p>
           <AddScore category={ScoreCategory.HAPPINESS} amount={10} />
-          <SubScore category={ScoreCategory.HEALTH} amount={5} />
+          <AddScore category={ScoreCategory.HEALTH} amount={-5} />
         </>
       )}
     </div>

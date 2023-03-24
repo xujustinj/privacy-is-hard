@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { Earthquake } from "../events/Earthquake";
 import { Balantir } from "../events/Balantir";
+import { BitFit } from "../events/BitFit";
 import { Interactive } from "../events/InteractiveExample";
 import { BalantirInfo } from "../info/BalantirInfo";
 import { CreditCashInfo } from "../info/CreditCashInfo";
@@ -33,6 +34,13 @@ export class SequenceGenerator implements Generator {
   public readonly state = new GeneratorState();
   protected readonly events = [
     {
+      id: `bitfit`,
+      eventRender: {
+        Component: BitFit
+      },
+      infoRender: null,
+    },
+    {
       id: `creditcashinteractive-${this.state.count}`,
       eventRender: {
         Component: CreditCashInteractive,
@@ -50,8 +58,9 @@ export class SequenceGenerator implements Generator {
 
   public next(): GameEvent | null {
     if(this.state.count < this.events.length) {
+      const event = this.events[this.state.count];
       this.state.count++;
-      return this.events[this.state.count]
+      return event;
     } else {
       return null;
     }

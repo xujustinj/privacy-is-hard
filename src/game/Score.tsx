@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import styled from "styled-components";
 import Career from "../images/career.png";
 import Happiness from "../images/happiness.png";
@@ -117,4 +117,23 @@ export function ScoreBar({ scores }: ScoresProps) {
       ))}
     </ScoresContainer>
   );
+}
+
+export interface AddScoreProps {
+  category: ScoreCategory,
+  amount: number,
+}
+
+const GreenText = styled.p`
+  color: green
+`
+
+export function AddScore({ category, amount }: AddScoreProps) {
+  const addScores = useContext(ScoresContext)[1];
+  useEffect(() => {
+    addScores(new Map([[category, amount]]));
+  }, [])
+  return <GreenText>
+    +{amount} {category}
+  </GreenText>
 }

@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import { GeneratorStateContext } from "../game/Generator";
-import { AddScore, ScoreCategory, SubScore } from "../game/Score";
-import { BaseEventProps } from "./BaseEvent";
+import { GeneratorStateContext } from "../../game/Generator";
+import { AddScore, ScoreCategory, SubScore } from "../../game/Score";
+import { BaseEventProps } from ".././BaseEvent";
 
 export interface MoogleA2Props extends BaseEventProps {}
 

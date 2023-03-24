@@ -1,16 +1,11 @@
-import { useContext, useEffect } from "react";
-import { GeneratorStateContext } from "../game/Generator";
+import { useEffect } from "react";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
 export interface BalantirProps extends BaseEventProps {}
 
 export function Balantir({ finish }: BalantirProps) {
-  const state = useContext(GeneratorStateContext);
-  useEffect(() => {
-    state.balantir = true;
-    finish();
-  }, [state, finish]);
+  useEffect(finish, [finish]);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
@@ -11,7 +11,7 @@ export function BitFit({ finish }: BaseEventProps) {
     },
     [setChoice, finish]
   );
-  useEffect(() => console.log("BitFit"));
+
   return (
     <div>
       <p>

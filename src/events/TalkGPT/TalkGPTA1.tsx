@@ -1,12 +1,8 @@
-import { useContext, useEffect } from "react";
-import { GeneratorStateContext } from "../../game/Generator";
+import { useEffect } from "react";
 import { BaseEventProps } from ".././BaseEvent";
 
 export function TalkGPTA1({ finish }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  useEffect(() => {
-    finish();
-  }, [state, finish]);
+  useEffect(finish, [finish]);
 
   return (
     <div>

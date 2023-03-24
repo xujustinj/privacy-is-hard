@@ -3,9 +3,9 @@ import { GeneratorStateContext } from "../game/Generator";
 import { AddScore, ScoreCategory, SubScore } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
-export interface MoogleL2Props extends BaseEventProps {}
+export interface MoogleB1Props extends BaseEventProps {}
 
-export function MoogleL3({ finish }: MoogleL2Props) {
+export function MoogleB1({ finish }: MoogleB1Props) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();
@@ -14,10 +14,7 @@ export function MoogleL3({ finish }: MoogleL2Props) {
   return (
     <div>
       <p>
-      Breaking News: Amid Moogle Layoffs, Angry Ex-Moogler Leaks Moogle Home Recordings
-      </p>
-      <p>
-      Some of those recordings included your voice.
+      Ugh, you totally forgot there was a family dinner last night! And you're still stressed from a million other things on your plate.
       </p>
     </div>
   );

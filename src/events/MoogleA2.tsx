@@ -3,9 +3,9 @@ import { GeneratorStateContext } from "../game/Generator";
 import { AddScore, ScoreCategory, SubScore } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
-export interface MoogleL2Props extends BaseEventProps {}
+export interface MoogleA2Props extends BaseEventProps {}
 
-export function MoogleL2({ finish }: MoogleL2Props) {
+export function MoogleA2({ finish }: MoogleA2Props) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();

@@ -146,7 +146,7 @@ export function AddScore({ category, amount }: UpdateScoreProps) {
   const { displayName } = ScoreCategoryDetails[category];
   return (
     <ScoreText color={amount >= 0 ? "green" : "red"}>
-      {amount >= 0 ? "+" : "-"}
+      {amount > 0 && "+"}
       {amount} {displayName}
     </ScoreText>
   );

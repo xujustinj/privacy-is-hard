@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from ".././BaseEvent";
 
-export function BitFitA2({ finish }: BaseEventProps) {
+export function BitFitB2({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);
 
   return (
@@ -11,6 +12,7 @@ export function BitFitA2({ finish }: BaseEventProps) {
         prescribed some heart medication. You start taking it and feel much
         better.
       </p>
+      <AddScore category={ScoreCategory.HEALTH} amount={5} />
     </div>
   );
 }

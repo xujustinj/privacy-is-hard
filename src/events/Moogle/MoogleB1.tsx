@@ -2,9 +2,7 @@ import { useContext, useEffect } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
 import { BaseEventProps } from ".././BaseEvent";
 
-export interface MoogleB1Props extends BaseEventProps {}
-
-export function MoogleB1({ finish }: MoogleB1Props) {
+export function MoogleB1({ finish }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();

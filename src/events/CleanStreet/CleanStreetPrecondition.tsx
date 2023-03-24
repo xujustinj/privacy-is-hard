@@ -2,9 +2,7 @@ import { useContext, useEffect } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
 import { BaseEventProps } from ".././BaseEvent";
 
-export interface CleanStreetPrecondition extends BaseEventProps {}
-
-export function CleanStreetPrecondition({ finish }: CleanStreetPrecondition) {
+export function CleanStreetPrecondition({ finish }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();

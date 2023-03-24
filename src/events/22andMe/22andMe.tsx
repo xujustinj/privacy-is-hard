@@ -13,7 +13,7 @@ export function TwentyTwoandMe({ finish }: BaseEventProps) {
   return (
     <div>
       <p>
-        It’s Christmas! You are hosting a party with your friends and family.
+        It's Christmas! You are hosting a party with your friends and family.
         For some holiday fun, your aunt Barbara has gifted 22andMe DNA testing
         kits to the entire family.
       </p>

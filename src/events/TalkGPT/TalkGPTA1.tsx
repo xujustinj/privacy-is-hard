@@ -2,9 +2,7 @@ import { useContext, useEffect } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
 import { BaseEventProps } from ".././BaseEvent";
 
-export interface TalkGPTA1 extends BaseEventProps {}
-
-export function TalkGPTA1({ finish }: TalkGPTA1) {
+export function TalkGPTA1({ finish }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();

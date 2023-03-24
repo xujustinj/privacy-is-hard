@@ -2,9 +2,7 @@ import { useContext, useEffect } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
 import { BaseEventProps } from ".././BaseEvent";
 
-export interface TalkGPTprecondition extends BaseEventProps {}
-
-export function TalkGPTprecondition({ finish }: TalkGPTprecondition) {
+export function TalkGPTprecondition({ finish }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();

@@ -2,9 +2,7 @@ import { useContext, useEffect } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
 import { BaseEventProps } from ".././BaseEvent";
 
-export interface TwentyTwoandMeB1 extends BaseEventProps {}
-
-export function TwentyTwoandMeB1({ finish }: TwentyTwoandMeB1) {
+export function TwentyTwoandMeB1({ finish }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   useEffect(() => {
     finish();
@@ -14,7 +12,7 @@ export function TwentyTwoandMeB1({ finish }: TwentyTwoandMeB1) {
     <div>
       <p>
         22andMe goes bankrupt. They have to sell all their data as part of the
-        process to pay back creditors, including you and your family’s DNA data,
+        process to pay back creditors, including you and your family's DNA data,
         which makes it easy to identify you in the future.
       </p>
     </div>

@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { AddScore, ScoreCategory } from "../game/Score";
-import { BaseEventProps } from "./BaseEvent";
+import { AddScore, ScoreCategory } from "../../game/Score";
+import { BaseEventProps } from "../BaseEvent";
 
 export function BitFit({ finish }: BaseEventProps) {
   const [choice, setChoice] = useState<boolean | null>(() => null);
@@ -26,15 +26,9 @@ export function BitFit({ finish }: BaseEventProps) {
         I would rather not.
       </button>
       {choice === true && <></>}
-      {choice === false && <></>}
+      {choice === false && <><p>Your personal trainer is unhappy. Now they have to re-do the entire training plan! Word gets out about your "feud" with your personal trainer. Tabloids have already published an article - '11 Celebrities Who Need A Serious Attitude Adjustment' - and you're #1.</p></>}
       {choice !== null && (
         <>
-          <p>
-            The doctor diagnoses you with heart arrhythmia and prescribes you
-            some heart medication. You start taking your heart arrhythmia
-            medicine.
-          </p>
-          <AddScore category={ScoreCategory.HEALTH} amount={5} />
         </>
       )}
     </div>

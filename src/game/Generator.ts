@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { Balantir } from "../events/Balantir";
-import { BitFit } from "../events/BitFit";
+import { BitFit } from "../events/BitFit/BitFit";
 import { CreditCash } from "../events/CreditCash";
 import { BalantirInfo } from "../info/BalantirInfo";
 import { CreditCashInfo } from "../info/CreditCashInfo";

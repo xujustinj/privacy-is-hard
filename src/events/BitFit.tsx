@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
 export function BitFit({ finish }: BaseEventProps) {
-  const [choice, setChoice] = useState<boolean | null>(() => null);
+  const [choice, setChoice] = useState<boolean | null>(null);
   const choose = useCallback(
     (newChoice: boolean) => {
       setChoice(newChoice);
@@ -11,6 +11,7 @@ export function BitFit({ finish }: BaseEventProps) {
     },
     [setChoice, finish]
   );
+  useEffect(() => console.log("BitFit"));
   return (
     <div>
       <p>

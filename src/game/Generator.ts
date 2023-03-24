@@ -45,11 +45,6 @@ export class SequenceGenerator implements Generator {
       eventRender: { Component: Balantir },
       infoRender: { Component: BalantirInfo },
     },
-    {
-      id: `bitfit`,
-      eventRender: { Component: BitFit },
-      infoRender: null,
-    }
   ];
 
   public next(): GameEvent | null {

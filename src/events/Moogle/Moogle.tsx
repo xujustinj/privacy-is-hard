@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { AddScore, ScoreCategory } from "../game/Score";
-import { BaseEventProps } from "./BaseEvent";
+import { AddScore, ScoreCategory } from "../../game/Score";
+import { BaseEventProps } from "../BaseEvent";
 
 export function Moogle({ finish }: BaseEventProps) {
   const [choice, setChoice] = useState<boolean | null>(() => null);
@@ -23,7 +23,7 @@ export function Moogle({ finish }: BaseEventProps) {
       <button onClick={() => choose(false)} disabled={choice !== null}>
         It's ok, I'll keep doing what I'm already doing.
       </button>
-      {choice === true && <>You buy a Moogle Home and add everything on your to-do list to Moogle Calendar.</>}
+      {choice === true && <><p>You buy a Moogle Home and add everything on your to-do list to Moogle Calendar.</p></>}
       {choice === false && <></>}
       {choice !== null && (
         <>

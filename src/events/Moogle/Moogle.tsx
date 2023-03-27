@@ -1,14 +1,22 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
+import { GeneratorStateContext } from "../../game/Generator";
 import { BaseEventProps } from "../BaseEvent";
 
+export const enum MoogleChoice {
+  YES,
+  NO,
+}
+
 export function Moogle({ finish }: BaseEventProps) {
-  const [choice, setChoice] = useState<boolean | null>(() => null);
+  const state = useContext(GeneratorStateContext);
+  const [choice, setChoice] = useState<MoogleChoice | null>(null);
   const choose = useCallback(
-    (newChoice: boolean) => {
-      setChoice(newChoice);
+    (choice: MoogleChoice) => {
+      state.moogleChoice = choice;
+      setChoice(choice);
       finish();
     },
-    [setChoice, finish]
+    [state, setChoice, finish]
   );
   return (
     <div>
@@ -19,13 +27,13 @@ export function Moogle({ finish }: BaseEventProps) {
         Moogle Calendar and get a matching Moogle Home voice assistant too. He
         says it'll make it easier to keep track of these things.
       </p>
-      <button onClick={() => choose(true)} disabled={choice !== null}>
+      <button onClick={() => choose(MoogleChoice.YES)} disabled={choice !== null}>
         Yeah, it's time to get my life together.
       </button>
-      <button onClick={() => choose(false)} disabled={choice !== null}>
+      <button onClick={() => choose(MoogleChoice.NO)} disabled={choice !== null}>
         It's ok, I'll keep doing what I'm already doing.
       </button>
-      {choice === true && (
+      {choice === MoogleChoice.YES && (
         <>
           <p>
             You buy a Moogle Home and add everything on your to-do list to
@@ -33,8 +41,6 @@ export function Moogle({ finish }: BaseEventProps) {
           </p>
         </>
       )}
-      {choice === false && <></>}
-      {choice !== null && <></>}
     </div>
   );
 }

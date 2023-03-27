@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from ".././BaseEvent";
 
 export function CleanStreetPrecondition({ finish }: BaseEventProps) {
@@ -11,6 +12,7 @@ export function CleanStreetPrecondition({ finish }: BaseEventProps) {
         background of your video. Your fans now know which neighbourhood you
         live in!
       </p>
+      <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BaseEventProps } from ".././BaseEvent";
+import { AddScore, ScoreCategory } from "../../game/Score";
 
 export function MoogleA2({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);
@@ -13,6 +14,8 @@ export function MoogleA2({ finish }: BaseEventProps) {
         you can stop it, it says out loud "Buy hemorrhoids cream at 5pm". The
         crew laughs and you're a bit embarrassed.
       </p>
+      <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
+      <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />
     </div>
   );
 }

@@ -1,10 +1,16 @@
 import { useCallback, useState } from "react";
 import { BaseEventProps } from "./BaseEvent";
+import { AddScore, ScoreCategory } from "../game/Score"
+
+export const enum PlankChoice {
+  YES,
+  NO,
+}
 
 export function PlankChallenge({ finish }: BaseEventProps) {
-  const [choice, setChoice] = useState<boolean | null>(() => null);
+  const [choice, setChoice] = useState<PlankChoice | null>(() => null);
   const choose = useCallback(
-    (newChoice: boolean) => {
+    (newChoice: PlankChoice) => {
       setChoice(newChoice);
       finish();
     },
@@ -18,22 +24,22 @@ export function PlankChallenge({ finish }: BaseEventProps) {
         YouSnapstatok's influencers! In the trend, an influencer reads out the
         names of random followers while holding a plank for as long as they can.
       </p>
-      <button onClick={() => choose(true)} disabled={choice !== null}>
+      <button onClick={() => choose(PlankChoice.YES)} disabled={choice !== null}>
         Do the plank!
       </button>
-      <button onClick={() => choose(false)} disabled={choice !== null}>
+      <button onClick={() => choose(PlankChoice.NO)} disabled={choice !== null}>
         Naw, I'll pass.
       </button>
-      {choice === true && (
+      {choice === PlankChoice.YES && (
         <>
           <p>
             Your plank goes on for 5 minutes! Your fans compliment your amazing
             physical fitness.
           </p>
+          <AddScore category={ScoreCategory.CAREER} amount={5} />
+          <AddScore category={ScoreCategory.HAPPINESS} amount={5} />
         </>
       )}
-      {choice === false && <></>}
-      {choice !== null && <></>}
     </div>
   );
 }

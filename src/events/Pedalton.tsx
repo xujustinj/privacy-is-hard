@@ -1,10 +1,16 @@
 import { useCallback, useState } from "react";
+import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
+export const enum PedaltonChoice {
+  YES,
+  NO,
+}
+
 export function Pedalton({ finish }: BaseEventProps) {
-  const [choice, setChoice] = useState<boolean | null>(() => null);
+  const [choice, setChoice] = useState<PedaltonChoice | null>(() => null);
   const choose = useCallback(
-    (newChoice: boolean) => {
+    (newChoice: PedaltonChoice) => {
       setChoice(newChoice);
       finish();
     },
@@ -18,28 +24,29 @@ export function Pedalton({ finish }: BaseEventProps) {
         recommended you to try your new Pedalton bike. Let's give it a try!
       </p>
       <p>You start working out everyday for 1 hour in your home studio.</p>
+      <AddScore category={ScoreCategory.HEALTH} amount={10} />
       <p>
         During a workout, one of your fans saw your name on the Peloton
         leaderboard and sent you a virtual high five. Would you like to high
         five them back?
       </p>
-      <button onClick={() => choose(true)} disabled={choice !== null}>
+      <button onClick={() => choose(PedaltonChoice.YES)} disabled={choice !== null}>
         Yeah!
       </button>
-      <button onClick={() => choose(false)} disabled={choice !== null}>
+      <button onClick={() => choose(PedaltonChoice.NO)} disabled={choice !== null}>
         No.
       </button>
-      {choice === true && (
+      {choice === PedaltonChoice.YES && (
         <>
           <p>You have made a new friend!</p>
+          <AddScore category={ScoreCategory.SOCIAL} amount={5} />
         </>
       )}
-      {choice === false && (
+      {choice === PedaltonChoice.NO && (
         <>
           <p>Ok.</p>
         </>
       )}
-      {choice !== null && <></>}
     </div>
   );
 }

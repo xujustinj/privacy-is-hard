@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from ".././BaseEvent";
 
 export function TwentyTwoandMeA1({ finish }: BaseEventProps) {
@@ -12,6 +13,7 @@ export function TwentyTwoandMeA1({ finish }: BaseEventProps) {
         makes it easy to identify you in the future even though you didn't take
         the test yourself.
       </p>
+      <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
     </div>
   );
 }

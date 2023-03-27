@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BaseEventProps } from ".././BaseEvent";
+import { AddScore, ScoreCategory } from "../../game/Score";
 
 export function MoogleA3({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);
@@ -11,6 +12,7 @@ export function MoogleA3({ finish }: BaseEventProps) {
         Recordings
       </p>
       <p>Some of those recordings included your voice.</p>
+      <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BaseEventProps } from "./BaseEvent";
+import { AddScore, ScoreCategory } from "../game/Score";
 
 export function AngelTrendA1({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);
@@ -12,6 +13,7 @@ export function AngelTrendA1({ finish }: BaseEventProps) {
         taken down, but people just make new anonymous accounts and post it
         again.
       </p>
+      <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
     </div>
   );
 }

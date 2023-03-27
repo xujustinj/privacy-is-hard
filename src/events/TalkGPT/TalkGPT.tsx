@@ -1,14 +1,23 @@
-import { useCallback, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { BaseEventProps } from ".././BaseEvent";
+import { GeneratorStateContext } from "../../game/Generator";
+import { AddScore, ScoreCategory } from "../../game/Score";
+
+export const enum TalkGPTChoice {
+  YES,
+  NO,
+}
 
 export function TalkGPT({ finish }: BaseEventProps) {
-  const [choice, setChoice] = useState<boolean | null>(() => null);
+  const state = useContext(GeneratorStateContext);
+  const [choice, setChoice] = useState<TalkGPTChoice | null>(() => null);
   const choose = useCallback(
-    (newChoice: boolean) => {
-      setChoice(newChoice);
+    (choice: TalkGPTChoice) => {
+      state.talkgptChoice = choice;
+      setChoice(choice);
       finish();
     },
-    [setChoice, finish]
+    [state, setChoice, finish]
   );
   return (
     <div>
@@ -18,22 +27,23 @@ export function TalkGPT({ finish }: BaseEventProps) {
         few thousand sample text messages so they can train a chatbot to mimic
         your style. They are willing to pay good money.
       </p>
-      <button onClick={() => choose(true)} disabled={choice !== null}>
+      <button onClick={() => choose(TalkGPTChoice.YES)} disabled={choice !== null}>
         All aboard the bandwagon!
       </button>
-      <button onClick={() => choose(false)} disabled={choice !== null}>
+      <button onClick={() => choose(TalkGPTChoice.NO)} disabled={choice !== null}>
         No, you can't use my texts!
       </button>
-      {choice === true && <p>You provide some messages.</p>}
-      {choice === false && (
+      {choice === TalkGPTChoice.YES && (
+        <p>You provide some messages.</p>
+      )}
+      {choice === TalkGPTChoice.NO && (
         <>
           <p>
-            Your managers are disappointed that you turned down easy money. What
-            a spoilsport!
+            Your managers are disappointed that you turned down easy money. What a spoilsport!
           </p>
+          <AddScore category={ScoreCategory.CAREER} amount={-5} />
         </>
       )}
-      {choice !== null && <></>}
     </div>
   );
 }

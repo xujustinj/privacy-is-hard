@@ -2,12 +2,20 @@ import { useCallback, useState } from "react";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
+export const enum PaymentChoice {
+  CREDIT,
+  CASH,
+}
+
 export function CreditCash({ finish }: BaseEventProps) {
-  const [isClicked, setIsClicked] = useState(false);
-  const click = useCallback(() => {
-    setIsClicked(true);
-    finish();
-  }, [setIsClicked, finish]);
+  const [choice, setChoice] = useState<PaymentChoice | null>(() => null);
+  const choose = useCallback(
+    (newChoice: PaymentChoice) => {
+      setChoice(newChoice);
+      finish();
+    },
+    [setChoice, finish]
+  );
 
   return (
     <div>
@@ -16,15 +24,17 @@ export function CreditCash({ finish }: BaseEventProps) {
         number 6 with extra dip, a number 7, two number 45s, one with cheese,
         and a large soda. How would you like to pay?
       </p>
-      <button onClick={click} disabled={isClicked}>
+      <button onClick={() => choose(PaymentChoice.CREDIT)}
+        disabled={choice !== null}>
         Credit Card
       </button>
-      <button onClick={click} disabled={isClicked}>
+      <button onClick={() => choose(PaymentChoice.CASH)}
+        disabled={choice !== null}>
         Cash
       </button>
-      {isClicked && (
+      {(choice === PaymentChoice.CASH || choice === PaymentChoice.CREDIT) && (
         <>
-          <p>Thank you. Your order will be ready at the next window.</p>
+          <p>Thank you! Your order will be ready at the next window.</p>
           <AddScore category={ScoreCategory.HAPPINESS} amount={10} />
           <AddScore category={ScoreCategory.HEALTH} amount={-5} />
         </>

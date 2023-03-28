@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from ".././BaseEvent";
 
-export function CleanStreetPrecondition({ finish }: BaseEventProps) {
+export function CleanStreetAC1({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);
 
   return (

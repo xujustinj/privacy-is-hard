@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from "react";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from ".././BaseEvent";
+import { BaseEventProps } from "../BaseEvent";
 
 export const enum DnaTestChoice {
   YES,

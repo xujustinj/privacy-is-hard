@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { BaseEventProps } from ".././BaseEvent";
 import { AddScore, ScoreCategory } from "../../game/Score";
+import { BaseEventProps } from "../BaseEvent";
 
 export function MoogleB1({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);

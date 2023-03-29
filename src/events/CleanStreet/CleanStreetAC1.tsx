@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from ".././BaseEvent";
+import { BaseEventProps } from "../BaseEvent";
 
 export function CleanStreetAC1({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);

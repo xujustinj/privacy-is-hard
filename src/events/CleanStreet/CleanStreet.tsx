@@ -30,13 +30,22 @@ export function CleanStreet({ finish }: BaseEventProps) {
         apartment collapse. They then challenge others to do the same or make a
         personal donation. You've just been challenged by a fellow celebrity!
       </p>
-      <button onClick={() => choose(CleanStreetChoice.CLEAN)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(CleanStreetChoice.CLEAN)}
+        disabled={choice !== null}
+      >
         Clean the streets!
       </button>
-      <button onClick={() => choose(CleanStreetChoice.DONATION)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(CleanStreetChoice.DONATION)}
+        disabled={choice !== null}
+      >
         I'll just make a personal donation.
       </button>
-      <button onClick={() => choose(CleanStreetChoice.BOTH)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(CleanStreetChoice.BOTH)}
+        disabled={choice !== null}
+      >
         I'll do one better: clean the streets and make a personal donation!
       </button>
       {choice === CleanStreetChoice.CLEAN && (

@@ -27,10 +27,16 @@ export function Moogle({ finish }: BaseEventProps) {
         Moogle Calendar and get a matching Moogle Home voice assistant too. He
         says it'll make it easier to keep track of these things.
       </p>
-      <button onClick={() => choose(MoogleChoice.YES)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(MoogleChoice.YES)}
+        disabled={choice !== null}
+      >
         Yeah, it's time to get my life together.
       </button>
-      <button onClick={() => choose(MoogleChoice.NO)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(MoogleChoice.NO)}
+        disabled={choice !== null}
+      >
         It's ok, I'll keep doing what I'm already doing.
       </button>
       {choice === MoogleChoice.YES && (

@@ -33,6 +33,7 @@ const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 16px;
+  min-height: 0; // https://stackoverflow.com/a/66689926
   height: 100%;
   align-items: stretch;
 `;

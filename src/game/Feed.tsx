@@ -12,9 +12,6 @@ const FeedContainer = styled.div`
   background-color: ${Colors.sectionBackground};
   color: white;
   overflow-y: scroll;
-  margin: auto;
-  flex-grow: 1;
-  height: 100%;
   width: 60%;
   align-items: center;
 `;

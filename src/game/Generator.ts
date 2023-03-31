@@ -40,6 +40,8 @@ import { DingB1 } from "../events/DingBell/DingB1";
 import { Pedalton } from "../events/Pedalton";
 import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
 import { GameEvent } from "./Event";
+import { BalantirInfo } from "../info/BalantirInfo";
+import { Start } from "../events/Start";
 
 export class GeneratorState {
   count = 0;
@@ -74,6 +76,11 @@ export class SequenceGenerator implements Generator {
   public readonly state = new GeneratorState();
   protected current: SequencedEvent | null = null;
   protected queue: ReadonlyArray<SequencedEvent> = [
+    {
+      id:"start",
+      eventRender: { Component: Start},
+      infoRender: null
+    },
     {
       id: "bitfit",
       eventRender: { Component: BitFit },

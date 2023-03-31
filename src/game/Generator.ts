@@ -42,6 +42,7 @@ import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
 import { GameEvent } from "./Event";
 import { BalantirInfo } from "../info/BalantirInfo";
 import { Start } from "../events/Start";
+import { GoodEnd } from "../events/GoodEnd";
 
 export class GeneratorState {
   count = 0;
@@ -131,7 +132,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "balantir",
       eventRender: { Component: Balantir },
-      infoRender: null,
+      infoRender: { Component: BalantirInfo },
     },
     {
       id: "creditcash",
@@ -376,6 +377,11 @@ export class SequenceGenerator implements Generator {
             ];
         }
       },
+    },
+    {
+      id: "goodending",
+      eventRender: { Component: GoodEnd },
+      infoRender: null,
     },
   ];
 

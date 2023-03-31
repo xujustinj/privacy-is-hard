@@ -24,12 +24,16 @@ export function CreditCash({ finish }: BaseEventProps) {
         number 6 with extra dip, a number 7, two number 45s, one with cheese,
         and a large soda. How would you like to pay?
       </p>
-      <button onClick={() => choose(PaymentChoice.CREDIT)}
-        disabled={choice !== null}>
+      <button
+        onClick={() => choose(PaymentChoice.CREDIT)}
+        disabled={choice !== null}
+      >
         Credit Card
       </button>
-      <button onClick={() => choose(PaymentChoice.CASH)}
-        disabled={choice !== null}>
+      <button
+        onClick={() => choose(PaymentChoice.CASH)}
+        disabled={choice !== null}
+      >
         Cash
       </button>
       {(choice === PaymentChoice.CASH || choice === PaymentChoice.CREDIT) && (

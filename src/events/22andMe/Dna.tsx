@@ -26,10 +26,16 @@ export function TwentyTwoandMe({ finish }: BaseEventProps) {
         For some holiday fun, your aunt Barbara has gifted 22andMe DNA testing
         kits to the entire family.
       </p>
-      <button onClick={() => choose(DnaTestChoice.NO)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(DnaTestChoice.NO)}
+        disabled={choice !== null}
+      >
         I'll pass, thanks.
       </button>
-      <button onClick={() => choose(DnaTestChoice.YES)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(DnaTestChoice.YES)}
+        disabled={choice !== null}
+      >
         Yeah, why not! I'll join in the fun too!
       </button>
       {choice === DnaTestChoice.NO && (

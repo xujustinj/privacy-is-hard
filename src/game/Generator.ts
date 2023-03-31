@@ -1,13 +1,10 @@
 import { createContext } from "react";
-import { DnaTestChoice } from "../events/22andMe/Dna";
-import { TwentyTwoandMe } from "../events/22andMe/Dna"
-import { TwentyTwoandMeA1 } from "../events/22andMe/DnaA1"
-import { TwentyTwoandMeB1 } from "../events/22andMe/DnaB1"
+import { DnaTestChoice, TwentyTwoandMe } from "../events/22andMe/Dna";
+import { TwentyTwoandMeA1 } from "../events/22andMe/DnaA1";
+import { TwentyTwoandMeB1 } from "../events/22andMe/DnaB1";
 import { AngelTrend, AngelTrendChoice } from "../events/AngelTrend";
 import { Balantir } from "../events/Balantir";
 import { BitFit, BitFitChoice } from "../events/BitFit/BitFit";
-import { Ding, SafetyChoice } from "../events/DingBell/Ding";
-import { DingA1, TermsChoice } from "../events/DingBell/DingA1";
 import { BitFitA1 } from "../events/BitFit/BitFitA1";
 import { BitFitA2 } from "../events/BitFit/BitFitA2";
 import { BitFitA3 } from "../events/BitFit/BitFitA3";
@@ -15,29 +12,34 @@ import { BitFitB1 } from "../events/BitFit/BitFitB1";
 import { BitFitB2 } from "../events/BitFit/BitFitB2";
 import { Cardiac, CardiacChoice } from "../events/Cardiac/Cardiac";
 import { CreditCash } from "../events/CreditCash";
+import { Ding, SafetyChoice } from "../events/DingBell/Ding";
+import { DingA1, TermsChoice } from "../events/DingBell/DingA1";
 import { Moogle, MoogleChoice } from "../events/Moogle/Moogle";
-import { MoogleA1} from "../events/Moogle/MoogleA1"
-import { MoogleA2} from "../events/Moogle/MoogleA2"
-import { MoogleA3} from "../events/Moogle/MoogleA3"
-import { MoogleB1} from "../events/Moogle/MoogleB1"
+import { MoogleA1 } from "../events/Moogle/MoogleA1";
+import { MoogleA2 } from "../events/Moogle/MoogleA2";
+import { MoogleA3 } from "../events/Moogle/MoogleA3";
+import { MoogleB1 } from "../events/Moogle/MoogleB1";
 import { PlankChallenge } from "../events/PlankChallenge";
 import { QRCode } from "../events/QRCode";
 import { TalkGPT, TalkGPTChoice } from "../events/TalkGPT/TalkGPT";
 
-import { GameEvent } from "./Event";
-import { CleanStreet, CleanStreetChoice } from "../events/CleanStreet/CleanStreet";
-import { CleanStreetAC1 } from "../events/CleanStreet/CleanStreetAC1"
-import { CleanStreetPrecondition } from "../events/CleanStreet/CleanStreetPrecondition";
-import { Pedalton } from "../events/Pedalton";
 import { AngelTrendA1 } from "../events/AngelTrendA1";
-import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
 import { CardiacB1 } from "../events/Cardiac/CardiacB1";
 import { CardiacB2 } from "../events/Cardiac/CardiacB2";
 import { CardiacB3 } from "../events/Cardiac/CardiacB3";
-import { DingB1 } from "../events/DingBell/DingB1";
-import { DingAA1 } from "../events/DingBell/DingaAA1";
+import {
+  CleanStreet,
+  CleanStreetChoice,
+} from "../events/CleanStreet/CleanStreet";
+import { CleanStreetAC1 } from "../events/CleanStreet/CleanStreetAC1";
+import { CleanStreetPrecondition } from "../events/CleanStreet/CleanStreetPrecondition";
 import { DingAA2 } from "../events/DingBell/DingAA2";
 import { DingAA3 } from "../events/DingBell/DingAA3";
+import { DingAA1 } from "../events/DingBell/DingaAA1";
+import { DingB1 } from "../events/DingBell/DingB1";
+import { Pedalton } from "../events/Pedalton";
+import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
+import { GameEvent } from "./Event";
 
 export class GeneratorState {
   count = 0;
@@ -117,22 +119,22 @@ export class SequenceGenerator implements Generator {
     {
       id: "plankchallenge",
       eventRender: { Component: PlankChallenge },
-      infoRender: null
+      infoRender: null,
     },
     {
       id: "balantir",
       eventRender: { Component: Balantir },
-      infoRender: null
+      infoRender: null,
     },
     {
       id: "creditcash",
       eventRender: { Component: CreditCash },
-      infoRender: null
+      infoRender: null,
     },
     {
       id: "qrcode",
       eventRender: { Component: QRCode },
-      infoRender: null
+      infoRender: null,
     },
     {
       id: "moogle",
@@ -367,7 +369,7 @@ export class SequenceGenerator implements Generator {
             ];
         }
       },
-    }
+    },
   ];
 
   public next(): GameEvent | null {

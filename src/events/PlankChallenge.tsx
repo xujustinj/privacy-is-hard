@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
+import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
-import { AddScore, ScoreCategory } from "../game/Score"
 
 export const enum PlankChoice {
   YES,
@@ -24,7 +24,10 @@ export function PlankChallenge({ finish }: BaseEventProps) {
         YouSnapstatok's influencers! In the trend, an influencer reads out the
         names of random followers while holding a plank for as long as they can.
       </p>
-      <button onClick={() => choose(PlankChoice.YES)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(PlankChoice.YES)}
+        disabled={choice !== null}
+      >
         Do the plank!
       </button>
       <button onClick={() => choose(PlankChoice.NO)} disabled={choice !== null}>

@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from "react";
-import { BaseEventProps } from ".././BaseEvent";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
+import { BaseEventProps } from "../BaseEvent";
 
 export const enum TalkGPTChoice {
   YES,
@@ -27,19 +27,24 @@ export function TalkGPT({ finish }: BaseEventProps) {
         few thousand sample text messages so they can train a chatbot to mimic
         your style. They are willing to pay good money.
       </p>
-      <button onClick={() => choose(TalkGPTChoice.YES)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(TalkGPTChoice.YES)}
+        disabled={choice !== null}
+      >
         All aboard the bandwagon!
       </button>
-      <button onClick={() => choose(TalkGPTChoice.NO)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(TalkGPTChoice.NO)}
+        disabled={choice !== null}
+      >
         No, you can't use my texts!
       </button>
-      {choice === TalkGPTChoice.YES && (
-        <p>You provide some messages.</p>
-      )}
+      {choice === TalkGPTChoice.YES && <p>You provide some messages.</p>}
       {choice === TalkGPTChoice.NO && (
         <>
           <p>
-            Your managers are disappointed that you turned down easy money. What a spoilsport!
+            Your managers are disappointed that you turned down easy money. What
+            a spoilsport!
           </p>
           <AddScore category={ScoreCategory.CAREER} amount={-5} />
         </>

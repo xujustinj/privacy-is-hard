@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { BaseEventProps } from "./BaseEvent";
 import { AddScore, ScoreCategory } from "../game/Score";
+import { BaseEventProps } from "./BaseEvent";
 
 export const enum QRCodeChoice {
   YES,
@@ -24,11 +24,17 @@ export function QRCode({ finish }: BaseEventProps) {
         lunch during break time. There's a hip restaurant nearby, but it only
         has a QR code menu.
       </p>
-      <button onClick={() => choose(QRCodeChoice.YES)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(QRCodeChoice.YES)}
+        disabled={choice !== null}
+      >
         Scan the QR code! It's so nice of the restaurant to save the trees and
         not print paper menus.
       </button>
-      <button onClick={() => choose(QRCodeChoice.NO)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(QRCodeChoice.NO)}
+        disabled={choice !== null}
+      >
         "dO you GUYs haVE a paPER meNU?"
       </button>
       {choice === QRCodeChoice.YES && (

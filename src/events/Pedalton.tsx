@@ -30,10 +30,16 @@ export function Pedalton({ finish }: BaseEventProps) {
         leaderboard and sent you a virtual high five. Would you like to high
         five them back?
       </p>
-      <button onClick={() => choose(PedaltonChoice.YES)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(PedaltonChoice.YES)}
+        disabled={choice !== null}
+      >
         Yeah!
       </button>
-      <button onClick={() => choose(PedaltonChoice.NO)} disabled={choice !== null}>
+      <button
+        onClick={() => choose(PedaltonChoice.NO)}
+        disabled={choice !== null}
+      >
         No.
       </button>
       {choice === PedaltonChoice.YES && (

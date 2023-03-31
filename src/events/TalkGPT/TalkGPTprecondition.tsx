@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { BaseEventProps } from ".././BaseEvent";
+import { BaseEventProps } from "../BaseEvent";
 
 export function TalkGPTprecondition({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);

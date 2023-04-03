@@ -1,5 +1,5 @@
 import { SourceLink } from "../game/Source";
-import FierceHealthcareFitBit from "../sources/FierceHealthcareFitBit.json";
+import FierceHealthcareFitBit from "../sources/FierceHealthcare_FitBit.json";
 
 export function BitFitInfo() {
   return (

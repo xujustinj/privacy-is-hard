@@ -1,5 +1,5 @@
 import { SourceLink } from "../game/Source";
-import BNNPalantir from "../sources/BNNPalantir.json";
+import BNNPalantir from "../sources/BNN_Palantir.json";
 
 export function BalantirInfo() {
   return (

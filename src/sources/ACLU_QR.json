@@ -1,0 +1,17 @@
+{
+  "locale": "en_US",
+  "type": "article",
+  "title": "Diners Beware: That Meal May Cost You Your Privacy and Security | ACLU",
+  "description": "Scanning QR codes instead of ordering from a physical menu is a way for companies to insert all the machinery of the online advertising ecosystem between you and your food.",
+  "url": "https://www.aclu.org/news/privacy-technology/diners-beware-that-meal-may-cost-you-your-privacy-and-security",
+  "site_name": "American Civil Liberties Union",
+  "image": {
+    "url": [
+      "https://www.aclu.org/wp-content/uploads/2021/07/QR-Codes-Header-Image-1.jpg",
+      "https://www.aclu.org/wp-content/uploads/2021/07/QR-Codes-SocialShare-1.jpg"
+    ],
+    "width": "1200",
+    "height": "628",
+    "type": "image/jpeg"
+  }
+}

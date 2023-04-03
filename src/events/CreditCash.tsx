@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
+import { InfoProvider } from "../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../game/Score";
+import { CreditCashInfo } from "../info/CreditCashInfo";
 import { BaseEventProps } from "./BaseEvent";
 
 export const enum PaymentChoice {
@@ -37,11 +39,11 @@ export function CreditCash({ finish }: BaseEventProps) {
         Cash
       </button>
       {(choice === PaymentChoice.CASH || choice === PaymentChoice.CREDIT) && (
-        <>
+        <InfoProvider info={{ Component: CreditCashInfo }}>
           <p>Thank you! Your order will be ready at the next window.</p>
           <AddScore category={ScoreCategory.HAPPINESS} amount={10} />
           <AddScore category={ScoreCategory.HEALTH} amount={-5} />
-        </>
+        </InfoProvider>
       )}
     </div>
   );

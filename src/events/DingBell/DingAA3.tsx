@@ -1,5 +1,8 @@
 import { useCallback, useState } from "react";
+import { InfoProvider } from "../../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../../game/Score";
+import { DingInfo2 } from "../../info/DingInfo2";
+import { DingInfo3 } from "../../info/DingInfo3";
 import { BaseEventProps } from "../BaseEvent";
 
 export const enum PoliceChoice {
@@ -36,17 +39,19 @@ export function DingAA3({ finish }: BaseEventProps) {
         No thanks, Ding already knows too much about me.
       </button>
       {choice === PoliceChoice.YES && (
-        <AddScore category={ScoreCategory.PRIVACY} amount={-10} />
+        <InfoProvider info={{ Component: DingInfo2 }}>
+          <AddScore category={ScoreCategory.PRIVACY} amount={-10} />
+        </InfoProvider>
       )}
       {choice === PoliceChoice.NO && (
-        <>
+        <InfoProvider info={{ Component: DingInfo3 }}>
           <p>
             Oh no! Ding stored your video on the cloud, and the police got your
             videos without your consent! They went straight to Ding's parent
             company Babazon and asked for the video recordings.
           </p>
           <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
-        </>
+        </InfoProvider>
       )}
     </div>
   );

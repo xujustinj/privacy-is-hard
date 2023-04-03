@@ -24,9 +24,9 @@ import { CleanStreetPrecondition } from "../events/CleanStreet/CleanStreetPrecon
 import { CreditCash } from "../events/CreditCash";
 import { Ding, SafetyChoice } from "../events/DingBell/Ding";
 import { DingA1, TermsChoice } from "../events/DingBell/DingA1";
+import { DingAA1 } from "../events/DingBell/DingAA1";
 import { DingAA2 } from "../events/DingBell/DingAA2";
 import { DingAA3 } from "../events/DingBell/DingAA3";
-import { DingAA1 } from "../events/DingBell/DingaAA1";
 import { DingB1 } from "../events/DingBell/DingB1";
 import { GoodEnd } from "../events/GoodEnd";
 import { Moogle, MoogleChoice } from "../events/Moogle/Moogle";
@@ -40,6 +40,7 @@ import { QRCode } from "../events/QRCode";
 import { Start } from "../events/Start";
 import { TalkGPT, TalkGPTChoice } from "../events/TalkGPT/TalkGPT";
 import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
+import { TalkGPTA2 } from "../events/TalkGPT/TalkGPTA2";
 import { GameEvent } from "./Event";
 
 export class GeneratorState {
@@ -314,8 +315,8 @@ export class SequenceGenerator implements Generator {
                 infoRender: null,
               },
               {
-                id: "TalkGPTA1",
-                eventRender: { Component: TalkGPTA1 },
+                id: "TalkGPTA2",
+                eventRender: { Component: TalkGPTA2 },
                 infoRender: null,
               },
             ];

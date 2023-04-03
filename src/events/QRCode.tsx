@@ -1,5 +1,7 @@
 import { useCallback, useState } from "react";
+import { InfoProvider } from "../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../game/Score";
+import { QRInfo } from "../info/QRInfo";
 import { BaseEventProps } from "./BaseEvent";
 
 export const enum QRCodeChoice {
@@ -39,11 +41,13 @@ export function QRCode({ finish }: BaseEventProps) {
       </button>
       {choice === QRCodeChoice.YES && (
         <>
-          <p>
-            Your IP address and location are given to the website providing the
-            menu.
-          </p>
-          <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
+          <InfoProvider info={{ Component: QRInfo }}>
+            <p>
+              Your IP address and location are given to the website providing
+              the menu.
+            </p>
+            <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
+          </InfoProvider>
           <p>
             You ordered and got your food within 10 minutes. You made it back on
             time. Nice!
@@ -55,7 +59,7 @@ export function QRCode({ finish }: BaseEventProps) {
           <p>
             The waiter sighs and goes to the back to ask his manager. They
             don't, so he tells you all the options. It took a while, and now
-            you're late. The movie director yells at you.{" "}
+            you're late. The movie director yells at you.
           </p>
           <AddScore category={ScoreCategory.CAREER} amount={-5} />
           <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />

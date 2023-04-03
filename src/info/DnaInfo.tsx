@@ -1,7 +1,7 @@
 import { SourceLink } from "../game/Source";
 import WSJ_Bankruptcy from "../sources/WSJ_Bankruptcy.json";
 
-export function DnaInfo2() {
+export function DnaInfo() {
   return (
     <div>
       <p>

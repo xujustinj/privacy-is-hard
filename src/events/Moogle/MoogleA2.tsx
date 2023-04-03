@@ -1,12 +1,14 @@
 import { useEffect } from "react";
+import { InfoProvider } from "../../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../../game/Score";
+import { MoogleA2Info } from "../../info/MoogleA2Info";
 import { BaseEventProps } from "../BaseEvent";
 
 export function MoogleA2({ finish }: BaseEventProps) {
   useEffect(finish, [finish]);
 
   return (
-    <div>
+    <InfoProvider info={{ Component: MoogleA2Info }}>
       <p>
         Today, you have a table read for your upcoming movie. One of the cast
         members reads out loud this line in the script: "Hey Moogle, what's my
@@ -16,6 +18,6 @@ export function MoogleA2({ finish }: BaseEventProps) {
       </p>
       <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
       <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />
-    </div>
+    </InfoProvider>
   );
 }

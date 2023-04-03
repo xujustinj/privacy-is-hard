@@ -24,22 +24,17 @@ const ContinueButton = styled.button`
   margin: 32px auto;
   color: rgb(16, 16, 16);
   background-color: rgb(255, 157, 50);
-
-  &:disabled {
-    background-color: rgb(128, 128, 128);
-  }
 `;
 
 export function Feed({ children, onAdvance }: FeedProps) {
   return (
     <FeedContainer>
       {children}
-      <ContinueButton
-        onClick={onAdvance ?? (() => {})}
-        disabled={onAdvance === null}
-      >
-        Continue
-      </ContinueButton>
+      {onAdvance !== null && (
+        <ContinueButton onClick={onAdvance ?? (() => {})}>
+          Continue
+        </ContinueButton>
+      )}
     </FeedContainer>
   );
 }

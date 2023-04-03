@@ -22,12 +22,31 @@ export interface InfoProviderProps<IProps = any> extends PropsWithChildren {
   info: RenderProps<IProps>;
 }
 
+const InfoProviderContainer = styled.div<{ intensity: number }>`
+  background-color: rgba(53, 117, 142, 0.2);
+  outline: 16px rgba(53, 117, 142, 0.2) solid;
+  border-radius: 8px;
+
+  :hover {
+    background-color: rgba(53, 117, 142, 0.5);
+    outline: 16px rgba(53, 117, 142, 0.5) solid;
+  }
+`;
+
 export function InfoProvider<IProps = any>({
   children,
   info,
 }: InfoProviderProps<IProps>) {
-  const setInfo = useContext(InfoContext)[1];
-  return <div onMouseOver={() => setInfo(info)}>{children}</div>;
+  const [contextInfo, setInfo] = useContext(InfoContext);
+  const intensity = contextInfo === info ? 0.4 : 0.2;
+  return (
+    <InfoProviderContainer
+      intensity={intensity}
+      onMouseOver={() => setInfo(info)}
+    >
+      {children}
+    </InfoProviderContainer>
+  );
 }
 
 export function InfoPanel() {

@@ -19,7 +19,7 @@ const LinkContainer = styled.a`
   overflow: hidden;
 
   :hover {
-    filter: drop-shadow(0 0 8px white);
+    outline: 4px rgb(53, 117, 142) solid;
   }
 `;
 

@@ -5,10 +5,9 @@ export interface BaseEventProps {
   onCompleteEvent(): void;
 }
 
-export interface GameEvent<EProps extends BaseEventProps = any, IProps = any> {
+export interface GameEvent<EProps extends BaseEventProps = any> {
   id: string;
   eventRender: RenderProps<EProps>;
-  infoRender: RenderProps<IProps> | null;
 }
 
 export const GameEventContainer = styled.div`

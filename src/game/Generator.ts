@@ -37,12 +37,11 @@ import { DingAA2 } from "../events/DingBell/DingAA2";
 import { DingAA3 } from "../events/DingBell/DingAA3";
 import { DingAA1 } from "../events/DingBell/DingaAA1";
 import { DingB1 } from "../events/DingBell/DingB1";
+import { GoodEnd } from "../events/GoodEnd";
 import { Pedalton } from "../events/Pedalton";
+import { Start } from "../events/Start";
 import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
 import { GameEvent } from "./Event";
-import { BalantirInfo } from "../info/BalantirInfo";
-import { Start } from "../events/Start";
-import { GoodEnd } from "../events/GoodEnd";
 
 export class GeneratorState {
   count = 0;
@@ -78,14 +77,12 @@ export class SequenceGenerator implements Generator {
   protected current: SequencedEvent | null = null;
   protected queue: ReadonlyArray<SequencedEvent> = [
     {
-      id:"start",
-      eventRender: { Component: Start},
-      infoRender: null
+      id: "start",
+      eventRender: { Component: Start },
     },
     {
       id: "bitfit",
       eventRender: { Component: BitFit },
-      infoRender: null,
       next: ({ bitFitChoice }: GeneratorState) => {
         switch (bitFitChoice) {
           case null:
@@ -95,17 +92,14 @@ export class SequenceGenerator implements Generator {
               {
                 id: "bitfitA1",
                 eventRender: { Component: BitFitA1 },
-                infoRender: null,
               },
               {
                 id: "bitfitA2",
                 eventRender: { Component: BitFitA2 },
-                infoRender: null,
               },
               {
                 id: "bitfitA3",
                 eventRender: { Component: BitFitA3 },
-                infoRender: null,
               },
             ];
           case BitFitChoice.NO:
@@ -113,12 +107,10 @@ export class SequenceGenerator implements Generator {
               {
                 id: "bitfitB1",
                 eventRender: { Component: BitFitB1 },
-                infoRender: null,
               },
               {
                 id: "bitfitB2",
                 eventRender: { Component: BitFitB2 },
-                infoRender: null,
               },
             ];
         }
@@ -127,27 +119,22 @@ export class SequenceGenerator implements Generator {
     {
       id: "plankchallenge",
       eventRender: { Component: PlankChallenge },
-      infoRender: null,
     },
     {
       id: "balantir",
       eventRender: { Component: Balantir },
-      infoRender: { Component: BalantirInfo },
     },
     {
       id: "creditcash",
       eventRender: { Component: CreditCash },
-      infoRender: null,
     },
     {
       id: "qrcode",
       eventRender: { Component: QRCode },
-      infoRender: null,
     },
     {
       id: "moogle",
       eventRender: { Component: Moogle },
-      infoRender: null,
       next: ({ moogleChoice }: GeneratorState) => {
         switch (moogleChoice) {
           case null:
@@ -157,17 +144,14 @@ export class SequenceGenerator implements Generator {
               {
                 id: "MoogleA1",
                 eventRender: { Component: MoogleA1 },
-                infoRender: null,
               },
               {
                 id: "MoogleA2",
                 eventRender: { Component: MoogleA2 },
-                infoRender: null,
               },
               {
                 id: "MoogleA3",
                 eventRender: { Component: MoogleA3 },
-                infoRender: null,
               },
             ];
           case MoogleChoice.NO:
@@ -175,7 +159,6 @@ export class SequenceGenerator implements Generator {
               {
                 id: "MoogleB1",
                 eventRender: { Component: MoogleB1 },
-                infoRender: null,
               },
             ];
         }
@@ -184,12 +167,10 @@ export class SequenceGenerator implements Generator {
     {
       id: "precleanstreet",
       eventRender: { Component: CleanStreetPrecondition },
-      infoRender: null,
     },
     {
       id: "cleanstreet",
       eventRender: { Component: CleanStreet },
-      infoRender: null,
       next: ({ cleanStreetChoice }: GeneratorState) => {
         switch (cleanStreetChoice) {
           case null:
@@ -218,7 +199,6 @@ export class SequenceGenerator implements Generator {
     {
       id: "ding",
       eventRender: { Component: Ding },
-      infoRender: null,
       next: ({ safetyChoice }: GeneratorState) => {
         switch (safetyChoice) {
           case null:
@@ -271,7 +251,6 @@ export class SequenceGenerator implements Generator {
     {
       id: "22andMe",
       eventRender: { Component: TwentyTwoandMe },
-      infoRender: null,
       next: ({ dnaTestChoice }: GeneratorState) => {
         switch (dnaTestChoice) {
           case null:
@@ -298,12 +277,10 @@ export class SequenceGenerator implements Generator {
     {
       id: "pedalton",
       eventRender: { Component: Pedalton },
-      infoRender: null,
     },
     {
       id: "angel",
       eventRender: { Component: AngelTrend },
-      infoRender: null,
       next: ({ angelTrendChoice }: GeneratorState) => {
         switch (angelTrendChoice) {
           case null:
@@ -324,7 +301,6 @@ export class SequenceGenerator implements Generator {
     {
       id: "talkgpt",
       eventRender: { Component: TalkGPT },
-      infoRender: null,
       next: ({ talkgptChoice }: GeneratorState) => {
         switch (talkgptChoice) {
           case null:
@@ -350,7 +326,6 @@ export class SequenceGenerator implements Generator {
     {
       id: "cardiac",
       eventRender: { Component: Cardiac },
-      infoRender: null,
       next: ({ dnaTestChoice }: GeneratorState) => {
         switch (dnaTestChoice) {
           case null:
@@ -362,17 +337,14 @@ export class SequenceGenerator implements Generator {
               {
                 id: "CardiacB1",
                 eventRender: { Component: CardiacB1 },
-                infoRender: null,
               },
               {
                 id: "CardiacB2",
                 eventRender: { Component: CardiacB2 },
-                infoRender: null,
               },
               {
                 id: "CardiacB3",
                 eventRender: { Component: CardiacB3 },
-                infoRender: null,
               },
             ];
         }
@@ -381,7 +353,6 @@ export class SequenceGenerator implements Generator {
     {
       id: "goodending",
       eventRender: { Component: GoodEnd },
-      infoRender: null,
     },
   ];
 

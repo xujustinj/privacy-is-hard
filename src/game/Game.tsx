@@ -9,7 +9,7 @@ import {
   GeneratorStateContext,
   SequenceGenerator,
 } from "./Generator";
-import { InfoPanelContainer } from "./InfoPanel";
+import { InfoContext, InfoPanel } from "./InfoPanel";
 import {
   ScoreBar,
   ScoreCategory,
@@ -79,27 +79,24 @@ export function Game() {
   return (
     <ScoresContext.Provider value={[scores, addScore]}>
       <GeneratorStateContext.Provider value={generator.state}>
-        <GameContainer>
-          <ScoreBar scores={scores} />
-          <BodyContainer>
-            <Feed onAdvance={activeEvent === null ? onAdvance : null}>
-              {events.map((event) => {
-                const { id, eventRender, infoRender } = event;
-                return (
-                  <GameEventContainer
-                    key={id}
-                    onMouseOver={() => setInfo(infoRender)}
-                  >
-                    <Render finish={() => onFinish(event)} {...eventRender} />
-                  </GameEventContainer>
-                );
-              })}
-            </Feed>
-            <InfoPanelContainer>
-              {info !== null && <Render {...info} />}
-            </InfoPanelContainer>
-          </BodyContainer>
-        </GameContainer>
+        <InfoContext.Provider value={[info, setInfo]}>
+          <GameContainer>
+            <ScoreBar scores={scores} />
+            <BodyContainer>
+              <Feed onAdvance={activeEvent === null ? onAdvance : null}>
+                {events.map((event) => {
+                  const { id, eventRender } = event;
+                  return (
+                    <GameEventContainer key={id}>
+                      <Render finish={() => onFinish(event)} {...eventRender} />
+                    </GameEventContainer>
+                  );
+                })}
+              </Feed>
+              <InfoPanel />
+            </BodyContainer>
+          </GameContainer>
+        </InfoContext.Provider>
       </GeneratorStateContext.Provider>
     </ScoresContext.Provider>
   );

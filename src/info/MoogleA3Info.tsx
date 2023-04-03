@@ -1,3 +1,6 @@
+import { SourceLink } from "../game/Source";
+import Gizmodo_Google from "../sources/Gizmodo_Google.json";
+
 export function MoogleA3Info() {
   return (
     <div>
@@ -8,17 +11,13 @@ export function MoogleA3Info() {
       <p>
         Google Home can record your voice because it has microphones that are on
         by default. The Belgian news reported that out of these voice excerpts,
-        around 10% were never given the wake phrase ‘Okay Google’.{" "}
+        around 10% were never given the wake phrase "Okay Google".
       </p>
       <p>
         Google is not supposed to record those audio excerpts without your
         explicit consent, but its detection technology isn't perfectly accurate.
       </p>
-      <p>
-        <a href="http://bit.ly/3nEfzSk">
-          <u>Source</u>
-        </a>
-      </p>
+      <SourceLink {...Gizmodo_Google} />
     </div>
   );
 }

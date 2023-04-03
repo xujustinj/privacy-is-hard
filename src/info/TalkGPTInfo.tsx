@@ -1,3 +1,6 @@
+import { SourceLink } from "../game/Source";
+import NAACL_Inversion from "../sources/NAACL_Inversion.json";
+
 export function TalkGPTInfo() {
   return (
     <div>
@@ -12,11 +15,7 @@ export function TalkGPTInfo() {
         Fortunately, there are techniques to combat this. In this imaginary
         case, the startup didn't do that.
       </p>
-      <p>
-        <a href="https://bit.ly/3zjml2z">
-          <u>Source</u>
-        </a>
-      </p>
+      <SourceLink {...NAACL_Inversion} />
     </div>
   );
 }

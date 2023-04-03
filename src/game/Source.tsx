@@ -4,7 +4,7 @@ export interface SourceLinkProps {
   url: string;
   site_name: string;
   title: string;
-  description: string;
+  description?: string;
   image: {
     url: string | Array<string>;
   };
@@ -39,9 +39,10 @@ export function SourceLink({
 }: SourceLinkProps) {
   const displayName = title.includes(" - ") ? title : `${title} - ${site_name}`;
   const imageUrl = image.url instanceof Array ? image.url[0] : image.url;
+  const imageAlt = description ?? title;
   return (
     <LinkContainer href={url} target="_blank" rel="noreferrer">
-      <img src={imageUrl} alt={description} />
+      <img src={imageUrl} alt={imageAlt} />
       <LinkText>{displayName}</LinkText>
     </LinkContainer>
   );

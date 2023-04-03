@@ -1,3 +1,6 @@
+import { SourceLink } from "../game/Source";
+import HealthcareIT_Cerebral from "../sources/HealthcareIT_Cerebral.json";
+
 export function CardiacInfo() {
   return (
     <div>
@@ -7,11 +10,7 @@ export function CardiacInfo() {
         information to third-party platforms and subcontractors. without having
         obtained HIPAA-required assurances from 2019 to 2023.
       </p>
-      <p>
-        <a href="http://bit.ly/3nBUrMx">
-          <u>Source</u>
-        </a>
-      </p>
+      <SourceLink {...HealthcareIT_Cerebral} />
     </div>
   );
 }

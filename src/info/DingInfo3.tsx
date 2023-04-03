@@ -1,3 +1,6 @@
+import { SourceLink } from "../game/Source";
+import Politico_Ring from "../sources/Politico_Ring.json";
+
 export function DingInfo3() {
   return (
     <div>
@@ -8,18 +11,14 @@ export function DingInfo3() {
       </p>
       <p>
         Owners of these devices expect privacy for the devices they ostensibly
-        own, yet their devices are also part of a 24/7 surveillance network.{" "}
+        own, yet their devices are also part of a 24/7 surveillance network.
       </p>
       <p>
         Courts have struggled to limit police warrants, giving the police access
         to accounts that hold large amounts of data that may not be relevant to
         the investigation.
       </p>
-      <p>
-        <a href="http://bit.ly/42XP76K">
-          <u>Source</u>
-        </a>
-      </p>
+      <SourceLink {...Politico_Ring} />
     </div>
   );
 }

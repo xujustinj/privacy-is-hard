@@ -1,3 +1,6 @@
+import { SourceLink } from "../game/Source";
+import Ring_ToS from "../sources/Ring_ToS.json";
+
 export function DingInfo1() {
   return (
     <div>
@@ -8,11 +11,7 @@ export function DingInfo1() {
         Shared Content for any purpose"
       </p>
       <p>Long story short, Ring can do whatever they want with your videos!</p>
-      <p>
-        <a href="http://bit.ly/4372gKP">
-          <u>Source</u>
-        </a>
-      </p>
+      <SourceLink {...Ring_ToS} />
     </div>
   );
 }

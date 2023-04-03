@@ -12,9 +12,9 @@ export function BalantirInfo() {
       </p>
       <p>
         But information regarding the project, its origin, and its purpose is
-        vague. Sensitive health data has been transferred to Palantir’s Foundry
+        vague. Sensitive health data has been transferred to Palantir's Foundry
         system without patient consent or consultation. The lack of transparency
-        and clear safeguards means patients’ sensitive health data could be
+        and clear safeguards means patients' sensitive health data could be
         compromised without them knowing about it.
       </p>
       <SourceLink {...BNNPalantir} />

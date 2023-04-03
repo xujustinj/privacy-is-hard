@@ -1,12 +1,12 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 
 export interface SourceLinkProps {
   url: string;
+  site_name: string;
   title: string;
   description: string;
   image: {
-    url: string;
+    url: string | Array<string>;
   };
 }
 
@@ -32,15 +32,17 @@ const LinkText = styled.p`
 
 export function SourceLink({
   url,
+  site_name,
   title,
   description,
   image,
 }: SourceLinkProps) {
-  useEffect(() => {});
+  const displayName = title.includes(" - ") ? title : `${title} - ${site_name}`;
+  const imageUrl = image.url instanceof Array ? image.url[0] : image.url;
   return (
     <LinkContainer href={url} target="_blank" rel="noreferrer">
-      <img src={image.url} alt={description} />
-      <LinkText>{title}</LinkText>
+      <img src={imageUrl} alt={description} />
+      <LinkText>{displayName}</LinkText>
     </LinkContainer>
   );
 }

@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: medium;
     padding: 8px 16px;
     margin-bottom: 10px;
-    background-color: rgb(53, 117, 142);
+    background-color: rgb(170,99,91);
     color: rgb(0,0,0);
   }
 

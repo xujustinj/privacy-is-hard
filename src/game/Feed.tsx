@@ -14,6 +14,8 @@ const FeedContainer = styled.div`
   overflow-y: scroll;
   width: 60%;
   align-items: center;
+  font-size: 14pt;
+  color: white;
 `;
 
 const ContinueButton = styled.button`

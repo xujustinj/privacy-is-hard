@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -28,18 +29,20 @@ export function BitFit({ finish }: BaseEventProps) {
         would like you to start wearing a BitFit watch to see your activity
         levels.
       </p>
-      <button
-        onClick={() => choose(BitFitChoice.YES)}
-        disabled={choice !== null}
-      >
-        Yeah, no problem!
-      </button>
-      <button
-        onClick={() => choose(BitFitChoice.NO)}
-        disabled={choice !== null}
-      >
-        I would rather not.
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: BitFitChoice.YES,
+            child: "Yeah, no problem!",
+          },
+          {
+            choice: BitFitChoice.NO,
+            child: "I would rather not.",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      ></Choices>
       {choice === BitFitChoice.YES && (
         <>
           <p>

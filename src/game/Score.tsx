@@ -5,7 +5,7 @@ import Happiness from "../images/happiness.png";
 import Health from "../images/health.png";
 import Privacy from "../images/privacy.png";
 import Social from "../images/social.png";
-import { Colors, rgb } from "../util/colors";
+import { Colors, rgb, rgba } from "../util/colors";
 
 export enum ScoreCategory {
   PRIVACY = "privacy",
@@ -19,27 +19,27 @@ export const ScoreCategoryDetails = {
   [ScoreCategory.PRIVACY]: {
     displayName: "Privacy",
     iconSrc: Privacy,
-    iconColor: rgb({ r: 0.0, g: 0.5, b: 1.0 }),
+    iconColor: rgb({ r: 0, g: 128, b: 255 }),
   },
   [ScoreCategory.CAREER]: {
     displayName: "Career",
     iconSrc: Career,
-    iconColor: rgb({ r: 1.0, g: 0.75, b: 0.0 }),
+    iconColor: rgb({ r: 255, g: 192, b: 0 }),
   },
   [ScoreCategory.HEALTH]: {
     displayName: "Health",
     iconSrc: Health,
-    iconColor: rgb({ r: 1.0, g: 0.0, b: 0.0 }),
+    iconColor: rgb({ r: 255, g: 0, b: 0 }),
   },
   [ScoreCategory.SOCIAL]: {
     displayName: "Social",
     iconSrc: Social,
-    iconColor: rgb({ r: 1.0, g: 0.0, b: 0.5 }),
+    iconColor: rgb({ r: 255, g: 0, b: 128 }),
   },
   [ScoreCategory.HAPPINESS]: {
     displayName: "Happiness",
     iconSrc: Happiness,
-    iconColor: rgb({ r: 0.5, g: 1.0, b: 0.0 }),
+    iconColor: rgb({ r: 128, g: 255, b: 0 }),
   },
 } as const;
 
@@ -74,7 +74,7 @@ const Icon = styled.span<{ src: string; color: string }>`
 `;
 
 const ScoresContainer = styled.div`
-  background-color: ${Colors.sectionBackground};
+  background-color: ${rgba(Colors.sectionBackground)};
   padding: 16px 64px;
   display: flex;
   flex-direction: row;
@@ -103,9 +103,9 @@ function Score({ category, score }: ScoreProps) {
   const { displayName, iconSrc, iconColor } = ScoreCategoryDetails[category];
   const normalizedScore = (score - 100) / 100; // normalized
   const scoreColor = rgb({
-    r: 1 - normalizedScore,
-    g: 1 + normalizedScore,
-    b: 1 - Math.sqrt(Math.abs(normalizedScore)),
+    r: 255 * (1 - normalizedScore),
+    g: 255 * (1 + normalizedScore),
+    b: 255 * (1 - Math.sqrt(Math.abs(normalizedScore))),
   });
   return (
     <ScoreContainer>

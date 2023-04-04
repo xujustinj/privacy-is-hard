@@ -1,6 +1,6 @@
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
-import { Colors } from "../util/colors";
+import { Colors, rgb, rgba } from "../util/colors";
 
 export interface FeedProps extends PropsWithChildren {
   onAdvance: (() => void) | null;
@@ -9,7 +9,7 @@ export interface FeedProps extends PropsWithChildren {
 const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${Colors.sectionBackground};
+  background-color: ${rgba(Colors.sectionBackground)};
   color: white;
   overflow-y: scroll;
   width: 60%;
@@ -21,11 +21,11 @@ const FeedContainer = styled.div`
 const ContinueButton = styled.button`
   border: none;
   border-radius: 8px;
-  font-size: medium;
+  font-size: 14pt;
   padding: 8px 16px;
   margin: 32px auto;
-  color: rgb(16, 16, 16);
-  background-color: rgb(255, 157, 50);
+  color: black;
+  background-color: ${rgb(Colors.princetonOrange)};
 `;
 
 export function Feed({ children, onAdvance }: FeedProps) {

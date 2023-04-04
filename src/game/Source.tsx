@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Colors, rgb } from "../util/colors";
 
 export interface SourceLinkProps {
   url: string;
@@ -19,7 +20,7 @@ const LinkContainer = styled.a`
   overflow: hidden;
 
   :hover {
-    outline: 4px rgb(53, 117, 142) solid;
+    outline: 4px ${rgb(Colors.cerulean)} solid;
   }
 `;
 

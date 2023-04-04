@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
+import { Colors, rgb } from "../util/colors";
 
 export interface ChoicesProps<Choice extends React.Key> {
   choices: ReadonlyArray<{
@@ -29,15 +30,15 @@ const ChoiceButton = styled.button<{ isSelected: boolean }>`
   font-size: 14pt;
 
   &:enabled {
-    background-color: rgb(254, 200, 126);
+    background-color: ${rgb(Colors.sunset)};
     &:hover {
-      background-color: rgb(254, 157, 50);
+      background-color: ${rgb(Colors.princetonOrange)};
     }
   }
 
   &:disabled {
     background-color: ${(props) =>
-      props.isSelected ? "rgb(254, 157, 50)" : "grey"};
+      props.isSelected ? rgb(Colors.princetonOrange) : "grey"};
   }
 `;
 

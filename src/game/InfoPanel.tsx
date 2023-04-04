@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext } from "react";
 import styled from "styled-components";
-import { Colors } from "../util/colors";
+import { Colors, rgba, withAlpha } from "../util/colors";
 import { Render, RenderProps } from "../util/Render";
 
 export const InfoContext = createContext<
@@ -10,7 +10,7 @@ export const InfoContext = createContext<
 const InfoPanelContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${Colors.sectionBackground};
+  background-color: ${rgba(Colors.sectionBackground)};
   color: white;
   overflow-y: scroll;
   padding: 32px;
@@ -23,13 +23,13 @@ export interface InfoProviderProps<IProps = any> extends PropsWithChildren {
 }
 
 const InfoProviderContainer = styled.div<{ intensity: number }>`
-  background-color: rgba(53, 117, 142, 0.2);
-  outline: 16px rgba(53, 117, 142, 0.2) solid;
+  background-color: ${rgba(withAlpha(Colors.cerulean, 0.2))};
+  outline: 16px ${rgba(withAlpha(Colors.cerulean, 0.2))} solid;
   border-radius: 8px;
 
   :hover {
-    background-color: rgba(53, 117, 142, 0.5);
-    outline: 16px rgba(53, 117, 142, 0.5) solid;
+    background-color: ${rgba(withAlpha(Colors.cerulean, 0.5))};
+    outline: 16px ${rgba(withAlpha(Colors.cerulean, 0.5))} solid;
   }
 `;
 

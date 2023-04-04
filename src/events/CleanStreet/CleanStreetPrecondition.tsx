@@ -7,7 +7,7 @@ export function CleanStreetPrecondition({ finish }: BaseEventProps) {
   return (
     <div>
       <p>
-        A small earthquake has struck Hollywood! The city is mostly okay, except
+        A small earthquake has struck Jollywood! The city is mostly okay, except
         one old apartment building that collapsed, killing 50 people.
       </p>
     </div>

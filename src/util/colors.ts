@@ -21,7 +21,7 @@ export function withAlpha(rgb: RGB, a: number): RGBA {
 }
 
 export const Colors = {
-  sectionBackground: { r: 0, g: 0, b: 0, a: 0.6 },
+  sectionBackground: { r: 0, g: 0, b: 0, a: 0.8 },
   sunset: { r: 254, g: 200, b: 126 },
   princetonOrange: { r: 254, g: 157, b: 50 },
   redwood: { r: 170, g: 99, b: 91 },

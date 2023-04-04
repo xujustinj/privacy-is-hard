@@ -16,6 +16,7 @@ const FeedContainer = styled.div`
   align-items: center;
   font-size: 14pt;
   color: white;
+  padding: 32px;
 `;
 
 const ContinueButton = styled.button`

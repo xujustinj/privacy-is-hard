@@ -12,5 +12,5 @@ export interface GameEvent<EProps extends BaseEventProps = any> {
 
 export const GameEventContainer = styled.div`
   width: 100%;
-  padding: 32px 64px;
+  padding: 16px 16px;
 `;

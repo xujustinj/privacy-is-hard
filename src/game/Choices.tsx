@@ -22,11 +22,10 @@ const ChoiceButtonsContainer = styled.div`
 
 const ChoiceButton = styled.button<{ isSelected: boolean }>`
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   padding: 8px 16px;
   color: black;
-  width: auto;
-  flex-grow: 1;
+  width: 100%;
   font-size: 14pt;
 
   &:enabled {

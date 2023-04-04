@@ -176,7 +176,7 @@ export class SequenceGenerator implements Generator {
           case null:
             return null;
           case CleanStreetChoice.DONATION:
-            return null;
+            return [];
           case CleanStreetChoice.CLEAN:
             return [
               {
@@ -232,7 +232,7 @@ export class SequenceGenerator implements Generator {
                         },
                       ];
                     case TermsChoice.DECLINE:
-                      return null;
+                      return [];
                   }
                 },
               },
@@ -294,7 +294,7 @@ export class SequenceGenerator implements Generator {
               },
             ];
           case AngelTrendChoice.NO:
-            return null;
+            return [];
         }
       },
     },
@@ -306,7 +306,7 @@ export class SequenceGenerator implements Generator {
           case null:
             return null;
           case TalkGPTChoice.NO:
-            return null;
+            return [];
           case TalkGPTChoice.YES:
             return [
               {
@@ -331,7 +331,7 @@ export class SequenceGenerator implements Generator {
           case null:
             return null;
           case DnaTestChoice.NO:
-            return null;
+            return [];
           case DnaTestChoice.YES:
             return [
               {

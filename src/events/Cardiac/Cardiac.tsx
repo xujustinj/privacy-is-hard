@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -27,19 +28,21 @@ export function Cardiac({ finish }: BaseEventProps) {
         you are far away from your doctor, so the only way to reach her is by
         telemedicine.
       </p>
-      <button
-        onClick={() => choose(CardiacChoice.NO)}
-        disabled={choice !== null}
-      >
-        I'll wait until I'm back from tour.
-      </button>
-      <button
-        onClick={() => choose(CardiacChoice.YES)}
-        disabled={choice !== null}
-      >
-        I'll use the Cardiac telehealth platform to meet with my doctor
-        virtually.
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: CardiacChoice.NO,
+            child: "I'll wait until I'm back from tour.",
+          },
+          {
+            choice: CardiacChoice.YES,
+            child:
+              "I'll use the Cardiac telehealth platform to meet with my doctor virtually.",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === CardiacChoice.NO && (
         <>
           <p>

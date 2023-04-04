@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -26,18 +27,20 @@ export function DingA1({ finish }: BaseEventProps) {
         install an app. Do you agree to the Terms and Conditions?
         https://ring.com/ca/en/terms
       </p>
-      <button
-        onClick={() => choose(TermsChoice.ACCEPT)}
-        disabled={choice !== null}
-      >
-        Accept and install
-      </button>
-      <button
-        onClick={() => choose(TermsChoice.DECLINE)}
-        disabled={choice !== null}
-      >
-        Decline
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: TermsChoice.ACCEPT,
+            child: "Accept and Install",
+          },
+          {
+            choice: TermsChoice.DECLINE,
+            child: "Decline",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === TermsChoice.DECLINE && (
         <>
           <p>You have to return the doorbell.</p>

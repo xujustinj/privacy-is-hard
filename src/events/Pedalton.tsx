@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Choices } from "../game/Choices";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { BaseEventProps } from "./BaseEvent";
 
@@ -30,18 +31,20 @@ export function Pedalton({ finish }: BaseEventProps) {
         leaderboard and sent you a virtual high five. Would you like to high
         five them back?
       </p>
-      <button
-        onClick={() => choose(PedaltonChoice.YES)}
-        disabled={choice !== null}
-      >
-        Yeah!
-      </button>
-      <button
-        onClick={() => choose(PedaltonChoice.NO)}
-        disabled={choice !== null}
-      >
-        No.
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: PedaltonChoice.YES,
+            child: "Yeah!",
+          },
+          {
+            choice: PedaltonChoice.NO,
+            child: "No.",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === PedaltonChoice.YES && (
         <>
           <p>You have made a new friend!</p>

@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Choices } from "../game/Choices";
 import { InfoProvider } from "../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { CreditCashInfo } from "../info/CreditCashInfo";
@@ -26,18 +27,20 @@ export function CreditCash({ finish }: BaseEventProps) {
         number 6 with extra dip, a number 7, two number 45s, one with cheese,
         and a large soda. How would you like to pay?
       </p>
-      <button
-        onClick={() => choose(PaymentChoice.CREDIT)}
-        disabled={choice !== null}
-      >
-        Credit Card
-      </button>
-      <button
-        onClick={() => choose(PaymentChoice.CASH)}
-        disabled={choice !== null}
-      >
-        Cash
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: PaymentChoice.CREDIT,
+            child: "Credit Card",
+          },
+          {
+            choice: PaymentChoice.CASH,
+            child: "Cash",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {(choice === PaymentChoice.CASH || choice === PaymentChoice.CREDIT) && (
         <InfoProvider info={{ Component: CreditCashInfo }}>
           <p>Thank you! Your order will be ready at the next window.</p>

@@ -31,18 +31,12 @@ export function BitFit({ finish }: BaseEventProps) {
       </p>
       <Choices
         choices={[
-          {
-            choice: BitFitChoice.YES,
-            child: "Yeah, no problem!",
-          },
-          {
-            choice: BitFitChoice.NO,
-            child: "I would rather not.",
-          },
+          { choice: BitFitChoice.YES, child: "Yeah, no problem!" },
+          { choice: BitFitChoice.NO, child: "I would rather not." },
         ]}
         chosen={choice}
         onChoose={choose}
-      ></Choices>
+      />
       {choice === BitFitChoice.YES && (
         <>
           <p>

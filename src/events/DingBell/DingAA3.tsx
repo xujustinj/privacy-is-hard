@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { InfoProvider } from "../../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { DingInfo2 } from "../../info/DingInfo2";
@@ -26,18 +27,20 @@ export function DingAA3({ finish }: BaseEventProps) {
         of Ding footage from the entire neighbourhood. Would you like to provide
         video footage to the police?
       </p>
-      <button
-        onClick={() => choose(PoliceChoice.YES)}
-        disabled={choice !== null}
-      >
-        Yes! It's an emergency after all.
-      </button>
-      <button
-        onClick={() => choose(PoliceChoice.NO)}
-        disabled={choice !== null}
-      >
-        No thanks, Ding already knows too much about me.
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: PoliceChoice.YES,
+            child: "Yes! It's an emergency after all.",
+          },
+          {
+            choice: PoliceChoice.NO,
+            child: "No thanks, Ding already knows too much about me.",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === PoliceChoice.YES && (
         <InfoProvider info={{ Component: DingInfo2 }}>
           <AddScore category={ScoreCategory.PRIVACY} amount={-10} />

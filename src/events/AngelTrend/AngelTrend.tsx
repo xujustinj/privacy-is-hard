@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -29,19 +30,14 @@ export function AngelTrend({ finish }: BaseEventProps) {
         on the trend would be a perfect way to show off your contemporary dance
         skills!
       </p>
-      <button
-        onClick={() => choose(AngelTrendChoice.YES)}
-        disabled={choice !== null}
-      >
-        Do the Angel trend!
-      </button>
-      <button
-        onClick={() => choose(AngelTrendChoice.NO)}
-        disabled={choice !== null}
-      >
-        Naw, I'll pass.
-      </button>
-
+      <Choices
+        choices={[
+          { choice: AngelTrendChoice.YES, child: "Do the Angel trend!" },
+          { choice: AngelTrendChoice.NO, child: "Naw, I'll pass." },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === AngelTrendChoice.YES && (
         <>
           <p>Your video goes viral, earning you a million new followers!</p>

@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -30,24 +31,25 @@ export function CleanStreet({ finish }: BaseEventProps) {
         apartment collapse. They then challenge others to do the same or make a
         personal donation. You've just been challenged by a fellow celebrity!
       </p>
-      <button
-        onClick={() => choose(CleanStreetChoice.CLEAN)}
-        disabled={choice !== null}
-      >
-        Clean the streets!
-      </button>
-      <button
-        onClick={() => choose(CleanStreetChoice.DONATION)}
-        disabled={choice !== null}
-      >
-        I'll just make a personal donation.
-      </button>
-      <button
-        onClick={() => choose(CleanStreetChoice.BOTH)}
-        disabled={choice !== null}
-      >
-        I'll do one better: clean the streets and make a personal donation!
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: CleanStreetChoice.CLEAN,
+            child: "Clean the streets!",
+          },
+          {
+            choice: CleanStreetChoice.DONATION,
+            child: "I'll just make a personal donation.",
+          },
+          {
+            choice: CleanStreetChoice.BOTH,
+            child:
+              "I'll do one better: clean the streets and make a personal donation!",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === CleanStreetChoice.CLEAN && (
         <>
           <p>

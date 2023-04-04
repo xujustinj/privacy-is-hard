@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -27,18 +28,20 @@ export function TalkGPT({ finish }: BaseEventProps) {
         few thousand sample text messages so they can train a chatbot to mimic
         your style. They are willing to pay good money.
       </p>
-      <button
-        onClick={() => choose(TalkGPTChoice.YES)}
-        disabled={choice !== null}
-      >
-        All aboard the bandwagon!
-      </button>
-      <button
-        onClick={() => choose(TalkGPTChoice.NO)}
-        disabled={choice !== null}
-      >
-        No, you can't use my texts!
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: TalkGPTChoice.YES,
+            child: "All aboard the bandwagon!",
+          },
+          {
+            choice: TalkGPTChoice.NO,
+            child: "No, you can't use my texts!",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === TalkGPTChoice.YES && <p>You provide some messages.</p>}
       {choice === TalkGPTChoice.NO && (
         <>

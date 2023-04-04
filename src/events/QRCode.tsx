@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Choices } from "../game/Choices";
 import { InfoProvider } from "../game/InfoPanel";
 import { AddScore, ScoreCategory } from "../game/Score";
 import { QRInfo } from "../info/QRInfo";
@@ -26,19 +27,21 @@ export function QRCode({ finish }: BaseEventProps) {
         lunch during break time. There's a hip restaurant nearby, but it only
         has a QR code menu.
       </p>
-      <button
-        onClick={() => choose(QRCodeChoice.YES)}
-        disabled={choice !== null}
-      >
-        Scan the QR code! It's so nice of the restaurant to save the trees and
-        not print paper menus.
-      </button>
-      <button
-        onClick={() => choose(QRCodeChoice.NO)}
-        disabled={choice !== null}
-      >
-        "dO you GUYs haVE a paPER meNU?"
-      </button>
+      <Choices
+        choices={[
+          {
+            choice: QRCodeChoice.YES,
+            child:
+              "Scan the QR code! It's so nice of the restaurant to save the trees and not print paper menus.",
+          },
+          {
+            choice: QRCodeChoice.NO,
+            child: '"dO you GUYs haVE a paPER meNU?"',
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      />
       {choice === QRCodeChoice.YES && (
         <>
           <InfoProvider info={{ Component: QRInfo }}>

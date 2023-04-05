@@ -26,6 +26,8 @@ const ChoiceButton = styled.button<{ isSelected: boolean }>`
   padding: 8px 16px;
   color: black;
   width: 100%;
+  font-family: Courier;
+  font-weight: bold;
   font-size: 14pt;
 
   &:enabled {

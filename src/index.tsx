@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { Fonts } from "./fonts/Fonts";
 import { Game } from "./game/Game";
 import GlobalStyle from "./globalStyles";
 import reportWebVitals from "./reportWebVitals";
@@ -12,6 +13,7 @@ root.render(
   <>
     {/* <React.StrictMode> */}
     <GlobalStyle />
+    <Fonts />
     <Game />
     {/* </React.StrictMode> */}
   </>

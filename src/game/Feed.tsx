@@ -22,11 +22,13 @@ const FeedContainer = styled.div`
 const ContinueButton = styled.button`
   border: none;
   border-radius: 8px;
+  font-family: Courier;
+  font-weight: bold;
   font-size: 14pt;
   padding: 8px 16px;
   margin: 32px auto;
   color: black;
-  background-color: ${rgb(Colors.princetonOrange)};
+  background-color: ${rgb(Colors.sunset)};
 `;
 
 export function Feed({ children, onAdvance }: FeedProps) {

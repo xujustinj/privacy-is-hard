@@ -358,6 +358,7 @@ export class SequenceGenerator implements Generator {
 
   public next(): GameEvent | null {
     if (this.current?.next !== undefined) {
+      console.log(this.current?.next);
       this.queue = [...this.current.next(this.state)!, ...this.queue];
     }
     if (this.queue.length > 0) {

@@ -33,18 +33,22 @@ const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
   column-gap: 16px;
-  min-height: 0; // https://stackoverflow.com/a/66689926
+  min-height: 0; /* https://stackoverflow.com/a/66689926 */
   height: 100%;
   align-items: stretch;
 `;
 
 export function Game() {
-  const [events, setEvents] = useState<ReadonlyArray<GameEvent>>([]);
-  const [activeEvent, setActiveEvent] = useState<GameEvent | null>(null);
   const [scores, setScores] = useState<Scores>(
     () => new Map(Object.values(ScoreCategory).map((value) => [value, 100]))
   );
   const generator = useMemo<Generator>(() => new SequenceGenerator(), []);
+  const [events, setEvents] = useState<ReadonlyArray<GameEvent>>(() => [
+    generator.next()!,
+  ]);
+  const [activeEvent, setActiveEvent] = useState<GameEvent | null>(
+    () => events[0]
+  );
 
   const onFinish = useCallback(
     (event: GameEvent) => {

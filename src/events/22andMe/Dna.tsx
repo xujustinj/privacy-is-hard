@@ -1,4 +1,5 @@
 import { useCallback, useContext, useState } from "react";
+import { Choices } from "../../game/Choices";
 import { GeneratorStateContext } from "../../game/Generator";
 import { AddScore, ScoreCategory } from "../../game/Score";
 import { BaseEventProps } from "../BaseEvent";
@@ -26,18 +27,17 @@ export function TwentyTwoandMe({ finish }: BaseEventProps) {
         For some holiday fun, your aunt Barbara has gifted 22andMe DNA testing
         kits to the entire family.
       </p>
-      <button
-        onClick={() => choose(DnaTestChoice.NO)}
-        disabled={choice !== null}
-      >
-        I'll pass, thanks.
-      </button>
-      <button
-        onClick={() => choose(DnaTestChoice.YES)}
-        disabled={choice !== null}
-      >
-        Yeah, why not! I'll join in the fun too!
-      </button>
+      <Choices
+        choices={[
+          { choice: DnaTestChoice.NO, child: "I'll pass, thanks." },
+          {
+            choice: DnaTestChoice.YES,
+            child: "Yeah, why not! I'll join in the fun too!",
+          },
+        ]}
+        chosen={choice}
+        onChoose={choose}
+      ></Choices>
       {choice === DnaTestChoice.NO && (
         <>
           <p>

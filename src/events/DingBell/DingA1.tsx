@@ -24,8 +24,8 @@ export function DingA1({ finish }: BaseEventProps) {
     <>
       <p>
         You order a Ding video doorbell. When you go to set it up, it has you
-        install an app. Do you agree to the Terms and Conditions?
-        https://ring.com/ca/en/terms
+        install an app. Do you agree to the{" "}
+        <a href="https://ring.com/ca/en/terms">Terms and Conditions</a>?
       </p>
       <Choices
         choices={[

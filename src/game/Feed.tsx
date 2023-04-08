@@ -10,13 +10,28 @@ const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${rgba(Colors.sectionBackground)};
-  color: white;
   overflow-y: scroll;
   width: 60%;
   align-items: center;
   font-size: 14pt;
-  color: white;
-  padding: 32px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  padding-left: 32px;
+  padding-right: 28px;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: rgb(255, 255, 255);
+    }
+  }
 `;
 
 const ContinueButton = styled.button`

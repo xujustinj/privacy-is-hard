@@ -52,6 +52,7 @@ export function Start({ finish }: BaseEventProps) {
           Netra
         </a>
       </Subtitle>
+      <br />
       <p>
         Hi there! Welcome to the life of a celebrity. Your biggest fans are
         always watching - will you be able to keep up with privacy and still be

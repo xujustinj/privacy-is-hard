@@ -88,7 +88,6 @@ interface ScoreProps {
 }
 
 const ScoreContainer = styled.span`
-  color: white;
   font-size: 14pt;
 `;
 

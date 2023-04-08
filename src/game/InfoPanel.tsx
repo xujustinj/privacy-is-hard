@@ -11,11 +11,25 @@ const InfoPanelContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${rgba(Colors.sectionBackground)};
-  color: white;
   overflow-y: scroll;
   padding: 32px;
   width: 40%;
   align-items: stretch;
+  font-size: 14pt;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:hover {
+    ::-webkit-scrollbar-thumb {
+      background-color: rgb(255, 255, 255);
+    }
+  }
 `;
 
 export interface InfoProviderProps<IProps = any> extends PropsWithChildren {

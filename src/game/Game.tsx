@@ -18,22 +18,34 @@ import {
   ScoreUpdater,
 } from "./Score";
 
-const GameContainer = styled.div`
+const Background = styled.div`
   background-image: url(${GameBackground});
   background-size: cover;
-  color: white;
   height: 100vh;
   width: 100vw;
   padding: 64px;
   display: flex;
-  row-gap: 16px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+const GameContainer = styled.div`
+  color: white;
+  height: 100%;
+  width: 100%;
+  max-width: 1024pt;
+  display: flex;
+  row-gap: 8px;
   flex-direction: column;
+  overflow: hidden;
+  border-radius: 8px;
 `;
 
 const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
-  column-gap: 16px;
+  column-gap: 8px;
   min-height: 0; /* https://stackoverflow.com/a/66689926 */
   height: 100%;
   align-items: stretch;
@@ -85,22 +97,27 @@ export function Game() {
     <ScoresContext.Provider value={[scores, addScore]}>
       <GeneratorStateContext.Provider value={generator.state}>
         <InfoContext.Provider value={[info, setInfo]}>
-          <GameContainer>
-            <ScoreBar scores={scores} />
-            <BodyContainer>
-              <Feed onAdvance={activeEvent === null ? onAdvance : null}>
-                {events.map((event) => {
-                  const { id, eventRender } = event;
-                  return (
-                    <GameEventContainer key={id}>
-                      <Render finish={() => onFinish(event)} {...eventRender} />
-                    </GameEventContainer>
-                  );
-                })}
-              </Feed>
-              <InfoPanel />
-            </BodyContainer>
-          </GameContainer>
+          <Background>
+            <GameContainer>
+              <ScoreBar scores={scores} />
+              <BodyContainer>
+                <Feed onAdvance={activeEvent === null ? onAdvance : null}>
+                  {events.map((event) => {
+                    const { id, eventRender } = event;
+                    return (
+                      <GameEventContainer key={id}>
+                        <Render
+                          finish={() => onFinish(event)}
+                          {...eventRender}
+                        />
+                      </GameEventContainer>
+                    );
+                  })}
+                </Feed>
+                <InfoPanel />
+              </BodyContainer>
+            </GameContainer>
+          </Background>
         </InfoContext.Provider>
       </GeneratorStateContext.Provider>
     </ScoresContext.Provider>

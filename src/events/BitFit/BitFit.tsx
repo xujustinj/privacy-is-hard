@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -10,16 +9,13 @@ export const enum BitFitChoice {
   NO,
 }
 
+export const bitFitChoiceState = atom<BitFitChoice | null>({
+  key: "bitFitChoiceState",
+  default: null,
+});
+
 export function BitFit({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<BitFitChoice | null>(null);
-  const choose = useCallback(
-    (choice: BitFitChoice) => {
-      state.bitFitChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(bitFitChoiceState);
 
   return (
     <>
@@ -35,7 +31,7 @@ export function BitFit({ onNext }: BaseEventProps) {
           { choice: BitFitChoice.NO, child: "I would rather not." },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === BitFitChoice.YES && (
         <p>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../components/Button";
 import { Choices } from "../components/Choices";
 import { AddScore, ScoreCategory } from "../components/Score";
@@ -9,8 +9,13 @@ export const enum PlankChoice {
   NO,
 }
 
+export const plankChoiceState = atom<PlankChoice | null>({
+  key: "plankChoiceState",
+  default: null,
+});
+
 export function PlankChallenge({ onNext }: BaseEventProps) {
-  const [choice, setChoice] = useState<PlankChoice | null>(() => null);
+  const [choice, setChoice] = useRecoilState(plankChoiceState);
 
   return (
     <>

@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -10,16 +9,14 @@ export const enum CardiacChoice {
   NO,
 }
 
+export const cardiacChoiceState = atom<CardiacChoice | null>({
+  key: "cardiacChoiceState",
+  default: null,
+});
+
 export function Cardiac({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<CardiacChoice | null>(null);
-  const choose = useCallback(
-    (choice: CardiacChoice) => {
-      state.cardiacChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(cardiacChoiceState);
+
   return (
     <>
       <p>
@@ -41,7 +38,7 @@ export function Cardiac({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === CardiacChoice.NO && [
         <p>

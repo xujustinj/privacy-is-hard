@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../components/Button";
 import { Choices } from "../components/Choices";
 import { InfoProvider } from "../components/InfoPanel";
@@ -11,8 +11,13 @@ export const enum QRCodeChoice {
   NO,
 }
 
+export const qrCodeChoiceState = atom<QRCodeChoice | null>({
+  key: "qrCodeChoiceState",
+  default: null,
+});
+
 export function QRCode({ onNext }: BaseEventProps) {
-  const [choice, setChoice] = useState<QRCodeChoice | null>(() => null);
+  const [choice, setChoice] = useRecoilState(qrCodeChoiceState);
 
   return (
     <>

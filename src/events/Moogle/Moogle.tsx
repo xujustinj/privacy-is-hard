@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { BaseEventProps } from "../../model/Event";
 
 export const enum MoogleChoice {
@@ -9,16 +8,14 @@ export const enum MoogleChoice {
   NO,
 }
 
+export const moogleChoiceState = atom<MoogleChoice | null>({
+  key: "moogleChoiceState",
+  default: null,
+});
+
 export function Moogle({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<MoogleChoice | null>(null);
-  const choose = useCallback(
-    (choice: MoogleChoice) => {
-      state.moogleChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(moogleChoiceState);
+
   return (
     <>
       <p>
@@ -40,7 +37,7 @@ export function Moogle({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === MoogleChoice.YES && (
         <p>

@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -10,16 +9,14 @@ export const enum TermsChoice {
   DECLINE,
 }
 
+export const termsChoiceState = atom<TermsChoice | null>({
+  key: "termsChoiceState",
+  default: null,
+});
+
 export function DingA1({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<TermsChoice | null>(null);
-  const choose = useCallback(
-    (choice: TermsChoice) => {
-      state.termsChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(termsChoiceState);
+
   return (
     <>
       <p>
@@ -39,7 +36,7 @@ export function DingA1({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === TermsChoice.DECLINE && [
         <p>You have to return the doorbell.</p>,

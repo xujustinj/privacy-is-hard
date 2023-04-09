@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
 import { InfoProvider } from "../../components/InfoPanel";
@@ -12,8 +12,14 @@ export const enum PoliceChoice {
   NO,
 }
 
+export const policeChoiceState = atom<PoliceChoice | null>({
+  key: "policeChoiceState",
+  default: null,
+});
+
 export function DingAA3({ onNext }: BaseEventProps) {
-  const [choice, setChoice] = useState<PoliceChoice | null>(null);
+  const [choice, setChoice] = useRecoilState(policeChoiceState);
+
   return (
     <>
       <p>

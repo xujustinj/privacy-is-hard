@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -10,16 +9,14 @@ export const enum TalkGPTChoice {
   NO,
 }
 
+export const talkGPTChoiceState = atom<TalkGPTChoice | null>({
+  key: "talkGPTChoiceState",
+  default: null,
+});
+
 export function TalkGPT({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<TalkGPTChoice | null>(() => null);
-  const choose = useCallback(
-    (choice: TalkGPTChoice) => {
-      state.talkgptChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(talkGPTChoiceState);
+
   return (
     <>
       <p>
@@ -40,7 +37,7 @@ export function TalkGPT({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === TalkGPTChoice.YES && <p>You provide some messages.</p>}
       {choice === TalkGPTChoice.NO && [

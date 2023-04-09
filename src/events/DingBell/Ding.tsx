@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { BaseEventProps } from "../../model/Event";
 
 export const enum SafetyChoice {
@@ -9,16 +8,14 @@ export const enum SafetyChoice {
   BODYGUARD,
 }
 
+export const safetyChoiceState = atom<SafetyChoice | null>({
+  key: "safetyChoiceState",
+  default: null,
+});
+
 export function Ding({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<SafetyChoice | null>(null);
-  const choose = useCallback(
-    (choice: SafetyChoice) => {
-      state.safetyChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(safetyChoiceState);
+
   return (
     <>
       <p>
@@ -38,7 +35,7 @@ export function Ding({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}

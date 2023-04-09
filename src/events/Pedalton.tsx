@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../components/Button";
 import { Choices } from "../components/Choices";
 import { AddScore, ScoreCategory } from "../components/Score";
@@ -9,8 +9,13 @@ export const enum PedaltonChoice {
   NO,
 }
 
+export const pedaltonChoiceState = atom<PedaltonChoice | null>({
+  key: "pedaltonChoiceState",
+  default: null,
+});
+
 export function Pedalton({ onNext }: BaseEventProps) {
-  const [choice, setChoice] = useState<PedaltonChoice | null>(() => null);
+  const [choice, setChoice] = useRecoilState(pedaltonChoiceState);
 
   return (
     <>

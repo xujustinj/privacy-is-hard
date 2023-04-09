@@ -1,79 +1,51 @@
-import { createContext } from "react";
-import { DnaTestChoice, TwentyTwoandMe } from "../events/22andMe/Dna";
-import { TwentyTwoandMeA1 } from "../events/22andMe/DnaA1";
-import { TwentyTwoandMeB1 } from "../events/22andMe/DnaB1";
-import { AngelTrend, AngelTrendChoice } from "../events/AngelTrend/AngelTrend";
-import { AngelTrendA1 } from "../events/AngelTrend/AngelTrendA1";
-import { Balantir } from "../events/Balantir";
-import { BitFit, BitFitChoice } from "../events/BitFit/BitFit";
-import { BitFitA1 } from "../events/BitFit/BitFitA1";
-import { BitFitA2 } from "../events/BitFit/BitFitA2";
-import { BitFitA3 } from "../events/BitFit/BitFitA3";
-import { BitFitB1 } from "../events/BitFit/BitFitB1";
-import { BitFitB2 } from "../events/BitFit/BitFitB2";
-import { Cardiac, CardiacChoice } from "../events/Cardiac/Cardiac";
-import { CardiacB1 } from "../events/Cardiac/CardiacB1";
-import { CardiacB2 } from "../events/Cardiac/CardiacB2";
-import { CardiacB3 } from "../events/Cardiac/CardiacB3";
-import {
-  CleanStreet,
-  CleanStreetChoice,
-} from "../events/CleanStreet/CleanStreet";
-import { CleanStreetAC1 } from "../events/CleanStreet/CleanStreetAC1";
-import { CleanStreetPrecondition } from "../events/CleanStreet/CleanStreetPrecondition";
-import { CreditCash } from "../events/CreditCash";
-import { Ding, SafetyChoice } from "../events/DingBell/Ding";
-import { DingA1, TermsChoice } from "../events/DingBell/DingA1";
-import { DingAA1 } from "../events/DingBell/DingAA1";
-import { DingAA2 } from "../events/DingBell/DingAA2";
-import { DingAA3 } from "../events/DingBell/DingAA3";
-import { DingB1 } from "../events/DingBell/DingB1";
-import { GoodEnd } from "../events/GoodEnd";
-import { Moogle, MoogleChoice } from "../events/Moogle/Moogle";
-import { MoogleA1 } from "../events/Moogle/MoogleA1";
-import { MoogleA2 } from "../events/Moogle/MoogleA2";
-import { MoogleA3 } from "../events/Moogle/MoogleA3";
-import { MoogleB1 } from "../events/Moogle/MoogleB1";
-import { Pedalton } from "../events/Pedalton";
-import { PlankChallenge } from "../events/PlankChallenge";
-import { QRCode } from "../events/QRCode";
-import { Start } from "../events/Start";
-import { TalkGPT, TalkGPTChoice } from "../events/TalkGPT/TalkGPT";
-import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
-import { TalkGPTA2 } from "../events/TalkGPT/TalkGPTA2";
 import { GameEvent } from "../model/Event";
-
-export class GeneratorState {
-  count = 0;
-  bitFitChoice: BitFitChoice | null = null;
-  moogleChoice: MoogleChoice | null = null;
-  cardiacChoice: CardiacChoice | null = null;
-  talkgptChoice: TalkGPTChoice | null = null;
-  angelTrendChoice: AngelTrendChoice | null = null;
-  dnaTestChoice: DnaTestChoice | null = null;
-  safetyChoice: SafetyChoice | null = null;
-  termsChoice: TermsChoice | null = null;
-  cleanStreetChoice: CleanStreetChoice | null = null;
-}
-
-export interface Generator {
-  readonly state: GeneratorState;
-  next: () => GameEvent | null;
-}
-
-// Provides the state of the Generator; consumers can edit the state as they
-// please. We don't have to let React know about any changes to state because
-// it only affects the next event, not the current events being displayed.
-export const GeneratorStateContext = createContext<GeneratorState>(
-  new GeneratorState()
-);
+import { EventGenerator } from "../model/EventGenerator";
+import { GameState } from "../model/Game";
+import { DnaTestChoice, TwentyTwoandMe } from "./22andMe/Dna";
+import { TwentyTwoandMeA1 } from "./22andMe/DnaA1";
+import { TwentyTwoandMeB1 } from "./22andMe/DnaB1";
+import { AngelTrend, AngelTrendChoice } from "./AngelTrend/AngelTrend";
+import { AngelTrendA1 } from "./AngelTrend/AngelTrendA1";
+import { Balantir } from "./Balantir";
+import { BitFit, BitFitChoice } from "./BitFit/BitFit";
+import { BitFitA1 } from "./BitFit/BitFitA1";
+import { BitFitA2 } from "./BitFit/BitFitA2";
+import { BitFitA3 } from "./BitFit/BitFitA3";
+import { BitFitB1 } from "./BitFit/BitFitB1";
+import { BitFitB2 } from "./BitFit/BitFitB2";
+import { Cardiac } from "./Cardiac/Cardiac";
+import { CardiacB1 } from "./Cardiac/CardiacB1";
+import { CardiacB2 } from "./Cardiac/CardiacB2";
+import { CardiacB3 } from "./Cardiac/CardiacB3";
+import { CleanStreet, CleanStreetChoice } from "./CleanStreet/CleanStreet";
+import { CleanStreetAC1 } from "./CleanStreet/CleanStreetAC1";
+import { CleanStreetPrecondition } from "./CleanStreet/CleanStreetPrecondition";
+import { CreditCash } from "./CreditCash";
+import { Ding, SafetyChoice } from "./DingBell/Ding";
+import { DingA1, TermsChoice } from "./DingBell/DingA1";
+import { DingAA1 } from "./DingBell/DingAA1";
+import { DingAA2 } from "./DingBell/DingAA2";
+import { DingAA3 } from "./DingBell/DingAA3";
+import { DingB1 } from "./DingBell/DingB1";
+import { GoodEnd } from "./GoodEnd";
+import { Moogle, MoogleChoice } from "./Moogle/Moogle";
+import { MoogleA1 } from "./Moogle/MoogleA1";
+import { MoogleA2 } from "./Moogle/MoogleA2";
+import { MoogleA3 } from "./Moogle/MoogleA3";
+import { MoogleB1 } from "./Moogle/MoogleB1";
+import { Pedalton } from "./Pedalton";
+import { PlankChallenge } from "./PlankChallenge";
+import { QRCode } from "./QRCode";
+import { Start } from "./Start";
+import { TalkGPT, TalkGPTChoice } from "./TalkGPT/TalkGPT";
+import { TalkGPTA1 } from "./TalkGPT/TalkGPTA1";
+import { TalkGPTA2 } from "./TalkGPT/TalkGPTA2";
 
 interface SequencedEvent extends GameEvent {
-  next?: (state: GeneratorState) => ReadonlyArray<SequencedEvent> | null;
+  next?: (state: GameState) => ReadonlyArray<SequencedEvent> | null;
 }
 
-export class SequenceGenerator implements Generator {
-  public readonly state = new GeneratorState();
+export class SequenceGenerator implements EventGenerator {
   protected current: SequencedEvent | null = null;
   protected queue: ReadonlyArray<SequencedEvent> = [
     {
@@ -83,7 +55,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "bitfit",
       eventRender: { Component: BitFit },
-      next: ({ bitFitChoice }: GeneratorState) => {
+      next: ({ bitFitChoice }: GameState) => {
         switch (bitFitChoice) {
           case null:
             return null;
@@ -135,7 +107,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "moogle",
       eventRender: { Component: Moogle },
-      next: ({ moogleChoice }: GeneratorState) => {
+      next: ({ moogleChoice }: GameState) => {
         switch (moogleChoice) {
           case null:
             return null;
@@ -171,7 +143,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "cleanstreet",
       eventRender: { Component: CleanStreet },
-      next: ({ cleanStreetChoice }: GeneratorState) => {
+      next: ({ cleanStreetChoice }: GameState) => {
         switch (cleanStreetChoice) {
           case null:
             return null;
@@ -199,7 +171,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "ding",
       eventRender: { Component: Ding },
-      next: ({ safetyChoice }: GeneratorState) => {
+      next: ({ safetyChoice }: GameState) => {
         switch (safetyChoice) {
           case null:
             return null;
@@ -209,7 +181,7 @@ export class SequenceGenerator implements Generator {
                 id: "DingA1",
                 eventRender: { Component: DingA1 },
                 infoRender: null,
-                next: ({ termsChoice }: GeneratorState) => {
+                next: ({ termsChoice }: GameState) => {
                   switch (termsChoice) {
                     case null:
                       return null;
@@ -251,7 +223,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "22andMe",
       eventRender: { Component: TwentyTwoandMe },
-      next: ({ dnaTestChoice }: GeneratorState) => {
+      next: ({ dnaTestChoice }: GameState) => {
         switch (dnaTestChoice) {
           case null:
             return null;
@@ -281,7 +253,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "angel",
       eventRender: { Component: AngelTrend },
-      next: ({ angelTrendChoice }: GeneratorState) => {
+      next: ({ angelTrendChoice }: GameState) => {
         switch (angelTrendChoice) {
           case null:
             return null;
@@ -301,8 +273,8 @@ export class SequenceGenerator implements Generator {
     {
       id: "talkgpt",
       eventRender: { Component: TalkGPT },
-      next: ({ talkgptChoice }: GeneratorState) => {
-        switch (talkgptChoice) {
+      next: ({ talkGPTChoice }: GameState) => {
+        switch (talkGPTChoice) {
           case null:
             return null;
           case TalkGPTChoice.NO:
@@ -326,7 +298,7 @@ export class SequenceGenerator implements Generator {
     {
       id: "cardiac",
       eventRender: { Component: Cardiac },
-      next: ({ dnaTestChoice }: GeneratorState) => {
+      next: ({ dnaTestChoice }: GameState) => {
         switch (dnaTestChoice) {
           case null:
             return null;
@@ -356,9 +328,9 @@ export class SequenceGenerator implements Generator {
     },
   ];
 
-  public next(): GameEvent | null {
+  public next(state: GameState): GameEvent | null {
     if (this.current?.next !== undefined) {
-      this.queue = [...this.current.next(this.state)!, ...this.queue];
+      this.queue = [...this.current.next(state)!, ...this.queue];
     }
     if (this.queue.length > 0) {
       [this.current, ...this.queue] = this.queue;

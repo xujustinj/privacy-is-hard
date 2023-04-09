@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../components/Button";
 import { Choices } from "../components/Choices";
 import { InfoProvider } from "../components/InfoPanel";
@@ -11,8 +11,13 @@ export const enum PaymentChoice {
   CASH,
 }
 
+export const paymentChoiceState = atom<PaymentChoice | null>({
+  key: "paymentChoiceState",
+  default: null,
+});
+
 export function CreditCash({ onNext }: BaseEventProps) {
-  const [choice, setChoice] = useState<PaymentChoice | null>(() => null);
+  const [choice, setChoice] = useRecoilState(paymentChoiceState);
 
   return (
     <>

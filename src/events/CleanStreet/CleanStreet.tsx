@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -11,16 +10,14 @@ export const enum CleanStreetChoice {
   BOTH,
 }
 
+export const cleanStreetChoiceState = atom<CleanStreetChoice | null>({
+  key: "cleanStreetChoiceState",
+  default: null,
+});
+
 export function CleanStreet({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<CleanStreetChoice | null>(null);
-  const choose = useCallback(
-    (choice: CleanStreetChoice) => {
-      state.cleanStreetChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(cleanStreetChoiceState);
+
   return (
     <>
       <p>
@@ -48,7 +45,7 @@ export function CleanStreet({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === CleanStreetChoice.CLEAN && [
         <p>

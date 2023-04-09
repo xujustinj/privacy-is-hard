@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -10,16 +9,14 @@ export const enum AngelTrendChoice {
   NO,
 }
 
+export const angelTrendChoiceState = atom<AngelTrendChoice | null>({
+  key: "angelTrendChoiceState",
+  default: null,
+});
+
 export function AngelTrend({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<AngelTrendChoice | null>(null);
-  const choose = useCallback(
-    (choice: AngelTrendChoice) => {
-      state.angelTrendChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(angelTrendChoiceState);
+
   return (
     <>
       <p>
@@ -36,7 +33,7 @@ export function AngelTrend({ onNext }: BaseEventProps) {
           { choice: AngelTrendChoice.NO, child: "Naw, I'll pass." },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === AngelTrendChoice.YES && [
         <p>Your video goes viral, earning you a million new followers!</p>,

@@ -1,7 +1,6 @@
-import { useCallback, useContext, useState } from "react";
+import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
-import { GeneratorStateContext } from "../../components/Generator";
 import { AddScore, ScoreCategory } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 
@@ -10,16 +9,14 @@ export const enum DnaTestChoice {
   NO,
 }
 
+export const dnaTestChoiceState = atom<DnaTestChoice | null>({
+  key: "dnaTestChoiceState",
+  default: null,
+});
+
 export function TwentyTwoandMe({ onNext }: BaseEventProps) {
-  const state = useContext(GeneratorStateContext);
-  const [choice, setChoice] = useState<DnaTestChoice | null>(null);
-  const choose = useCallback(
-    (choice: DnaTestChoice) => {
-      state.dnaTestChoice = choice;
-      setChoice(choice);
-    },
-    [state, setChoice]
-  );
+  const [choice, setChoice] = useRecoilState(dnaTestChoiceState);
+
   return (
     <>
       <p>
@@ -36,7 +33,7 @@ export function TwentyTwoandMe({ onNext }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       ></Choices>
       {choice === DnaTestChoice.NO && [
         <p>

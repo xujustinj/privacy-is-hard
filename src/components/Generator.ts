@@ -41,7 +41,7 @@ import { Start } from "../events/Start";
 import { TalkGPT, TalkGPTChoice } from "../events/TalkGPT/TalkGPT";
 import { TalkGPTA1 } from "../events/TalkGPT/TalkGPTA1";
 import { TalkGPTA2 } from "../events/TalkGPT/TalkGPTA2";
-import { GameEvent } from "./Event";
+import { GameEvent } from "../model/Event";
 
 export class GeneratorState {
   count = 0;

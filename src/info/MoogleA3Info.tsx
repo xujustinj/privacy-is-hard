@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import Gizmodo_Google from "../sources/Gizmodo_Google.json";
 
 export function MoogleA3Info() {

@@ -1,24 +1,24 @@
 import { useCallback, useContext, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { GeneratorStateContext } from "../../game/Generator";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { GeneratorStateContext } from "../../components/Generator";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum BitFitChoice {
   YES,
   NO,
 }
 
-export function BitFit({ finish }: BaseEventProps) {
+export function BitFit({ onNext }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   const [choice, setChoice] = useState<BitFitChoice | null>(null);
   const choose = useCallback(
     (choice: BitFitChoice) => {
       state.bitFitChoice = choice;
       setChoice(choice);
-      finish();
     },
-    [state, setChoice, finish]
+    [state, setChoice]
   );
 
   return (
@@ -38,26 +38,24 @@ export function BitFit({ finish }: BaseEventProps) {
         onChoose={choose}
       />
       {choice === BitFitChoice.YES && (
-        <>
-          <p>
-            You purchase a BitFit watch and wear it as you go about daily life.
-          </p>
-        </>
+        <p>
+          You purchase a BitFit watch and wear it as you go about daily life.
+        </p>
       )}
-      {choice === BitFitChoice.NO && (
-        <>
-          <p>
-            Your personal trainer is unhappy. Now they have to re-do the entire
-            training plan!
-          </p>
-          <p>
-            Word gets out about your "feud" with your personal trainer. Tabloids
-            have already published an article - '11 Celebrities Who Need A
-            Serious Attitude Adjustment' - and you're #1.
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={-10} />
-        </>
-      )}
+      {choice === BitFitChoice.NO && [
+        <p>
+          Your personal trainer is unhappy. Now they have to re-do the entire
+          training plan!
+        </p>,
+        <p>
+          Word gets out about your "feud" with your personal trainer. Tabloids
+          have already published an article - '11 Celebrities Who Need A Serious
+          Attitude Adjustment' - and you're #1.
+        </p>,
+        <AddScore category={ScoreCategory.CAREER} amount={-10} />,
+      ]}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>
   );
 }

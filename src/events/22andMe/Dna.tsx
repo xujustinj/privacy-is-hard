@@ -1,27 +1,27 @@
 import { useCallback, useContext, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { GeneratorStateContext } from "../../game/Generator";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { GeneratorStateContext } from "../../components/Generator";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum DnaTestChoice {
   YES,
   NO,
 }
 
-export function TwentyTwoandMe({ finish }: BaseEventProps) {
+export function TwentyTwoandMe({ onNext }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   const [choice, setChoice] = useState<DnaTestChoice | null>(null);
   const choose = useCallback(
     (choice: DnaTestChoice) => {
       state.dnaTestChoice = choice;
       setChoice(choice);
-      finish();
     },
-    [state, setChoice, finish]
+    [state, setChoice]
   );
   return (
-    <div>
+    <>
       <p>
         It's Christmas! You are hosting a party with your friends and family.
         For some holiday fun, your aunt Barbara has gifted 22andMe DNA testing
@@ -38,22 +38,20 @@ export function TwentyTwoandMe({ finish }: BaseEventProps) {
         chosen={choice}
         onChoose={choose}
       ></Choices>
-      {choice === DnaTestChoice.NO && (
-        <>
-          <p>
-            Your aunt Barbara is offended. Why are you ruining the holiday
-            spirit? The rest of the family will be taking it anyway.
-          </p>
-          <AddScore category={ScoreCategory.SOCIAL} amount={-10} />
-          <p>Your family has some Irish DNA, cool!</p>
-        </>
-      )}
-      {choice === DnaTestChoice.YES && (
-        <>
-          <p>Your family has some Irish DNA, cool!</p>
-          <AddScore category={ScoreCategory.SOCIAL} amount={5} />
-        </>
-      )}
-    </div>
+      {choice === DnaTestChoice.NO && [
+        <p>
+          Your aunt Barbara is offended. Why are you ruining the holiday spirit?
+          The rest of the family will be taking it anyway.
+        </p>,
+        <AddScore category={ScoreCategory.SOCIAL} amount={-10} />,
+        <p>Your family has some Irish DNA, cool!</p>,
+      ]}
+      {choice === DnaTestChoice.YES && [
+        <p>Your family has some Irish DNA, cool!</p>,
+        <AddScore category={ScoreCategory.SOCIAL} amount={5} />,
+      ]}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

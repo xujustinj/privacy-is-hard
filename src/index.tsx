@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
+import { Game } from "./components/Game";
 import { Fonts } from "./fonts/Fonts";
-import { Game } from "./game/Game";
 import GlobalStyle from "./globalStyles";
 import reportWebVitals from "./reportWebVitals";
 

@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
-export function MoogleA1({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function MoogleA1({ onNext }: BaseEventProps) {
   return (
-    <div>
+    <>
       <p>
         Moogle Home wakes you up every morning and reminds you of your
         appointments while you brush your teeth. It feels like a load has been
         taken off your shoulders!
       </p>
       <AddScore category={ScoreCategory.HAPPINESS} amount={10} />
-    </div>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

@@ -1,25 +1,19 @@
-import { useCallback, useState } from "react";
-import { Choices } from "../game/Choices";
-import { AddScore, ScoreCategory } from "../game/Score";
-import { BaseEventProps } from "./BaseEvent";
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { Choices } from "../components/Choices";
+import { AddScore, ScoreCategory } from "../components/Score";
+import { BaseEventProps } from "../model/Event";
 
 export const enum PedaltonChoice {
   YES,
   NO,
 }
 
-export function Pedalton({ finish }: BaseEventProps) {
+export function Pedalton({ onNext }: BaseEventProps) {
   const [choice, setChoice] = useState<PedaltonChoice | null>(() => null);
-  const choose = useCallback(
-    (newChoice: PedaltonChoice) => {
-      setChoice(newChoice);
-      finish();
-    },
-    [setChoice, finish]
-  );
 
   return (
-    <div>
+    <>
       <p>
         Holidays are over, time to get fit again for the movie. Your friend
         recommended you to try your new Pedalton bike. Let's give it a try!
@@ -43,19 +37,15 @@ export function Pedalton({ finish }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
-      {choice === PedaltonChoice.YES && (
-        <>
-          <p>You have made a new friend!</p>
-          <AddScore category={ScoreCategory.SOCIAL} amount={5} />
-        </>
-      )}
-      {choice === PedaltonChoice.NO && (
-        <>
-          <p>Ok.</p>
-        </>
-      )}
-    </div>
+      {choice === PedaltonChoice.YES && [
+        <p>You have made a new friend!</p>,
+        <AddScore category={ScoreCategory.SOCIAL} amount={5} />,
+      ]}
+      {choice === PedaltonChoice.NO && <p>Ok.</p>}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

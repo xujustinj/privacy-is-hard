@@ -1,6 +1,6 @@
-import { useEffect } from "react";
 import styled from "styled-components";
-import { BaseEventProps } from "./BaseEvent";
+import { Button } from "../components/Button";
+import { BaseEventProps } from "../model/Event";
 
 const Title = styled.h1`
   text-align: center;
@@ -23,11 +23,9 @@ const Subtitle = styled.p`
   }
 `;
 
-export function Start({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function Start({ onNext }: BaseEventProps) {
   return (
-    <div>
+    <>
       <Title>
         ONCE UPON A TIME IN
         <br />
@@ -69,6 +67,8 @@ export function Start({ finish }: BaseEventProps) {
         always watching - will you be able to keep up with privacy and still be
         relevant? Let's find out!
       </p>
-    </div>
+
+      {onNext && <Button onClick={onNext}>Start</Button>}
+    </>
   );
 }

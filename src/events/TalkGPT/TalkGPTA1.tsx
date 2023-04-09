@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
-export function TalkGPTA1({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function TalkGPTA1({ onNext }: BaseEventProps) {
   return (
-    <div>
+    <>
       <p>The app is a huge hit. Your fans love it!</p>
       <AddScore category={ScoreCategory.CAREER} amount={5} />
-    </div>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

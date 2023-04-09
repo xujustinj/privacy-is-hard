@@ -1,27 +1,21 @@
-import { useCallback, useState } from "react";
-import { Choices } from "../game/Choices";
-import { InfoProvider } from "../game/InfoPanel";
-import { AddScore, ScoreCategory } from "../game/Score";
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { Choices } from "../components/Choices";
+import { InfoProvider } from "../components/InfoPanel";
+import { AddScore, ScoreCategory } from "../components/Score";
 import { QRInfo } from "../info/QRInfo";
-import { BaseEventProps } from "./BaseEvent";
+import { BaseEventProps } from "../model/Event";
 
 export const enum QRCodeChoice {
   YES,
   NO,
 }
 
-export function QRCode({ finish }: BaseEventProps) {
+export function QRCode({ onNext }: BaseEventProps) {
   const [choice, setChoice] = useState<QRCodeChoice | null>(() => null);
-  const choose = useCallback(
-    (newChoice: QRCodeChoice) => {
-      setChoice(newChoice);
-      finish();
-    },
-    [setChoice, finish]
-  );
 
   return (
-    <div>
+    <>
       <p>
         You are shooting in a remote location and have 10 minutes to get a quick
         lunch during break time. There's a hip restaurant nearby, but it only
@@ -40,34 +34,32 @@ export function QRCode({ finish }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
-      {choice === QRCodeChoice.YES && (
-        <>
-          <InfoProvider info={{ Component: QRInfo }}>
-            <p>
-              Your IP address and location are given to the website providing
-              the menu.
-            </p>
-            <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
-          </InfoProvider>
+      {choice === QRCodeChoice.YES && [
+        <InfoProvider info={{ Component: QRInfo }}>
           <p>
-            You ordered and got your food within 10 minutes. You made it back on
-            time. Nice!
+            Your IP address and location are given to the website providing the
+            menu.
           </p>
-        </>
-      )}
-      {choice === QRCodeChoice.NO && (
-        <>
-          <p>
-            The waiter sighs and goes to the back to ask his manager. They
-            don't, so he tells you all the options. It took a while, and now
-            you're late. The movie director yells at you.
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={-5} />
-          <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />
-        </>
-      )}
-    </div>
+          <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
+        </InfoProvider>,
+        <p>
+          You ordered and got your food within 10 minutes. You made it back on
+          time. Nice!
+        </p>,
+      ]}
+      {choice === QRCodeChoice.NO && [
+        <p>
+          The waiter sighs and goes to the back to ask his manager. They don't,
+          so he tells you all the options. It took a while, and now you're late.
+          The movie director yells at you.
+        </p>,
+        <AddScore category={ScoreCategory.CAREER} amount={-5} />,
+        <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />,
+      ]}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

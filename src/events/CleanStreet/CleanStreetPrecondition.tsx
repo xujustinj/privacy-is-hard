@@ -1,15 +1,15 @@
-import { useEffect } from "react";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { BaseEventProps } from "../../model/Event";
 
-export function CleanStreetPrecondition({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function CleanStreetPrecondition({ onNext }: BaseEventProps) {
   return (
-    <div>
+    <>
       <p>
         A small earthquake has struck Jollywood! The city is mostly okay, except
         one old apartment building that collapsed, killing 50 people.
       </p>
-    </div>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import HealthcareIT_Cerebral from "../sources/HealthcareIT_Cerebral.json";
 
 export function CardiacInfo() {

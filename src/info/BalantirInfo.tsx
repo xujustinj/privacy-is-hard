@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import BNNPalantir from "../sources/BNN_Palantir.json";
 
 export function BalantirInfo() {

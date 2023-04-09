@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import PopBuzzSilhouette from "../sources/PopBuzz_Silhouette.json";
 
 export function AngelInfo() {

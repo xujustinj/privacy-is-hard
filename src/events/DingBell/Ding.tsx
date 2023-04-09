@@ -1,26 +1,26 @@
 import { useCallback, useContext, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { GeneratorStateContext } from "../../game/Generator";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { GeneratorStateContext } from "../../components/Generator";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum SafetyChoice {
   CAMERA,
   BODYGUARD,
 }
 
-export function Ding({ finish }: BaseEventProps) {
+export function Ding({ onNext }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   const [choice, setChoice] = useState<SafetyChoice | null>(null);
   const choose = useCallback(
     (choice: SafetyChoice) => {
       state.safetyChoice = choice;
       setChoice(choice);
-      finish();
     },
-    [state, setChoice, finish]
+    [state, setChoice]
   );
   return (
-    <div>
+    <>
       <p>
         Uh oh... Your house was almost broken into by a stalker fan. Luckily,
         your bodyguard stopped him right on time. Would you like to install a
@@ -40,6 +40,8 @@ export function Ding({ finish }: BaseEventProps) {
         chosen={choice}
         onChoose={choose}
       />
-    </div>
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

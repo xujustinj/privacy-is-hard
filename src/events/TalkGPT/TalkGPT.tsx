@@ -1,27 +1,27 @@
 import { useCallback, useContext, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { GeneratorStateContext } from "../../game/Generator";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { GeneratorStateContext } from "../../components/Generator";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum TalkGPTChoice {
   YES,
   NO,
 }
 
-export function TalkGPT({ finish }: BaseEventProps) {
+export function TalkGPT({ onNext }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   const [choice, setChoice] = useState<TalkGPTChoice | null>(() => null);
   const choose = useCallback(
     (choice: TalkGPTChoice) => {
       state.talkgptChoice = choice;
       setChoice(choice);
-      finish();
     },
-    [state, setChoice, finish]
+    [state, setChoice]
   );
   return (
-    <div>
+    <>
       <p>
         A startup is building a fun app for fans to chat with their favourite
         celebrities, based on TalkGPT. They contacted your managers to ask for a
@@ -43,15 +43,15 @@ export function TalkGPT({ finish }: BaseEventProps) {
         onChoose={choose}
       />
       {choice === TalkGPTChoice.YES && <p>You provide some messages.</p>}
-      {choice === TalkGPTChoice.NO && (
-        <>
-          <p>
-            Your managers are disappointed that you turned down easy money. What
-            a spoilsport!
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={-5} />
-        </>
-      )}
-    </div>
+      {choice === TalkGPTChoice.NO && [
+        <p>
+          Your managers are disappointed that you turned down easy money. What a
+          spoilsport!
+        </p>,
+        <AddScore category={ScoreCategory.CAREER} amount={-5} />,
+      ]}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

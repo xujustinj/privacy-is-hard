@@ -1,8 +1,9 @@
 import { useCallback, useContext, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { GeneratorStateContext } from "../../game/Generator";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { GeneratorStateContext } from "../../components/Generator";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum CleanStreetChoice {
   CLEAN,
@@ -10,19 +11,18 @@ export const enum CleanStreetChoice {
   BOTH,
 }
 
-export function CleanStreet({ finish }: BaseEventProps) {
+export function CleanStreet({ onNext }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   const [choice, setChoice] = useState<CleanStreetChoice | null>(null);
   const choose = useCallback(
     (choice: CleanStreetChoice) => {
       state.cleanStreetChoice = choice;
       setChoice(choice);
-      finish();
     },
-    [state, setChoice, finish]
+    [state, setChoice]
   );
   return (
-    <div>
+    <>
       <p>
         Trend of the month: the Clean Streets challenge is taking over the pages
         of InstaTok's influencers! Influencers are filming themselves collecting
@@ -50,33 +50,29 @@ export function CleanStreet({ finish }: BaseEventProps) {
         chosen={choice}
         onChoose={choose}
       />
-      {choice === CleanStreetChoice.CLEAN && (
-        <>
-          <p>
-            Many fans praise your efforts, and you gain a few thousand
-            followers. A small vocal group of haters accuse you of using the
-            misfortune of others to gain influence (which you technically are).
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={5} />
-        </>
-      )}
+      {choice === CleanStreetChoice.CLEAN && [
+        <p>
+          Many fans praise your efforts, and you gain a few thousand followers.
+          A small vocal group of haters accuse you of using the misfortune of
+          others to gain influence (which you technically are).
+        </p>,
+        <AddScore category={ScoreCategory.CAREER} amount={5} />,
+      ]}
       {choice === CleanStreetChoice.DONATION && (
-        <>
-          <p>
-            You give $100 000, more money than anyone before. But barely anyone
-            notices and people wonder why you haven't posted a video.
-          </p>
-        </>
+        <p>
+          You give $100 000, more money than anyone before. But barely anyone
+          notices and people wonder why you haven't posted a video.
+        </p>
       )}
-      {choice === CleanStreetChoice.BOTH && (
-        <>
-          <p>
-            Above and beyond! You gain huge respect from your fans and even the
-            most hardline haters admit you can have class... sometimes.
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={10} />
-        </>
-      )}
-    </div>
+      {choice === CleanStreetChoice.BOTH && [
+        <p>
+          Above and beyond! You gain huge respect from your fans and even the
+          most hardline haters admit you can have class... sometimes.
+        </p>,
+        <AddScore category={ScoreCategory.CAREER} amount={10} />,
+      ]}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
-export function DingB1({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function DingB1({ onNext }: BaseEventProps) {
   return (
-    <div>
+    <>
       <p>
         Your bodyguard was enjoying his sandwich when the stalker fan came back
         and stole the movie script.
@@ -16,6 +14,8 @@ export function DingB1({ finish }: BaseEventProps) {
         not able to find them. The stalker fan released the movie script. Yikes!
       </p>
       <AddScore category={ScoreCategory.CAREER} amount={-20} />
-    </div>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

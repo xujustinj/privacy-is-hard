@@ -1,20 +1,22 @@
-import { useEffect } from "react";
-import { InfoProvider } from "../../game/InfoPanel";
-import { AddScore, ScoreCategory } from "../../game/Score";
+import { Button } from "../../components/Button";
+import { InfoProvider } from "../../components/InfoPanel";
+import { AddScore, ScoreCategory } from "../../components/Score";
 import { MoogleA3Info } from "../../info/MoogleA3Info";
-import { BaseEventProps } from "../BaseEvent";
+import { BaseEventProps } from "../../model/Event";
 
-export function MoogleA3({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function MoogleA3({ onNext }: BaseEventProps) {
   return (
-    <InfoProvider info={{ Component: MoogleA3Info }}>
-      <p>
-        Breaking News: Amid Moogle Layoffs, Angry Ex-Moogler Leaks Moogle Home
-        Recordings
-      </p>
-      <p>Some of those recordings included your voice.</p>
-      <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
-    </InfoProvider>
+    <>
+      <InfoProvider info={{ Component: MoogleA3Info }}>
+        <p>
+          Breaking News: Amid Moogle Layoffs, Angry Ex-Moogler Leaks Moogle Home
+          Recordings
+        </p>
+        <p>Some of those recordings included your voice.</p>
+        <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
+      </InfoProvider>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import Politico_Ring from "../sources/Politico_Ring.json";
 
 export function DingInfo3() {

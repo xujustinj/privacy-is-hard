@@ -1,17 +1,17 @@
-import { useEffect } from "react";
-import { AddScore, ScoreCategory } from "../../game/Score";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { AddScore, ScoreCategory } from "../../components/Score";
+import { BaseEventProps } from "../../model/Event";
 
-export function BitFitB1({ finish }: BaseEventProps) {
-  useEffect(finish, [finish]);
-
+export function BitFitB1({ onNext }: BaseEventProps) {
   return (
-    <div>
+    <>
       <p>
         You experience shortness of breath and feel dizzy at the gym. You faint.
         The doctor diagnoses you with heart arrhythmia.
       </p>
       <AddScore category={ScoreCategory.HEALTH} amount={-10} />
-    </div>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

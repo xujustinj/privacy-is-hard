@@ -1,26 +1,26 @@
 import { useCallback, useContext, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { GeneratorStateContext } from "../../game/Generator";
-import { BaseEventProps } from "../BaseEvent";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { GeneratorStateContext } from "../../components/Generator";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum MoogleChoice {
   YES,
   NO,
 }
 
-export function Moogle({ finish }: BaseEventProps) {
+export function Moogle({ onNext }: BaseEventProps) {
   const state = useContext(GeneratorStateContext);
   const [choice, setChoice] = useState<MoogleChoice | null>(null);
   const choose = useCallback(
     (choice: MoogleChoice) => {
       state.moogleChoice = choice;
       setChoice(choice);
-      finish();
     },
-    [state, setChoice, finish]
+    [state, setChoice]
   );
   return (
-    <div>
+    <>
       <p>
         There's just so much to do everyday! Auditions, rehearsals, acting
         classes, voice lessons, performing, networking, gym, groceries, friends,
@@ -43,13 +43,13 @@ export function Moogle({ finish }: BaseEventProps) {
         onChoose={choose}
       />
       {choice === MoogleChoice.YES && (
-        <>
-          <p>
-            You buy a Moogle Home and add everything on your to-do list to
-            Moogle Calendar.
-          </p>
-        </>
+        <p>
+          You buy a Moogle Home and add everything on your to-do list to Moogle
+          Calendar.
+        </p>
       )}
-    </div>
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

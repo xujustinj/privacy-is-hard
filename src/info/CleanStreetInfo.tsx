@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import notkahnjunior_knoughpe from "../sources/notkahnjunior_knoughpe.json";
 
 export function CleanStreetInfo() {

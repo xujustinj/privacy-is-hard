@@ -1,12 +1,12 @@
 import { PropsWithChildren } from "react";
 import styled from "styled-components";
-import { Colors, rgb, rgba } from "../util/colors";
+import { Colors, rgba } from "../util/colors";
 
 export interface FeedProps extends PropsWithChildren {
   onAdvance: (() => void) | null;
 }
 
-const FeedContainer = styled.div`
+export const Feed = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${rgba(Colors.sectionBackground)};
@@ -33,28 +33,3 @@ const FeedContainer = styled.div`
     }
   }
 `;
-
-const ContinueButton = styled.button`
-  border: none;
-  border-radius: 8px;
-  font-family: Courier;
-  font-weight: bold;
-  font-size: 14pt;
-  padding: 8px 16px;
-  margin: 32px auto;
-  color: black;
-  background-color: ${rgb(Colors.sunset)};
-`;
-
-export function Feed({ children, onAdvance }: FeedProps) {
-  return (
-    <FeedContainer>
-      {children}
-      {onAdvance !== null && (
-        <ContinueButton onClick={onAdvance ?? (() => {})}>
-          Continue
-        </ContinueButton>
-      )}
-    </FeedContainer>
-  );
-}

@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import ACLU_Ring from "../sources/ACLU_Ring.json";
 
 export function DingInfo2() {

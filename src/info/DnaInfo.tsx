@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import WSJ_Bankruptcy from "../sources/WSJ_Bankruptcy.json";
 
 export function DnaInfo() {

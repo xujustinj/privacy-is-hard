@@ -1,8 +1,9 @@
 import { useCallback, useMemo, useState } from "react";
 import styled from "styled-components";
 import GameBackground from "../images/background.jpg";
+import { GameEvent } from "../model/Event";
 import { Render, RenderProps } from "../util/Render";
-import { GameEvent, GameEventContainer } from "./Event";
+import { GameEventContainer } from "./Event";
 import { Feed } from "./Feed";
 import {
   Generator,
@@ -59,18 +60,6 @@ export function Game() {
   const [events, setEvents] = useState<ReadonlyArray<GameEvent>>(() => [
     generator.next()!,
   ]);
-  const [activeEvent, setActiveEvent] = useState<GameEvent | null>(
-    () => events[0]
-  );
-
-  const onFinish = useCallback(
-    (event: GameEvent) => {
-      setActiveEvent((activeEvent) => {
-        return event === activeEvent ? null : activeEvent;
-      });
-    },
-    [setActiveEvent]
-  );
 
   const addScore = useCallback<ScoreUpdater>(
     (category: ScoreCategory, amount: number) => {
@@ -89,9 +78,8 @@ export function Game() {
     const nextEvent = generator.next();
     if (nextEvent !== null) {
       setEvents((events) => [...events, nextEvent]);
-      setActiveEvent(nextEvent);
     }
-  }, [generator, setActiveEvent, setEvents]);
+  }, [generator, setEvents]);
 
   return (
     <ScoresContext.Provider value={[scores, addScore]}>
@@ -101,13 +89,17 @@ export function Game() {
             <GameContainer>
               <ScoreBar scores={scores} />
               <BodyContainer>
-                <Feed onAdvance={activeEvent === null ? onAdvance : null}>
+                <Feed>
                   {events.map((event) => {
                     const { id, eventRender } = event;
                     return (
                       <GameEventContainer key={id}>
                         <Render
-                          finish={() => onFinish(event)}
+                          onNext={
+                            event === events[events.length - 1]
+                              ? onAdvance
+                              : undefined
+                          }
                           {...eventRender}
                         />
                       </GameEventContainer>

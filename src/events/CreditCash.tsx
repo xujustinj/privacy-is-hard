@@ -1,27 +1,21 @@
-import { useCallback, useState } from "react";
-import { Choices } from "../game/Choices";
-import { InfoProvider } from "../game/InfoPanel";
-import { AddScore, ScoreCategory } from "../game/Score";
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { Choices } from "../components/Choices";
+import { InfoProvider } from "../components/InfoPanel";
+import { AddScore, ScoreCategory } from "../components/Score";
 import { CreditCashInfo } from "../info/CreditCashInfo";
-import { BaseEventProps } from "./BaseEvent";
+import { BaseEventProps } from "../model/Event";
 
 export const enum PaymentChoice {
   CREDIT,
   CASH,
 }
 
-export function CreditCash({ finish }: BaseEventProps) {
+export function CreditCash({ onNext }: BaseEventProps) {
   const [choice, setChoice] = useState<PaymentChoice | null>(() => null);
-  const choose = useCallback(
-    (newChoice: PaymentChoice) => {
-      setChoice(newChoice);
-      finish();
-    },
-    [setChoice, finish]
-  );
 
   return (
-    <div>
+    <>
       <p>
         On a pit stop to WcDonald's, you get two number 9s, a number 9 large, a
         number 6 with extra dip, a number 7, two number 45s, one with cheese,
@@ -39,7 +33,7 @@ export function CreditCash({ finish }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {(choice === PaymentChoice.CASH || choice === PaymentChoice.CREDIT) && (
         <InfoProvider info={{ Component: CreditCashInfo }}>
@@ -48,6 +42,8 @@ export function CreditCash({ finish }: BaseEventProps) {
           <AddScore category={ScoreCategory.HEALTH} amount={-5} />
         </InfoProvider>
       )}
-    </div>
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

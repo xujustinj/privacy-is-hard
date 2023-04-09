@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import Ring_ToS from "../sources/Ring_ToS.json";
 
 export function DingInfo1() {

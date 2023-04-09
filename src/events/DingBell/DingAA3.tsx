@@ -1,27 +1,21 @@
-import { useCallback, useState } from "react";
-import { Choices } from "../../game/Choices";
-import { InfoProvider } from "../../game/InfoPanel";
-import { AddScore, ScoreCategory } from "../../game/Score";
+import { useState } from "react";
+import { Button } from "../../components/Button";
+import { Choices } from "../../components/Choices";
+import { InfoProvider } from "../../components/InfoPanel";
+import { AddScore, ScoreCategory } from "../../components/Score";
 import { DingInfo2 } from "../../info/DingInfo2";
 import { DingInfo3 } from "../../info/DingInfo3";
-import { BaseEventProps } from "../BaseEvent";
+import { BaseEventProps } from "../../model/Event";
 
 export const enum PoliceChoice {
   YES,
   NO,
 }
 
-export function DingAA3({ finish }: BaseEventProps) {
-  const [choice, setChoice] = useState<PoliceChoice | null>(() => null);
-  const choose = useCallback(
-    (newChoice: PoliceChoice) => {
-      setChoice(newChoice);
-      finish();
-    },
-    [setChoice, finish]
-  );
+export function DingAA3({ onNext }: BaseEventProps) {
+  const [choice, setChoice] = useState<PoliceChoice | null>(null);
   return (
-    <div>
+    <>
       <p>
         Due to an emergency in your community, the police has requested 3 days
         of Ding footage from the entire neighbourhood. Would you like to provide
@@ -39,7 +33,7 @@ export function DingAA3({ finish }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
       {choice === PoliceChoice.YES && (
         <InfoProvider info={{ Component: DingInfo2 }}>
@@ -56,6 +50,8 @@ export function DingAA3({ finish }: BaseEventProps) {
           <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
         </InfoProvider>
       )}
-    </div>
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import NAACL_Inversion from "../sources/NAACL_Inversion.json";
 
 export function TalkGPTInfo() {

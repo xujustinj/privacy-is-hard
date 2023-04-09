@@ -1,25 +1,19 @@
-import { useCallback, useState } from "react";
-import { Choices } from "../game/Choices";
-import { AddScore, ScoreCategory } from "../game/Score";
-import { BaseEventProps } from "./BaseEvent";
+import { useState } from "react";
+import { Button } from "../components/Button";
+import { Choices } from "../components/Choices";
+import { AddScore, ScoreCategory } from "../components/Score";
+import { BaseEventProps } from "../model/Event";
 
 export const enum PlankChoice {
   YES,
   NO,
 }
 
-export function PlankChallenge({ finish }: BaseEventProps) {
+export function PlankChallenge({ onNext }: BaseEventProps) {
   const [choice, setChoice] = useState<PlankChoice | null>(() => null);
-  const choose = useCallback(
-    (newChoice: PlankChoice) => {
-      setChoice(newChoice);
-      finish();
-    },
-    [setChoice, finish]
-  );
 
   return (
-    <div>
+    <>
       <p>
         Trend of the month: the plank challenge is taking over the pages of
         YouSnapstatok's influencers! In the trend, an influencer reads out the
@@ -37,18 +31,18 @@ export function PlankChallenge({ finish }: BaseEventProps) {
           },
         ]}
         chosen={choice}
-        onChoose={choose}
+        onChoose={setChoice}
       />
-      {choice === PlankChoice.YES && (
-        <>
-          <p>
-            Your plank goes on for 5 minutes! Your fans compliment your amazing
-            physical fitness.
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={5} />
-          <AddScore category={ScoreCategory.HAPPINESS} amount={5} />
-        </>
-      )}
-    </div>
+      {choice === PlankChoice.YES && [
+        <p>
+          Your plank goes on for 5 minutes! Your fans compliment your amazing
+          physical fitness.
+        </p>,
+        <AddScore category={ScoreCategory.CAREER} amount={5} />,
+        <AddScore category={ScoreCategory.HAPPINESS} amount={5} />,
+      ]}
+
+      {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

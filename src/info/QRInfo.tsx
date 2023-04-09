@@ -1,4 +1,4 @@
-import { SourceLink } from "../game/Source";
+import { SourceLink } from "../components/Source";
 import ACLU_QR from "../sources/ACLU_QR.json";
 
 export function QRInfo() {

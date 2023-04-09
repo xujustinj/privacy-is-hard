@@ -1,17 +1,15 @@
-import { useEffect } from "react";
-import { InfoProvider } from "../game/InfoPanel";
-import { AddScore, ScoreCategory } from "../game/Score";
+import { Button } from "../components/Button";
+import { InfoProvider } from "../components/InfoPanel";
+import { AddScore, ScoreCategory } from "../components/Score";
 import { BalantirInfo } from "../info/BalantirInfo";
-import { BaseEventProps } from "./BaseEvent";
+import { BaseEventProps } from "../model/Event";
 
 export interface BalantirProps extends BaseEventProps {}
 
-export function Balantir({ finish }: BalantirProps) {
-  useEffect(finish, [finish]);
-
+export function Balantir({ onNext }: BalantirProps) {
   return (
-    <InfoProvider info={{ Component: BalantirInfo }}>
-      <div>
+    <>
+      <InfoProvider info={{ Component: BalantirInfo }}>
         <p>
           The Regional Health Service gave everyone's health data to an AI
           company called Balantir.
@@ -22,7 +20,9 @@ export function Balantir({ finish }: BalantirProps) {
         </p>
         <AddScore category={ScoreCategory.HEALTH} amount={5} />
         <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
-      </div>
-    </InfoProvider>
+      </InfoProvider>
+
+      {onNext && <Button onClick={onNext}>Continue</Button>}
+    </>
   );
 }

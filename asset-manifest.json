@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/privacy-is-hard/static/js/main.bcbdfc31.js",
+    "main.js": "/privacy-is-hard/static/js/main.68450220.js",
     "static/js/787.8cfda21d.chunk.js": "/privacy-is-hard/static/js/787.8cfda21d.chunk.js",
     "static/media/background.jpg": "/privacy-is-hard/static/media/background.b59d49fa66e4f8e40d8c.jpg",
     "static/media/social.png": "/privacy-is-hard/static/media/social.7f971edd25f105d44b73.png",
@@ -10,10 +10,10 @@
     "static/media/happiness.png": "/privacy-is-hard/static/media/happiness.751f13e7342a1d67ed6a.png",
     "static/media/SFHollywoodHills.ttf": "/privacy-is-hard/static/media/SFHollywoodHills.2d07d38742dbdc625a6c.ttf",
     "index.html": "/privacy-is-hard/index.html",
-    "main.bcbdfc31.js.map": "/privacy-is-hard/static/js/main.bcbdfc31.js.map",
+    "main.68450220.js.map": "/privacy-is-hard/static/js/main.68450220.js.map",
     "787.8cfda21d.chunk.js.map": "/privacy-is-hard/static/js/787.8cfda21d.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.bcbdfc31.js"
+    "static/js/main.68450220.js"
   ]
 }

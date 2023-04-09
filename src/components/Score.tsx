@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import Career from "../images/career.png";
 import Happiness from "../images/happiness.png";
@@ -115,7 +115,7 @@ const ScoreText = styled.p<{ color: string }>`
 `;
 
 export function AddScore({ category, amount }: AddScoreProps) {
-  const setScore = useRecoilState(scoreStateFamily(category))[1];
+  const setScore = useSetRecoilState(scoreStateFamily(category));
   useEffect(() => setScore((score) => score + amount), [setScore, amount]);
   const { displayName } = ScoreCategoryDetails[category];
   return (

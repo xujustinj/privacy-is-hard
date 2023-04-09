@@ -1,13 +1,25 @@
+import styled from "styled-components";
 import { Button } from "../components/Button";
 import { BaseEventProps } from "../model/Event";
+
+const BadText = styled.p`
+  color: red;
+  font-weight: bold;
+`;
 
 export function BadEnd({ onNext }: BaseEventProps) {
   return (
     <>
-      <p>
+      <BadText>
         Uh oh! Your privacy score dropped to 0. Your biggest fan stole your
-        identity and scammed other fans pretending to be you - and now you've
-        been cancelled. Better luck next time!
+        identity and scammed other fans pretending to be you. Your reputation is
+        ruined!
+      </BadText>
+
+      <p>
+        <b>
+          Better luck next time! You can still continue playing, if you'd like.
+        </b>
       </p>
 
       {onNext && <Button onClick={onNext}>Continue Anyway</Button>}

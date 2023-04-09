@@ -19,6 +19,7 @@ import { PedaltonChoice, pedaltonChoiceState } from "../events/Pedalton";
 import { PlankChoice, plankChoiceState } from "../events/PlankChallenge";
 import { QRCodeChoice, qrCodeChoiceState } from "../events/QRCode";
 import { TalkGPTChoice, talkGPTChoiceState } from "../events/TalkGPT/TalkGPT";
+import { ScoreCategory, scoreStateFamily } from "./Score";
 
 export interface GameState {
   angelTrendChoice: AngelTrendChoice | null;
@@ -35,6 +36,7 @@ export interface GameState {
   safetyChoice: SafetyChoice | null;
   talkGPTChoice: TalkGPTChoice | null;
   termsChoice: TermsChoice | null;
+  scores: ReadonlyMap<ScoreCategory, number>;
 }
 
 export const gameState = selector<GameState>({
@@ -55,6 +57,12 @@ export const gameState = selector<GameState>({
       safetyChoice: get(safetyChoiceState),
       talkGPTChoice: get(talkGPTChoiceState),
       termsChoice: get(termsChoiceState),
+      scores: new Map(
+        Object.values(ScoreCategory).map((category) => [
+          category,
+          get(scoreStateFamily(category)),
+        ])
+      ),
     } as const;
   },
 });

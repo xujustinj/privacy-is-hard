@@ -1,11 +1,14 @@
 import { GameEvent } from "../model/Event";
 import { EventGenerator } from "../model/EventGenerator";
 import { GameState } from "../model/Game";
+import { GameOutcome } from "../model/Outcome";
+import { ScoreCategory } from "../model/Score";
 import { DnaTestChoice, TwentyTwoandMe } from "./22andMe/Dna";
 import { TwentyTwoandMeA1 } from "./22andMe/DnaA1";
 import { TwentyTwoandMeB1 } from "./22andMe/DnaB1";
 import { AngelTrend, AngelTrendChoice } from "./AngelTrend/AngelTrend";
 import { AngelTrendA1 } from "./AngelTrend/AngelTrendA1";
+import { BadEnd } from "./BadEnd";
 import { Balantir } from "./Balantir";
 import { BitFit, BitFitChoice } from "./BitFit/BitFit";
 import { BitFitA1 } from "./BitFit/BitFitA1";
@@ -47,11 +50,9 @@ interface SequencedEvent extends GameEvent {
 
 export class SequenceGenerator implements EventGenerator {
   protected current: SequencedEvent | null = null;
+  protected outcome: GameOutcome | null = null;
   protected queue: ReadonlyArray<SequencedEvent> = [
-    {
-      id: "start",
-      eventRender: { Component: Start },
-    },
+    { id: "start", eventRender: { Component: Start } },
     {
       id: "bitfit",
       eventRender: { Component: BitFit },
@@ -61,49 +62,22 @@ export class SequenceGenerator implements EventGenerator {
             return null;
           case BitFitChoice.YES:
             return [
-              {
-                id: "bitfitA1",
-                eventRender: { Component: BitFitA1 },
-              },
-              {
-                id: "bitfitA2",
-                eventRender: { Component: BitFitA2 },
-              },
-              {
-                id: "bitfitA3",
-                eventRender: { Component: BitFitA3 },
-              },
+              { id: "bitfitA1", eventRender: { Component: BitFitA1 } },
+              { id: "bitfitA2", eventRender: { Component: BitFitA2 } },
+              { id: "bitfitA3", eventRender: { Component: BitFitA3 } },
             ];
           case BitFitChoice.NO:
             return [
-              {
-                id: "bitfitB1",
-                eventRender: { Component: BitFitB1 },
-              },
-              {
-                id: "bitfitB2",
-                eventRender: { Component: BitFitB2 },
-              },
+              { id: "bitfitB1", eventRender: { Component: BitFitB1 } },
+              { id: "bitfitB2", eventRender: { Component: BitFitB2 } },
             ];
         }
       },
     },
-    {
-      id: "plankchallenge",
-      eventRender: { Component: PlankChallenge },
-    },
-    {
-      id: "balantir",
-      eventRender: { Component: Balantir },
-    },
-    {
-      id: "creditcash",
-      eventRender: { Component: CreditCash },
-    },
-    {
-      id: "qrcode",
-      eventRender: { Component: QRCode },
-    },
+    { id: "plankchallenge", eventRender: { Component: PlankChallenge } },
+    { id: "balantir", eventRender: { Component: Balantir } },
+    { id: "creditcash", eventRender: { Component: CreditCash } },
+    { id: "qrcode", eventRender: { Component: QRCode } },
     {
       id: "moogle",
       eventRender: { Component: Moogle },
@@ -113,26 +87,12 @@ export class SequenceGenerator implements EventGenerator {
             return null;
           case MoogleChoice.YES:
             return [
-              {
-                id: "MoogleA1",
-                eventRender: { Component: MoogleA1 },
-              },
-              {
-                id: "MoogleA2",
-                eventRender: { Component: MoogleA2 },
-              },
-              {
-                id: "MoogleA3",
-                eventRender: { Component: MoogleA3 },
-              },
+              { id: "MoogleA1", eventRender: { Component: MoogleA1 } },
+              { id: "MoogleA2", eventRender: { Component: MoogleA2 } },
+              { id: "MoogleA3", eventRender: { Component: MoogleA3 } },
             ];
           case MoogleChoice.NO:
-            return [
-              {
-                id: "MoogleB1",
-                eventRender: { Component: MoogleB1 },
-              },
-            ];
+            return [{ id: "MoogleB1", eventRender: { Component: MoogleB1 } }];
         }
       },
     },
@@ -154,7 +114,6 @@ export class SequenceGenerator implements EventGenerator {
               {
                 id: "CleanStreetAC1",
                 eventRender: { Component: CleanStreetAC1 },
-                infoRender: null,
               },
             ];
           case CleanStreetChoice.BOTH:
@@ -162,7 +121,6 @@ export class SequenceGenerator implements EventGenerator {
               {
                 id: "CleanStreetAC1",
                 eventRender: { Component: CleanStreetAC1 },
-                infoRender: null,
               },
             ];
         }
@@ -180,28 +138,15 @@ export class SequenceGenerator implements EventGenerator {
               {
                 id: "DingA1",
                 eventRender: { Component: DingA1 },
-                infoRender: null,
                 next: ({ termsChoice }: GameState) => {
                   switch (termsChoice) {
                     case null:
                       return null;
                     case TermsChoice.ACCEPT:
                       return [
-                        {
-                          id: "DingAA1",
-                          eventRender: { Component: DingAA1 },
-                          infoRender: null,
-                        },
-                        {
-                          id: "DingAA2",
-                          eventRender: { Component: DingAA2 },
-                          infoRender: null,
-                        },
-                        {
-                          id: "DingAA3",
-                          eventRender: { Component: DingAA3 },
-                          infoRender: null,
-                        },
+                        { id: "DingAA1", eventRender: { Component: DingAA1 } },
+                        { id: "DingAA2", eventRender: { Component: DingAA2 } },
+                        { id: "DingAA3", eventRender: { Component: DingAA3 } },
                       ];
                     case TermsChoice.DECLINE:
                       return [];
@@ -210,13 +155,7 @@ export class SequenceGenerator implements EventGenerator {
               },
             ];
           case SafetyChoice.BODYGUARD:
-            return [
-              {
-                id: "DingB1",
-                eventRender: { Component: DingB1 },
-                infoRender: null,
-              },
-            ];
+            return [{ id: "DingB1", eventRender: { Component: DingB1 } }];
         }
       },
     },
@@ -232,7 +171,6 @@ export class SequenceGenerator implements EventGenerator {
               {
                 id: "TwentyTwoandMeA1",
                 eventRender: { Component: TwentyTwoandMeA1 },
-                infoRender: null,
               },
             ];
           case DnaTestChoice.YES:
@@ -240,7 +178,6 @@ export class SequenceGenerator implements EventGenerator {
               {
                 id: "TwentyTwoandMeB1",
                 eventRender: { Component: TwentyTwoandMeB1 },
-                infoRender: null,
               },
             ];
         }
@@ -259,11 +196,7 @@ export class SequenceGenerator implements EventGenerator {
             return null;
           case AngelTrendChoice.YES:
             return [
-              {
-                id: "AngelTrendA1",
-                eventRender: { Component: AngelTrendA1 },
-                infoRender: null,
-              },
+              { id: "AngelTrendA1", eventRender: { Component: AngelTrendA1 } },
             ];
           case AngelTrendChoice.NO:
             return [];
@@ -281,16 +214,8 @@ export class SequenceGenerator implements EventGenerator {
             return [];
           case TalkGPTChoice.YES:
             return [
-              {
-                id: "TalkGPTA1",
-                eventRender: { Component: TalkGPTA1 },
-                infoRender: null,
-              },
-              {
-                id: "TalkGPTA2",
-                eventRender: { Component: TalkGPTA2 },
-                infoRender: null,
-              },
+              { id: "TalkGPTA1", eventRender: { Component: TalkGPTA1 } },
+              { id: "TalkGPTA2", eventRender: { Component: TalkGPTA2 } },
             ];
         }
       },
@@ -306,25 +231,12 @@ export class SequenceGenerator implements EventGenerator {
             return [];
           case DnaTestChoice.YES:
             return [
-              {
-                id: "CardiacB1",
-                eventRender: { Component: CardiacB1 },
-              },
-              {
-                id: "CardiacB2",
-                eventRender: { Component: CardiacB2 },
-              },
-              {
-                id: "CardiacB3",
-                eventRender: { Component: CardiacB3 },
-              },
+              { id: "CardiacB1", eventRender: { Component: CardiacB1 } },
+              { id: "CardiacB2", eventRender: { Component: CardiacB2 } },
+              { id: "CardiacB3", eventRender: { Component: CardiacB3 } },
             ];
         }
       },
-    },
-    {
-      id: "goodending",
-      eventRender: { Component: GoodEnd },
     },
   ];
 
@@ -332,11 +244,29 @@ export class SequenceGenerator implements EventGenerator {
     if (this.current?.next !== undefined) {
       this.queue = [...this.current.next(state)!, ...this.queue];
     }
+
+    // if the player has lost, push to the front of the queue
+    if (
+      state.scores.get(ScoreCategory.PRIVACY)! <= 0 &&
+      this.outcome !== GameOutcome.LOSE
+    ) {
+      this.outcome = GameOutcome.LOSE;
+      this.queue = [
+        { id: "badending", eventRender: { Component: BadEnd } },
+        ...this.queue,
+      ];
+    }
+    // out of scenarios, player has won
+    if (this.queue.length === 0 && this.outcome === null) {
+      this.outcome = GameOutcome.WIN;
+      this.queue = [{ id: "goodending", eventRender: { Component: GoodEnd } }];
+    }
+
     if (this.queue.length > 0) {
       [this.current, ...this.queue] = this.queue;
-      return this.current;
     } else {
-      return null;
+      this.current = null;
     }
+    return this.current;
   }
 }

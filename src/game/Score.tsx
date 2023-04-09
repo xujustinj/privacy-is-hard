@@ -64,22 +64,14 @@ export interface ScoresProps {
   scores: Scores;
 }
 
-const Icon = styled.span<{ src: string; color: string }>`
-  display: inline-block;
-  mask-image: url(${(props) => props.src});
-  mask-size: contain;
-  background-color: ${(props) => props.color};
-  width: 0.8em;
-  height: 0.8em;
-`;
-
 const ScoresContainer = styled.div`
   background-color: ${rgba(Colors.sectionBackground)};
   padding: 16px 64px;
   display: flex;
   flex-direction: row;
+  font-size: 16pt;
   justify-content: space-between;
-  align-items: baseline;
+  line-height: 1;
 `;
 
 interface ScoreProps {
@@ -87,13 +79,25 @@ interface ScoreProps {
   score: number;
 }
 
-const ScoreContainer = styled.span`
-  font-size: 14pt;
+const ScoreName = styled.span<{ src: string; color: string }>`
+  font-weight: bold;
+
+  &:before {
+    content: "";
+    display: block;
+    mask-image: url(${(props) => props.src});
+    mask-size: contain;
+    background-color: ${(props) => props.color};
+    height: 1em;
+    width: 1em;
+    float: left;
+    margin-right: 8px;
+  }
 `;
 
 const ScoreNumber = styled.span<{ color: any }>`
   display: inline-block;
-  width: 2em;
+  width: 1.5em;
   text-align: end;
   color: ${(props) => props.color};
 `;
@@ -107,13 +111,13 @@ function Score({ category, score }: ScoreProps) {
     b: 255 * (1 - Math.sqrt(Math.abs(normalizedScore))),
   });
   return (
-    <ScoreContainer>
-      <Icon aria-hidden src={iconSrc} color={iconColor} />
-      &nbsp;
-      {displayName}
+    <span>
+      <ScoreName src={iconSrc} color={iconColor}>
+        {displayName}
+      </ScoreName>
       &nbsp;
       <ScoreNumber color={scoreColor}>{score}</ScoreNumber>
-    </ScoreContainer>
+    </span>
   );
 }
 

@@ -38,12 +38,12 @@ export interface InfoProviderProps<IProps = any> extends PropsWithChildren {
 
 const InfoProviderContainer = styled.div<{ intensity: number }>`
   background-color: ${rgba(withAlpha(Colors.cerulean, 0.2))};
-  outline: 16px ${rgba(withAlpha(Colors.cerulean, 0.2))} solid;
-  border-radius: 8px;
+  outline: 8px ${rgba(withAlpha(Colors.cerulean, 0.2))} solid;
+  border-radius: 4px;
 
   :hover {
     background-color: ${rgba(withAlpha(Colors.cerulean, 0.5))};
-    outline: 16px ${rgba(withAlpha(Colors.cerulean, 0.5))} solid;
+    outline: 8px ${rgba(withAlpha(Colors.cerulean, 0.5))} solid;
   }
 `;
 

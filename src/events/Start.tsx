@@ -4,6 +4,7 @@ import { BaseEventProps } from "./BaseEvent";
 
 const Title = styled.h1`
   text-align: center;
+  margin: 0;
 `;
 
 const HollywoodText = styled.span`
@@ -13,10 +14,12 @@ const HollywoodText = styled.span`
 
 const Subtitle = styled.p`
   text-align: center;
+  margin: 0;
 
   > a {
     color: white;
     text-decoration: none;
+    font-weight: bold;
   }
 `;
 
@@ -31,7 +34,15 @@ export function Start({ finish }: BaseEventProps) {
         <HollywoodText>JOLLYWOOD</HollywoodText>
       </Title>
       <Subtitle>
-        by{" "}
+        a{" "}
+        <a
+          href="https://cs.uwaterloo.ca/~browndg/492W23/readings.shtml"
+          target="_blank"
+          rel="noreferrer"
+        >
+          CS492
+        </a>{" "}
+        game by{" "}
         <a
           href="https://www.linkedin.com/in/estelle-zk-w/"
           target="_blank"

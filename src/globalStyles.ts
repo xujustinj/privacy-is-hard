@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: Courier;
-    font-weight: bold;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

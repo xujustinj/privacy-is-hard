@@ -9,6 +9,9 @@ export interface BaseEventProps {
 
   // Can be called to reset the entire game.
   onReset(): void;
+
+  // Can be called to scroll the feed to the event.
+  onFocus(): void;
 }
 
 export interface GameEvent<EProps extends BaseEventProps = any> {

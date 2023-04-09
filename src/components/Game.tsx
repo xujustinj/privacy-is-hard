@@ -1,14 +1,7 @@
-import { useCallback, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useState } from "react";
 import styled from "styled-components";
-import { SequenceGenerator } from "../events/SequenceGenerator";
-import { Start } from "../events/Start";
 import GameBackground from "../images/background.jpg";
-import { GameEvent } from "../model/Event";
-import { EventGenerator } from "../model/EventGenerator";
-import { gameState, useResetGameState } from "../model/Game";
-import { Render, RenderProps } from "../util/Render";
-import { GameEventContainer } from "./Event";
+import { RenderProps } from "../util/Render";
 import { Feed } from "./Feed";
 import { InfoContext, InfoPanel } from "./InfoPanel";
 import { ScoreBar } from "./Score";
@@ -46,35 +39,8 @@ const BodyContainer = styled.div`
   align-items: stretch;
 `;
 
-const StartEvent: GameEvent = {
-  id: "start",
-  eventRender: { Component: Start },
-};
-
 export function Game() {
-  const [generator, setGenerator] = useState<EventGenerator>(
-    () => new SequenceGenerator()
-  );
-  const game = useRecoilValue(gameState);
-  const [events, setEvents] = useState<ReadonlyArray<GameEvent>>([StartEvent]);
-
   const [info, setInfo] = useState<RenderProps | null>(null);
-
-  const onNext = useCallback(() => {
-    const nextEvent = generator.next(game);
-    if (nextEvent !== null) {
-      setEvents((events) => [...events, nextEvent]);
-    }
-  }, [generator, game, setEvents]);
-
-  const resetGame = useResetGameState();
-
-  const onReset = useCallback(() => {
-    setGenerator(new SequenceGenerator());
-    resetGame();
-    setEvents([StartEvent]);
-    setInfo(null);
-  }, [setGenerator, setEvents, setInfo, resetGame]);
 
   return (
     <InfoContext.Provider value={[info, setInfo]}>
@@ -82,22 +48,7 @@ export function Game() {
         <GameContainer>
           <ScoreBar />
           <BodyContainer>
-            <Feed>
-              {events.map((event) => {
-                const { id, eventRender } = event;
-                return (
-                  <GameEventContainer key={id}>
-                    <Render
-                      onNext={
-                        event === events[events.length - 1] ? onNext : undefined
-                      }
-                      {...eventRender}
-                      onReset={onReset}
-                    />
-                  </GameEventContainer>
-                );
-              })}
-            </Feed>
+            <Feed />
             <InfoPanel />
           </BodyContainer>
         </GameContainer>

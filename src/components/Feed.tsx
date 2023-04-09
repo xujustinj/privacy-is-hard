@@ -1,12 +1,17 @@
-import { PropsWithChildren } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import { SequenceGenerator } from "../events/SequenceGenerator";
+import { Start } from "../events/Start";
+import { GameEvent } from "../model/Event";
+import { EventGenerator } from "../model/EventGenerator";
+import { gameState, useResetGameState } from "../model/Game";
 import { Colors, rgba } from "../util/colors";
+import { Render } from "../util/Render";
+import { GameEventContainer } from "./Event";
+import { InfoContext } from "./InfoPanel";
 
-export interface FeedProps extends PropsWithChildren {
-  onAdvance: (() => void) | null;
-}
-
-export const Feed = styled.div`
+const FeedContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${rgba(Colors.sectionBackground)};
@@ -33,3 +38,58 @@ export const Feed = styled.div`
     }
   }
 `;
+
+const StartEvent: GameEvent = {
+  id: "start",
+  eventRender: { Component: Start },
+};
+
+export function Feed() {
+  const [generator, setGenerator] = useState<EventGenerator>(
+    () => new SequenceGenerator()
+  );
+  const game = useRecoilValue(gameState);
+  const [events, setEvents] = useState<ReadonlyArray<GameEvent>>([StartEvent]);
+
+  const onNext = useCallback(() => {
+    const nextEvent = generator.next(game);
+    if (nextEvent !== null) {
+      setEvents((events) => [...events, nextEvent]);
+    }
+  }, [generator, game, setEvents]);
+
+  const resetGame = useResetGameState();
+
+  const setInfo = useContext(InfoContext)[1];
+
+  const onReset = useCallback(() => {
+    setGenerator(new SequenceGenerator());
+    resetGame();
+    setEvents([StartEvent]);
+    setInfo(null);
+  }, [setGenerator, setEvents, setInfo, resetGame]);
+
+  // Slightly hacky: the feed only changes when the events or game state change
+  const endRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [events, game]);
+
+  return (
+    <FeedContainer>
+      {events.map((event) => {
+        const { id, eventRender } = event;
+        return (
+          <GameEventContainer key={id}>
+            <Render
+              onNext={event === events[events.length - 1] ? onNext : undefined}
+              {...eventRender}
+              onReset={onReset}
+            />
+          </GameEventContainer>
+        );
+      })}
+      <div ref={endRef} />
+    </FeedContainer>
+  );
+}

@@ -2,10 +2,11 @@ import { atom, useRecoilState } from "recoil";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
 import { InfoProvider } from "../../components/InfoPanel";
-import { AddScore, ScoreCategory } from "../../components/Score";
+import { AddScore } from "../../components/Score";
 import { DingInfo2 } from "../../info/DingInfo2";
 import { DingInfo3 } from "../../info/DingInfo3";
 import { BaseEventProps } from "../../model/Event";
+import { ScoreCategory } from "../../model/Score";
 
 export const enum PoliceChoice {
   YES,

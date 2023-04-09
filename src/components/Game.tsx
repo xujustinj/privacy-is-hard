@@ -10,13 +10,7 @@ import { Render, RenderProps } from "../util/Render";
 import { GameEventContainer } from "./Event";
 import { Feed } from "./Feed";
 import { InfoContext, InfoPanel } from "./InfoPanel";
-import {
-  ScoreBar,
-  ScoreCategory,
-  Scores,
-  ScoresContext,
-  ScoreUpdater,
-} from "./Score";
+import { ScoreBar } from "./Score";
 
 const Background = styled.div`
   background-image: url(${GameBackground});
@@ -52,25 +46,11 @@ const BodyContainer = styled.div`
 `;
 
 export function Game() {
-  const [scores, setScores] = useState<Scores>(
-    () => new Map(Object.values(ScoreCategory).map((value) => [value, 100]))
-  );
   const generator = useMemo<EventGenerator>(() => new SequenceGenerator(), []);
   const game = useRecoilValue(gameState);
   const [events, setEvents] = useState<ReadonlyArray<GameEvent>>(() => [
     generator.next(game)!,
   ]);
-
-  const addScore = useCallback<ScoreUpdater>(
-    (category: ScoreCategory, amount: number) => {
-      setScores((scores: Scores) => {
-        const newScores = new Map(scores);
-        newScores.set(category, newScores.get(category)! + amount);
-        return newScores;
-      });
-    },
-    [setScores]
-  );
 
   const [info, setInfo] = useState<RenderProps | null>(null);
 
@@ -82,34 +62,32 @@ export function Game() {
   }, [generator, game, setEvents]);
 
   return (
-    <ScoresContext.Provider value={[scores, addScore]}>
-      <InfoContext.Provider value={[info, setInfo]}>
-        <Background>
-          <GameContainer>
-            <ScoreBar scores={scores} />
-            <BodyContainer>
-              <Feed>
-                {events.map((event) => {
-                  const { id, eventRender } = event;
-                  return (
-                    <GameEventContainer key={id}>
-                      <Render
-                        onNext={
-                          event === events[events.length - 1]
-                            ? onAdvance
-                            : undefined
-                        }
-                        {...eventRender}
-                      />
-                    </GameEventContainer>
-                  );
-                })}
-              </Feed>
-              <InfoPanel />
-            </BodyContainer>
-          </GameContainer>
-        </Background>
-      </InfoContext.Provider>
-    </ScoresContext.Provider>
+    <InfoContext.Provider value={[info, setInfo]}>
+      <Background>
+        <GameContainer>
+          <ScoreBar />
+          <BodyContainer>
+            <Feed>
+              {events.map((event) => {
+                const { id, eventRender } = event;
+                return (
+                  <GameEventContainer key={id}>
+                    <Render
+                      onNext={
+                        event === events[events.length - 1]
+                          ? onAdvance
+                          : undefined
+                      }
+                      {...eventRender}
+                    />
+                  </GameEventContainer>
+                );
+              })}
+            </Feed>
+            <InfoPanel />
+          </BodyContainer>
+        </GameContainer>
+      </Background>
+    </InfoContext.Provider>
   );
 }

@@ -1,8 +1,9 @@
 import { Button } from "../../components/Button";
 import { InfoProvider } from "../../components/InfoPanel";
-import { AddScore, ScoreCategory } from "../../components/Score";
+import { AddScore } from "../../components/Score";
 import { MoogleA3Info } from "../../info/MoogleA3Info";
 import { BaseEventProps } from "../../model/Event";
+import { ScoreCategory } from "../../model/Score";
 
 export function MoogleA3({ onNext }: BaseEventProps) {
   return (

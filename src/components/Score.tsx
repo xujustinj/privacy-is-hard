@@ -1,19 +1,13 @@
-import { createContext, useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import Career from "../images/career.png";
 import Happiness from "../images/happiness.png";
 import Health from "../images/health.png";
 import Privacy from "../images/privacy.png";
 import Social from "../images/social.png";
+import { ScoreCategory, scoreStateFamily } from "../model/Score";
 import { Colors, rgb, rgba } from "../util/colors";
-
-export enum ScoreCategory {
-  PRIVACY = "privacy",
-  CAREER = "career",
-  HEALTH = "health",
-  SOCIAL = "social",
-  HAPPINESS = "happiness",
-}
 
 export const ScoreCategoryDetails = {
   [ScoreCategory.PRIVACY]: {
@@ -43,27 +37,6 @@ export const ScoreCategoryDetails = {
   },
 } as const;
 
-export type Scores = ReadonlyMap<ScoreCategory, number>;
-export type ScoreUpdater = (category: ScoreCategory, amount: number) => void;
-export function addScore(
-  scores: Scores,
-  category: ScoreCategory,
-  amount: number
-): Scores {
-  const newScores = new Map(scores);
-  newScores.set(category, newScores.get(category)! + amount);
-  return newScores;
-}
-
-export const ScoresContext = createContext<[Scores, ScoreUpdater]>([
-  new Map(),
-  () => {},
-]);
-
-export interface ScoresProps {
-  scores: Scores;
-}
-
 const ScoresContainer = styled.div`
   background-color: ${rgba(Colors.sectionBackground)};
   padding: 16px 64px;
@@ -76,7 +49,6 @@ const ScoresContainer = styled.div`
 
 interface ScoreProps {
   category: ScoreCategory;
-  score: number;
 }
 
 const ScoreName = styled.span<{ src: string; color: string }>`
@@ -102,7 +74,8 @@ const ScoreNumber = styled.span<{ color: any }>`
   color: ${(props) => props.color};
 `;
 
-function Score({ category, score }: ScoreProps) {
+function Score({ category }: ScoreProps) {
+  const score = useRecoilState(scoreStateFamily(category))[0];
   const { displayName, iconSrc, iconColor } = ScoreCategoryDetails[category];
   const normalizedScore = (score - 100) / 100; // normalized
   const scoreColor = rgb({
@@ -121,17 +94,17 @@ function Score({ category, score }: ScoreProps) {
   );
 }
 
-export function ScoreBar({ scores }: ScoresProps) {
+export function ScoreBar() {
   return (
     <ScoresContainer>
-      {Array.from(scores.entries()).map(([category, score]) => (
-        <Score key={category} category={category} score={score} />
+      {Object.values(ScoreCategory).map((category) => (
+        <Score key={category} category={category} />
       ))}
     </ScoresContainer>
   );
 }
 
-export interface UpdateScoreProps {
+export interface AddScoreProps {
   category: ScoreCategory;
   amount: number;
 }
@@ -141,11 +114,9 @@ const ScoreText = styled.p<{ color: string }>`
   font-weight: bold;
 `;
 
-export function AddScore({ category, amount }: UpdateScoreProps) {
-  const addScore = useContext(ScoresContext)[1];
-  useEffect(() => {
-    addScore(category, amount);
-  }, [addScore, category, amount]);
+export function AddScore({ category, amount }: AddScoreProps) {
+  const setScore = useRecoilState(scoreStateFamily(category))[1];
+  useEffect(() => setScore((score) => score + amount), [setScore, amount]);
   const { displayName } = ScoreCategoryDetails[category];
   return (
     <ScoreText color={amount >= 0 ? "green" : "red"}>

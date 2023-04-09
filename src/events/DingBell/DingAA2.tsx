@@ -1,8 +1,9 @@
 import { Button } from "../../components/Button";
 import { InfoProvider } from "../../components/InfoPanel";
-import { AddScore, ScoreCategory } from "../../components/Score";
+import { AddScore } from "../../components/Score";
 import { DingInfo1 } from "../../info/DingInfo1";
 import { BaseEventProps } from "../../model/Event";
+import { ScoreCategory } from "../../model/Score";
 
 export function DingAA2({ onNext }: BaseEventProps) {
   return (

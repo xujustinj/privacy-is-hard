@@ -1,6 +1,7 @@
 import { Button } from "../../components/Button";
-import { AddScore, ScoreCategory } from "../../components/Score";
+import { AddScore } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
+import { ScoreCategory } from "../../model/Score";
 
 export function MoogleB1({ onNext }: BaseEventProps) {
   return (

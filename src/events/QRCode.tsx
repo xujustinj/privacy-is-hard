@@ -2,9 +2,10 @@ import { atom, useRecoilState } from "recoil";
 import { Button } from "../components/Button";
 import { Choices } from "../components/Choices";
 import { InfoProvider } from "../components/InfoPanel";
-import { AddScore, ScoreCategory } from "../components/Score";
+import { AddScore } from "../components/Score";
 import { QRInfo } from "../info/QRInfo";
 import { BaseEventProps } from "../model/Event";
+import { ScoreCategory } from "../model/Score";
 
 export const enum QRCodeChoice {
   YES,

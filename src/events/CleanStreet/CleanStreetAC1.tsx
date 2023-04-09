@@ -1,8 +1,9 @@
 import { Button } from "../../components/Button";
 import { InfoProvider } from "../../components/InfoPanel";
-import { AddScore, ScoreCategory } from "../../components/Score";
+import { AddScore } from "../../components/Score";
 import { CleanStreetInfo } from "../../info/CleanStreetInfo";
 import { BaseEventProps } from "../../model/Event";
+import { ScoreCategory } from "../../model/Score";
 
 export function CleanStreetAC1({ onNext }: BaseEventProps) {
   return (

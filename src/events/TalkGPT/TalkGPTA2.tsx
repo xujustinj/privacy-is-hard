@@ -1,8 +1,9 @@
 import { Button } from "../../components/Button";
 import { InfoProvider } from "../../components/InfoPanel";
-import { AddScore, ScoreCategory } from "../../components/Score";
+import { AddScore } from "../../components/Score";
 import { TalkGPTInfo } from "../../info/TalkGPTInfo";
 import { BaseEventProps } from "../../model/Event";
+import { ScoreCategory } from "../../model/Score";
 
 export function TalkGPTA2({ onNext }: BaseEventProps) {
   return (

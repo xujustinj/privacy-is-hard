@@ -39,7 +39,6 @@ import { MoogleB1 } from "./Moogle/MoogleB1";
 import { Pedalton } from "./Pedalton";
 import { PlankChallenge } from "./PlankChallenge";
 import { QRCode } from "./QRCode";
-import { Start } from "./Start";
 import { TalkGPT, TalkGPTChoice } from "./TalkGPT/TalkGPT";
 import { TalkGPTA1 } from "./TalkGPT/TalkGPTA1";
 import { TalkGPTA2 } from "./TalkGPT/TalkGPTA2";
@@ -52,7 +51,6 @@ export class SequenceGenerator implements EventGenerator {
   protected current: SequencedEvent | null = null;
   protected outcome: GameOutcome | null = null;
   protected queue: ReadonlyArray<SequencedEvent> = [
-    { id: "start", eventRender: { Component: Start } },
     {
       id: "bitfit",
       eventRender: { Component: BitFit },
@@ -256,6 +254,7 @@ export class SequenceGenerator implements EventGenerator {
         ...this.queue,
       ];
     }
+
     // out of scenarios, player has won
     if (this.queue.length === 0 && this.outcome === null) {
       this.outcome = GameOutcome.WIN;

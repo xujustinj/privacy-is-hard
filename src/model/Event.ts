@@ -6,6 +6,9 @@ export interface BaseEventProps {
   // To be safe, the function should be idempotent so that nothing happens even
   // if multiple calls do occur.
   onNext?(): void;
+
+  // Can be called to reset the entire game.
+  onReset(): void;
 }
 
 export interface GameEvent<EProps extends BaseEventProps = any> {

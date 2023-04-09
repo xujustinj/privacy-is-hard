@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../components/Button";
+import { Button, ButtonPanel } from "../components/Button";
 import { BaseEventProps } from "../model/Event";
 
 const BadText = styled.p`
@@ -7,7 +7,7 @@ const BadText = styled.p`
   font-weight: bold;
 `;
 
-export function BadEnd({ onNext }: BaseEventProps) {
+export function BadEnd({ onNext, onReset }: BaseEventProps) {
   return (
     <>
       <BadText>
@@ -22,7 +22,10 @@ export function BadEnd({ onNext }: BaseEventProps) {
         </b>
       </p>
 
-      {onNext && <Button onClick={onNext}>Continue Anyway</Button>}
+      <ButtonPanel>
+        {onNext && <Button onClick={onNext}>Continue Anyway</Button>}
+        <Button onClick={onReset}>Play Again</Button>
+      </ButtonPanel>
     </>
   );
 }

@@ -23,3 +23,12 @@ export const Button = styled.button<{ isSelected?: boolean }>`
       props.isSelected ? rgb(Colors.princetonOrange) : "grey"};
   }
 `;
+
+export const ButtonPanel = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  column-gap: 16px;
+  width: 100%;
+`;

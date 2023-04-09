@@ -1,4 +1,5 @@
-import { selector } from "recoil";
+import { useCallback } from "react";
+import { selector, useResetRecoilState } from "recoil";
 import { DnaTestChoice, dnaTestChoiceState } from "../events/22andMe/Dna";
 import {
   AngelTrendChoice,
@@ -66,3 +67,77 @@ export const gameState = selector<GameState>({
     } as const;
   },
 });
+
+export function useResetGameState() {
+  const resetAngelTrendChoice = useResetRecoilState(angelTrendChoiceState);
+  const resetBitFitChoice = useResetRecoilState(bitFitChoiceState);
+  const resetCardiacChoice = useResetRecoilState(cardiacChoiceState);
+  const resetCleanStreetChoice = useResetRecoilState(cleanStreetChoiceState);
+  const resetDNATestChoice = useResetRecoilState(dnaTestChoiceState);
+  const resetMoogleChoice = useResetRecoilState(moogleChoiceState);
+  const resetPaymentChoice = useResetRecoilState(paymentChoiceState);
+  const resetPedaltonChoice = useResetRecoilState(pedaltonChoiceState);
+  const resetPlankChoice = useResetRecoilState(plankChoiceState);
+  const resetPoliceChoice = useResetRecoilState(policeChoiceState);
+  const resetQRCodeChoice = useResetRecoilState(qrCodeChoiceState);
+  const resetSafetyChoice = useResetRecoilState(safetyChoiceState);
+  const resetTalkGPTChoice = useResetRecoilState(talkGPTChoiceState);
+  const resetTermsChoice = useResetRecoilState(termsChoiceState);
+  const resetPrivacyScore = useResetRecoilState(
+    scoreStateFamily(ScoreCategory.PRIVACY)
+  );
+  const resetCareerScore = useResetRecoilState(
+    scoreStateFamily(ScoreCategory.CAREER)
+  );
+  const resetHealthScore = useResetRecoilState(
+    scoreStateFamily(ScoreCategory.HEALTH)
+  );
+  const resetSocialScore = useResetRecoilState(
+    scoreStateFamily(ScoreCategory.SOCIAL)
+  );
+  const resetHappinessScore = useResetRecoilState(
+    scoreStateFamily(ScoreCategory.HAPPINESS)
+  );
+
+  return useCallback(() => {
+    resetAngelTrendChoice();
+    resetBitFitChoice();
+    resetCardiacChoice();
+    resetCleanStreetChoice();
+    resetDNATestChoice();
+    resetMoogleChoice();
+    resetPaymentChoice();
+    resetPedaltonChoice();
+    resetPlankChoice();
+    resetPoliceChoice();
+    resetQRCodeChoice();
+    resetSafetyChoice();
+    resetTalkGPTChoice();
+    resetTermsChoice();
+    resetPrivacyScore();
+    resetCareerScore();
+    resetHealthScore();
+    resetSocialScore();
+    resetHappinessScore();
+  }, [
+    resetAngelTrendChoice,
+    resetBitFitChoice,
+    resetCardiacChoice,
+    resetCareerScore,
+    resetCleanStreetChoice,
+    resetDNATestChoice,
+    resetHappinessScore,
+    resetHealthScore,
+    resetMoogleChoice,
+    resetPaymentChoice,
+    resetPedaltonChoice,
+    resetPlankChoice,
+    resetPoliceChoice,
+    resetPrivacyScore,
+    resetQRCodeChoice,
+    resetSafetyChoice,
+    resetSocialScore,
+    resetTalkGPTChoice,
+    resetTermsChoice,
+  ]);
+}

@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
-import styled from "styled-components";
-import { Button } from "./Button";
+import { Button, ButtonPanel } from "./Button";
 
 export interface ChoicesProps<Choice extends React.Key> {
   choices: ReadonlyArray<{
@@ -11,22 +10,13 @@ export interface ChoicesProps<Choice extends React.Key> {
   onChoose: (choice: Choice) => void;
 }
 
-const ChoiceButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  align-items: stretch;
-  column-gap: 16px;
-  width: 100%;
-`;
-
 export function Choices<Choice extends React.Key>({
   choices,
   chosen,
   onChoose,
 }: ChoicesProps<Choice>) {
   return (
-    <ChoiceButtonsContainer>
+    <ButtonPanel>
       {choices.map(({ choice, child }) => (
         <Button
           key={choice}
@@ -37,6 +27,6 @@ export function Choices<Choice extends React.Key>({
           {child}
         </Button>
       ))}
-    </ChoiceButtonsContainer>
+    </ButtonPanel>
   );
 }

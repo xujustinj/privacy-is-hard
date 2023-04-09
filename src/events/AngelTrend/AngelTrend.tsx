@@ -36,10 +36,12 @@ export function AngelTrend({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === AngelTrendChoice.YES && [
-        <p>Your video goes viral, earning you a million new followers!</p>,
-        <AddScore category={ScoreCategory.CAREER} amount={5} />,
-      ]}
+      {choice === AngelTrendChoice.YES && (
+        <>
+          <p>Your video goes viral, earning you a million new followers!</p>
+          <AddScore category={ScoreCategory.CAREER} amount={5} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

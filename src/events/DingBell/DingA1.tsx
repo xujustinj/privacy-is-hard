@@ -39,20 +39,22 @@ export function DingA1({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === TermsChoice.DECLINE && [
-        <p>You have to return the doorbell.</p>,
-        <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />,
-        <p>
-          Your bodyguard was enjoying his sandwich when the stalker fan came
-          back and stole the movie script.
-        </p>,
-        <p>
-          You alert the police, but no cameras caught his face, so the police
-          was not able to find them. The stalker fan released the movie script.
-          Yikes!
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={-20} />,
-      ]}
+      {choice === TermsChoice.DECLINE && (
+        <>
+          <p>You have to return the doorbell.</p>
+          <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />
+          <p>
+            Your bodyguard was enjoying his sandwich when the stalker fan came
+            back and stole the movie script.
+          </p>
+          <p>
+            You alert the police, but no cameras caught his face, so the police
+            was not able to find them. The stalker fan released the movie
+            script. Yikes!
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={-20} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

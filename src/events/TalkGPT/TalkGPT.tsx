@@ -41,13 +41,15 @@ export function TalkGPT({ onNext }: BaseEventProps) {
         onChoose={setChoice}
       />
       {choice === TalkGPTChoice.YES && <p>You provide some messages.</p>}
-      {choice === TalkGPTChoice.NO && [
-        <p>
-          Your managers are disappointed that you turned down easy money. What a
-          spoilsport!
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={-5} />,
-      ]}
+      {choice === TalkGPTChoice.NO && (
+        <>
+          <p>
+            Your managers are disappointed that you turned down easy money. What
+            a spoilsport!
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={-5} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

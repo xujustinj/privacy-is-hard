@@ -48,27 +48,31 @@ export function CleanStreet({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === CleanStreetChoice.CLEAN && [
-        <p>
-          Many fans praise your efforts, and you gain a few thousand followers.
-          A small vocal group of haters accuse you of using the misfortune of
-          others to gain influence (which you technically are).
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={5} />,
-      ]}
+      {choice === CleanStreetChoice.CLEAN && (
+        <>
+          <p>
+            Many fans praise your efforts, and you gain a few thousand
+            followers. A small vocal group of haters accuse you of using the
+            misfortune of others to gain influence (which you technically are).
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={5} />
+        </>
+      )}
       {choice === CleanStreetChoice.DONATION && (
         <p>
           You give $100 000, more money than anyone before. But barely anyone
           notices and people wonder why you haven't posted a video.
         </p>
       )}
-      {choice === CleanStreetChoice.BOTH && [
-        <p>
-          Above and beyond! You gain huge respect from your fans and even the
-          most hardline haters admit you can have class... sometimes.
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={10} />,
-      ]}
+      {choice === CleanStreetChoice.BOTH && (
+        <>
+          <p>
+            Above and beyond! You gain huge respect from your fans and even the
+            most hardline haters admit you can have class... sometimes.
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={10} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

@@ -45,10 +45,12 @@ export function Pedalton({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === PedaltonChoice.YES && [
-        <p>You have made a new friend!</p>,
-        <AddScore category={ScoreCategory.SOCIAL} amount={5} />,
-      ]}
+      {choice === PedaltonChoice.YES && (
+        <>
+          <p>You have made a new friend!</p>
+          <AddScore category={ScoreCategory.SOCIAL} amount={5} />
+        </>
+      )}
       {choice === PedaltonChoice.NO && <p>Ok.</p>}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}

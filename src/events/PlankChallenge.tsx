@@ -39,14 +39,16 @@ export function PlankChallenge({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === PlankChoice.YES && [
-        <p>
-          Your plank goes on for 5 minutes! Your fans compliment your amazing
-          physical fitness.
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={5} />,
-        <AddScore category={ScoreCategory.HAPPINESS} amount={5} />,
-      ]}
+      {choice === PlankChoice.YES && (
+        <>
+          <p>
+            Your plank goes on for 5 minutes! Your fans compliment your amazing
+            physical fitness.
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={5} />
+          <AddScore category={ScoreCategory.HAPPINESS} amount={5} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

@@ -42,28 +42,32 @@ export function QRCode({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === QRCodeChoice.YES && [
-        <InfoProvider info={{ Component: QRInfo }}>
+      {choice === QRCodeChoice.YES && (
+        <>
+          <InfoProvider info={{ Component: QRInfo }}>
+            <p>
+              Your IP address and location are given to the website providing
+              the menu.
+            </p>
+            <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
+          </InfoProvider>
           <p>
-            Your IP address and location are given to the website providing the
-            menu.
+            You ordered and got your food within 10 minutes. You made it back on
+            time. Nice!
           </p>
-          <AddScore category={ScoreCategory.PRIVACY} amount={-5} />
-        </InfoProvider>,
-        <p>
-          You ordered and got your food within 10 minutes. You made it back on
-          time. Nice!
-        </p>,
-      ]}
-      {choice === QRCodeChoice.NO && [
-        <p>
-          The waiter sighs and goes to the back to ask his manager. They don't,
-          so he tells you all the options. It took a while, and now you're late.
-          The movie director yells at you.
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={-5} />,
-        <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />,
-      ]}
+        </>
+      )}
+      {choice === QRCodeChoice.NO && (
+        <>
+          <p>
+            The waiter sighs and goes to the back to ask his manager. They
+            don't, so he tells you all the options. It took a while, and now
+            you're late. The movie director yells at you.
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={-5} />
+          <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

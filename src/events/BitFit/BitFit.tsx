@@ -39,18 +39,20 @@ export function BitFit({ onNext }: BaseEventProps) {
           You purchase a BitFit watch and wear it as you go about daily life.
         </p>
       )}
-      {choice === BitFitChoice.NO && [
-        <p>
-          Your personal trainer is unhappy. Now they have to re-do the entire
-          training plan!
-        </p>,
-        <p>
-          Word gets out about your "feud" with your personal trainer. Tabloids
-          have already published an article - '11 Celebrities Who Need A Serious
-          Attitude Adjustment' - and you're #1.
-        </p>,
-        <AddScore category={ScoreCategory.CAREER} amount={-10} />,
-      ]}
+      {choice === BitFitChoice.NO && (
+        <>
+          <p>
+            Your personal trainer is unhappy. Now they have to re-do the entire
+            training plan!
+          </p>
+          <p>
+            Word gets out about your "feud" with your personal trainer. Tabloids
+            have already published an article - '11 Celebrities Who Need A
+            Serious Attitude Adjustment' - and you're #1.
+          </p>
+          <AddScore category={ScoreCategory.CAREER} amount={-10} />
+        </>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

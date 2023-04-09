@@ -1,4 +1,5 @@
 import ReactDOM from "react-dom/client";
+import { RecoilRoot } from "recoil";
 import { Fonts } from "./fonts/Fonts";
 import { Game } from "./game/Game";
 import GlobalStyle from "./globalStyles";
@@ -14,7 +15,9 @@ root.render(
     {/* <React.StrictMode> */}
     <GlobalStyle />
     <Fonts />
-    <Game />
+    <RecoilRoot>
+      <Game />
+    </RecoilRoot>
     {/* </React.StrictMode> */}
   </>
 );

@@ -22,13 +22,13 @@ export function CleanStreet({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        Trend of the month: the Clean Streets challenge is taking over the pages
-        of InstaTok's influencers! Influencers are filming themselves collecting
-        litter off the streets in their neighbourhood while asking strangers for
-        donations in support of the families who lost loved ones in the L.A.
-        apartment collapse. They then challenge others to do the same or make a
-        personal donation. You've just been challenged by a fellow celebrity!
+        The Clean Streets challenge is taking over InstaTok! Influencers are
+        filming themselves collecting litter off the streets in their
+        neighbourhood while asking strangers for donations in support of the
+        families who lost loved ones in the apartment collapse. They then
+        challenge others to do the same or make a personal donation.
       </p>
+      <p>You've just been challenged by a fellow celebrity!</p>
       <Choices
         choices={[
           {
@@ -37,12 +37,11 @@ export function CleanStreet({ onNext }: BaseEventProps) {
           },
           {
             choice: CleanStreetChoice.DONATION,
-            child: "I'll just make a personal donation.",
+            child: "Make a personal donation.",
           },
           {
             choice: CleanStreetChoice.BOTH,
-            child:
-              "I'll do one better: clean the streets and make a personal donation!",
+            child: "Why not both?",
           },
         ]}
         chosen={choice}
@@ -52,15 +51,19 @@ export function CleanStreet({ onNext }: BaseEventProps) {
         <>
           <p>
             Many fans praise your efforts, and you gain a few thousand
-            followers. A small vocal group of haters accuse you of using the
-            misfortune of others to gain influence (which you technically are).
+            followers.
+          </p>
+          <p>
+            A small vocal group of haters accuse you of using the misfortune of
+            others to gain influence (which is technically true), but most
+            netizens dismiss them.
           </p>
           <AddScore category={ScoreCategory.CAREER} amount={5} />
         </>
       )}
       {choice === CleanStreetChoice.DONATION && (
         <p>
-          You give $100 000, more money than anyone before. But barely anyone
+          You give $100,000, more money than anyone before. But barely anyone
           notices and people wonder why you haven't posted a video.
         </p>
       )}

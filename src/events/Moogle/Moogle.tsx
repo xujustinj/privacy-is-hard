@@ -21,9 +21,12 @@ export function Moogle({ onNext }: BaseEventProps) {
       <p>
         There's just so much to do everyday! Auditions, rehearsals, acting
         classes, voice lessons, performing, networking, gym, groceries, friends,
-        family... Did I say gym yet? Your manager suggested you to start using
-        Moogle Calendar and get a matching Moogle Home voice assistant too. He
-        says it'll make it easier to keep track of these things.
+        family... Did I say gym yet?
+      </p>
+      <p>
+        Your manager suggested you should start using Moogle Calendar, and get a
+        matching Moogle Home voice assistant too. He says it'll make it easier
+        to keep track of these things.
       </p>
       <Choices
         choices={[
@@ -43,6 +46,12 @@ export function Moogle({ onNext }: BaseEventProps) {
         <p>
           You buy a Moogle Home and add everything on your to-do list to Moogle
           Calendar.
+        </p>
+      )}
+      {choice === MoogleChoice.NO && (
+        <p>
+          You politely decline and promise your manager that you'll figure out
+          your own way.
         </p>
       )}
 

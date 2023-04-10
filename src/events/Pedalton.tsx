@@ -27,7 +27,7 @@ export function Pedalton({ onNext }: BaseEventProps) {
       <p>You start working out everyday for 1 hour in your home studio.</p>
       <AddScore category={ScoreCategory.HEALTH} amount={10} />
       <p>
-        During a workout, one of your fans saw your name on the Peloton
+        During a workout, one of your fans saw your name on the Pedalton
         leaderboard and sent you a virtual high five. Would you like to high
         five them back?
       </p>

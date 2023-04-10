@@ -44,6 +44,7 @@ export function DingAA3({ onNext }: BaseEventProps) {
       />
       {choice === PoliceChoice.YES && (
         <InfoProvider info={{ Component: DingInfo2 }}>
+          <p>You give the police access to your footage.</p>
           <AddScore category={ScoreCategory.PRIVACY} amount={-10} />
         </InfoProvider>
       )}

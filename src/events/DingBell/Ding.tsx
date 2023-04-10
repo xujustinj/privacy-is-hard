@@ -37,6 +37,12 @@ export function Ding({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
+      {choice === SafetyChoice.CAMERA && (
+        <p>You order a Ding video doorbell.</p>
+      )}
+      {choice === SafetyChoice.BODYGUARD && (
+        <p>You give your bodyguard a bonus for his exceptional work.</p>
+      )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}
     </>

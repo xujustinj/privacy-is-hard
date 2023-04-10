@@ -1,17 +1,18 @@
 import { Button } from "../../components/Button";
-import { AddScore } from "../../components/Score";
+import { InfoProvider } from "../../components/InfoPanel";
+import { BitFitInfo } from "../../info/BitFitInfo";
 import { BaseEventProps } from "../../model/Event";
-import { ScoreCategory } from "../../model/Score";
 
 export function BitFitB2({ onNext }: BaseEventProps) {
   return (
     <>
+      <InfoProvider info={{ Component: BitFitInfo }}>
+        <p>BitFit experienced a data breach!</p>
+      </InfoProvider>
       <p>
-        The doctor orders some tests, which take a while, but you eventually get
-        prescribed some heart medication. You start taking it and feel much
-        better.
+        You show the news to your trainer with some vindication, but the damage
+        to your reputation has already been done.
       </p>
-      <AddScore category={ScoreCategory.HEALTH} amount={5} />
 
       {onNext && <Button onClick={onNext}>Continue</Button>}
     </>

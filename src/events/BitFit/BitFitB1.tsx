@@ -7,10 +7,12 @@ export function BitFitB1({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        You experience shortness of breath and feel dizzy at the gym. You faint.
-        The doctor diagnoses you with heart arrhythmia.
+        Word gets out about your "feud" with your personal trainer. Tabloids
+        have already published an article:{" "}
+        <i>11 Celebrities Who Need A Serious Attitude Adjustment</i>.
       </p>
-      <AddScore category={ScoreCategory.HEALTH} amount={-10} />
+      <p>You're #1.</p>
+      <AddScore category={ScoreCategory.CAREER} amount={-10} />
 
       {onNext && <Button onClick={onNext}>Continue</Button>}
     </>

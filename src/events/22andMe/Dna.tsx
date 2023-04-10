@@ -43,12 +43,14 @@ export function TwentyTwoandMe({ onNext }: BaseEventProps) {
             spirit? The rest of the family will be taking it anyway.
           </p>
           <AddScore category={ScoreCategory.SOCIAL} amount={-10} />
-          <p>Your family has some Irish DNA, cool!</p>
         </>
       )}
       {choice === DnaTestChoice.YES && (
         <>
-          <p>Your family has some Irish DNA, cool!</p>
+          <p>
+            That's the spirit! You collect a saliva sample using the kit and
+            mail it to 22andMe with your family.
+          </p>
           <AddScore category={ScoreCategory.SOCIAL} amount={5} />
         </>
       )}

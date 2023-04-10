@@ -4,6 +4,7 @@ import { GameState } from "../model/Game";
 import { GameOutcome } from "../model/Outcome";
 import { ScoreCategory } from "../model/Score";
 import { DnaTestChoice, TwentyTwoandMe } from "./22andMe/Dna";
+import { TwentyTwoandMe1 } from "./22andMe/Dna1";
 import { TwentyTwoandMeA1 } from "./22andMe/DnaA1";
 import { TwentyTwoandMeB1 } from "./22andMe/DnaB1";
 import { AngelTrend, AngelTrendChoice } from "./AngelTrend/AngelTrend";
@@ -16,6 +17,8 @@ import { BitFitA2 } from "./BitFit/BitFitA2";
 import { BitFitA3 } from "./BitFit/BitFitA3";
 import { BitFitB1 } from "./BitFit/BitFitB1";
 import { BitFitB2 } from "./BitFit/BitFitB2";
+import { BitFitB3 } from "./BitFit/BitFitB3";
+import { BitFitB4 } from "./BitFit/BitFitB4";
 import { Cardiac } from "./Cardiac/Cardiac";
 import { CardiacB1 } from "./Cardiac/CardiacB1";
 import { CardiacB2 } from "./Cardiac/CardiacB2";
@@ -68,6 +71,8 @@ export class SequenceGenerator implements EventGenerator {
             return [
               { id: "bitfitB1", eventRender: { Component: BitFitB1 } },
               { id: "bitfitB2", eventRender: { Component: BitFitB2 } },
+              { id: "bitfitB3", eventRender: { Component: BitFitB3 } },
+              { id: "bitfitB4", eventRender: { Component: BitFitB4 } },
             ];
         }
       },
@@ -147,7 +152,9 @@ export class SequenceGenerator implements EventGenerator {
                         { id: "DingAA3", eventRender: { Component: DingAA3 } },
                       ];
                     case TermsChoice.DECLINE:
-                      return [];
+                      return [
+                        { id: "DingB1", eventRender: { Component: DingB1 } },
+                      ];
                   }
                 },
               },
@@ -167,12 +174,20 @@ export class SequenceGenerator implements EventGenerator {
           case DnaTestChoice.NO:
             return [
               {
+                id: "TwentyTwoandMe1",
+                eventRender: { Component: TwentyTwoandMe1 },
+              },
+              {
                 id: "TwentyTwoandMeA1",
                 eventRender: { Component: TwentyTwoandMeA1 },
               },
             ];
           case DnaTestChoice.YES:
             return [
+              {
+                id: "TwentyTwoandMe1",
+                eventRender: { Component: TwentyTwoandMe1 },
+              },
               {
                 id: "TwentyTwoandMeB1",
                 eventRender: { Component: TwentyTwoandMeB1 },

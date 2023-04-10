@@ -21,9 +21,9 @@ export function PlankChallenge({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        Trend of the month: the plank challenge is taking over the pages of
-        YouSnapstatok's influencers! In the trend, an influencer reads out the
-        names of random followers while holding a plank for as long as they can.
+        The Plank Challenge is taking over InstaTok! In the trend, an influencer
+        reads out the names of random followers while holding a plank for as
+        long as they can.
       </p>
       <Choices
         choices={[
@@ -33,7 +33,7 @@ export function PlankChallenge({ onNext }: BaseEventProps) {
           },
           {
             choice: PlankChoice.NO,
-            child: "Naw, I'll pass",
+            child: "Naw, I'll pass.",
           },
         ]}
         chosen={choice}
@@ -48,6 +48,12 @@ export function PlankChallenge({ onNext }: BaseEventProps) {
           <AddScore category={ScoreCategory.CAREER} amount={5} />
           <AddScore category={ScoreCategory.HAPPINESS} amount={5} />
         </>
+      )}
+      {choice === PlankChoice.NO && (
+        <p>
+          Some fans wonder why you haven't posted anything, but they assume you
+          must be busy with other things.
+        </p>
       )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}

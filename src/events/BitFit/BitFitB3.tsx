@@ -3,12 +3,12 @@ import { AddScore } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 import { ScoreCategory } from "../../model/Score";
 
-export function BitFitA2({ onNext }: BaseEventProps) {
+export function BitFitB3({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        Your BitFit alerts you that it is detecting an unusual heartbeat. Your
-        doctor suspects you have heart arrhythmia.
+        You experience shortness of breath and feel dizzy at the gym. You faint.
+        Your doctor diagnoses you with heart arrhythmia.
       </p>
       <AddScore category={ScoreCategory.HEALTH} amount={-10} />
 

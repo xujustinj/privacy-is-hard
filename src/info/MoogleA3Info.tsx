@@ -9,13 +9,11 @@ export function MoogleA3Info() {
         voice recordings of Flemish people to a Belgian news organization.
       </p>
       <p>
-        Google Home can record your voice because it has microphones that are on
-        by default. The Belgian news reported that out of these voice excerpts,
-        around 10% were never given the wake phrase "Okay Google".
-      </p>
-      <p>
-        Google is not supposed to record those audio excerpts without your
-        explicit consent, but its detection technology isn't perfectly accurate.
+        Google Home's microphones are on by default, but Google is not supposed
+        to record unless explicitly given consent by the wake phrase "Okay
+        Google". Unfortunately, their detection technology isn't perfectly
+        accurate. The Belgian news reported that out of these voice excerpts,
+        around 10% were never given the wake phrase.
       </p>
       <SourceLink {...Gizmodo_Google} />
     </div>

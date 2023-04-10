@@ -11,9 +11,11 @@ export function AngelTrendA1({ onNext }: BaseEventProps) {
       <InfoProvider info={{ Component: AngelInfo }}>
         <p>
           Some genius figured out a way to undo the silhouette filter. Your nude
-          dancing is now all over 44chan. You frantically try to get the videos
-          taken down, but people just make new anonymous accounts and post it
-          again.
+          dancing is now all over 4chin!
+        </p>
+        <p>
+          You frantically try to get the videos taken down, but people just make
+          new anonymous accounts and post it again.
         </p>
         <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
       </InfoProvider>

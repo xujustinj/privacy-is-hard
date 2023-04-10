@@ -10,8 +10,8 @@ export function BitFitA1({ onNext }: BaseEventProps) {
     <>
       <InfoProvider info={{ Component: BitFitInfo }}>
         <p>
-          Uh oh! BitFit experienced a data breach. Your GPS location was part of
-          that data breach, and the paparazzi now know in which gym you train.
+          Uh oh, BitFit experienced a data breach! Your GPS location was part of
+          that breach, and the paparazzi now know which gym you train in.
         </p>
         <AddScore category={ScoreCategory.PRIVACY} amount={-10} />
       </InfoProvider>

@@ -21,12 +21,14 @@ export function AngelTrend({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        A new trend is on the rise: The angel trend is taking over the pages of
-        InstaTok's influencers! In the trend, a person takes a low angle shot of
-        themselves nude and dancing elegantly in front of a bright blue sky, and
-        adds a filter to make themselves appear like a white silhouette. Getting
-        on the trend would be a perfect way to show off your contemporary dance
-        skills!
+        The Angel Trend is taking over InstaTok! In the trend, a person takes a
+        low angle shot of themselves nude and dancing elegantly in front of a
+        bright blue sky, and adds a filter to make themselves appear like a
+        white silhouette.
+      </p>
+      <p>
+        Getting on the trend would be a perfect way to show off your
+        contemporary dance skills!
       </p>
       <Choices
         choices={[
@@ -41,6 +43,12 @@ export function AngelTrend({ onNext }: BaseEventProps) {
           <p>Your video goes viral, earning you a million new followers!</p>
           <AddScore category={ScoreCategory.CAREER} amount={5} />
         </>
+      )}
+      {choice === AngelTrendChoice.NO && (
+        <p>
+          Some fans wonder why you haven't posted anything, but they assume you
+          must be busy with other things.
+        </p>
       )}
 
       {choice !== null && onNext && <Button onClick={onNext}>Continue</Button>}

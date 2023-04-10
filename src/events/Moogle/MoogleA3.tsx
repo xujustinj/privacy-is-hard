@@ -10,7 +10,7 @@ export function MoogleA3({ onNext }: BaseEventProps) {
     <>
       <InfoProvider info={{ Component: MoogleA3Info }}>
         <p>
-          Breaking News: Amid Moogle Layoffs, Angry Ex-Moogler Leaks Moogle Home
+          <b>Breaking News</b>: Amid Layoffs, Angry Moogler Leaks Moogle Home
           Recordings
         </p>
         <p>Some of those recordings included your voice.</p>

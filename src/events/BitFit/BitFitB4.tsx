@@ -3,14 +3,15 @@ import { AddScore } from "../../components/Score";
 import { BaseEventProps } from "../../model/Event";
 import { ScoreCategory } from "../../model/Score";
 
-export function BitFitA2({ onNext }: BaseEventProps) {
+export function BitFitB4({ onNext }: BaseEventProps) {
   return (
     <>
+      <p>Your doctor orders some tests, which take a while.</p>
       <p>
-        Your BitFit alerts you that it is detecting an unusual heartbeat. Your
-        doctor suspects you have heart arrhythmia.
+        Eventually, you get prescribed some heart medication. You start taking
+        it and feel much better.
       </p>
-      <AddScore category={ScoreCategory.HEALTH} amount={-10} />
+      <AddScore category={ScoreCategory.HEALTH} amount={5} />
 
       {onNext && <Button onClick={onNext}>Continue</Button>}
     </>

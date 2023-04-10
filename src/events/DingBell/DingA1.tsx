@@ -21,8 +21,8 @@ export function DingA1({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        You order a Ding video doorbell. When you go to set it up, it has you
-        install an app. Do you agree to the{" "}
+        Your Ding video doorbell has arrived! When you go to set it up, it has
+        you install an app. Do you agree to the{" "}
         <a href="https://ring.com/ca/en/terms">Terms and Conditions</a>?
       </p>
       <Choices
@@ -39,20 +39,16 @@ export function DingA1({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
+      {choice === TermsChoice.ACCEPT && (
+        <p>
+          The doorbell connects to your phone seamlessly. You feel safer
+          already!
+        </p>
+      )}
       {choice === TermsChoice.DECLINE && (
         <>
           <p>You have to return the doorbell.</p>
           <AddScore category={ScoreCategory.HAPPINESS} amount={-5} />
-          <p>
-            Your bodyguard was enjoying his sandwich when the stalker fan came
-            back and stole the movie script.
-          </p>
-          <p>
-            You alert the police, but no cameras caught his face, so the police
-            was not able to find them. The stalker fan released the movie
-            script. Yikes!
-          </p>
-          <AddScore category={ScoreCategory.CAREER} amount={-20} />
         </>
       )}
 

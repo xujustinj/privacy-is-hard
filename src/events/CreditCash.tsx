@@ -23,10 +23,11 @@ export function CreditCash({ onNext }: BaseEventProps) {
   return (
     <>
       <p>
-        On a pit stop to WcDonald's, you get two number 9s, a number 9 large, a
+        On a pit stop at WcDonald's, you get two number 9s, a number 9 large, a
         number 6 with extra dip, a number 7, two number 45s, one with cheese,
-        and a large soda. How would you like to pay?
+        and a large soda.
       </p>
+      <p>How would you like to pay?</p>
       <Choices
         choices={[
           {

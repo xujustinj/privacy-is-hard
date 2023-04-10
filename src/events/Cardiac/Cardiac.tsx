@@ -22,9 +22,12 @@ export function Cardiac({ onNext }: BaseEventProps) {
     <>
       <p>
         The stress from going on tour has made your cardiac arrythmia act up
-        again. Your current meds are not working as effectively. Unfortunately,
-        you are far away from your doctor, so the only way to reach her is by
-        telemedicine.
+        again. Your current meds are not working as effectively.
+      </p>
+      <AddScore category={ScoreCategory.HEALTH} amount={-5} />
+      <p>
+        Unfortunately, you are far away from your doctor, so the only way to
+        reach her is by telemedicine.
       </p>
       <Choices
         choices={[

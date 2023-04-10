@@ -11,7 +11,7 @@ export function CardiacB1({ onNext }: BaseEventProps) {
       <InfoProvider info={{ Component: CardiacInfo }}>
         <p>
           Scandal! Cardiac admits to using third-party trackers on its website.
-          Cardiac has been selling the name, date of birth, gender, contact
+          They have been selling the name, date of birth, gender, contact
           information, and health conditions of millions of Cardiac users
           (including you) for years!
         </p>

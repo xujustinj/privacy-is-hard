@@ -9,6 +9,7 @@ import { TwentyTwoandMeA1 } from "./22andMe/DnaA1";
 import { TwentyTwoandMeB1 } from "./22andMe/DnaB1";
 import { AngelTrend, AngelTrendChoice } from "./AngelTrend/AngelTrend";
 import { AngelTrendA1 } from "./AngelTrend/AngelTrendA1";
+import { AngelTrendB1 } from "./AngelTrend/AngelTrendB1";
 import { BadEnd } from "./BadEnd";
 import { Balantir } from "./Balantir";
 import { BitFit, BitFitChoice } from "./BitFit/BitFit";
@@ -45,6 +46,7 @@ import { QRCode } from "./QRCode";
 import { TalkGPT, TalkGPTChoice } from "./TalkGPT/TalkGPT";
 import { TalkGPTA1 } from "./TalkGPT/TalkGPTA1";
 import { TalkGPTA2 } from "./TalkGPT/TalkGPTA2";
+import { TalkGPTprecondition } from "./TalkGPT/TalkGPTprecondition";
 
 interface SequencedEvent extends GameEvent {
   next?: (state: GameState) => ReadonlyArray<SequencedEvent> | null;
@@ -212,9 +214,15 @@ export class SequenceGenerator implements EventGenerator {
               { id: "AngelTrendA1", eventRender: { Component: AngelTrendA1 } },
             ];
           case AngelTrendChoice.NO:
-            return [];
+            return [
+              { id: "AngelTrendB1", eventRender: { Component: AngelTrendB1 } },
+            ];
         }
       },
+    },
+    {
+      id: "talkgptPrecondition",
+      eventRender: { Component: TalkGPTprecondition },
     },
     {
       id: "talkgpt",

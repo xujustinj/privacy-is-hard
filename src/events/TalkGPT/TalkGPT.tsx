@@ -40,7 +40,9 @@ export function TalkGPT({ onNext }: BaseEventProps) {
         chosen={choice}
         onChoose={setChoice}
       />
-      {choice === TalkGPTChoice.YES && <p>You provide some messages.</p>}
+      {choice === TalkGPTChoice.YES && (
+        <p>You provide a few months of messages to the startup.</p>
+      )}
       {choice === TalkGPTChoice.NO && (
         <>
           <p>

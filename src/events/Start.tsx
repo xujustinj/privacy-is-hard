@@ -34,7 +34,7 @@ export function Start({ onNext }: BaseEventProps) {
       <Subtitle>
         a{" "}
         <a
-          href="https://cs.uwaterloo.ca/~browndg/492W23/readings.shtml"
+          href="https://cs.uwaterloo.ca/~browndg/492W23/project.shtml"
           target="_blank"
           rel="noreferrer"
         >

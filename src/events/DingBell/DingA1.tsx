@@ -1,4 +1,5 @@
 import { atom, useRecoilState } from "recoil";
+import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Choices } from "../../components/Choices";
 import { AddScore } from "../../components/Score";
@@ -15,6 +16,11 @@ export const termsChoiceState = atom<TermsChoice | null>({
   default: null,
 });
 
+const Link = styled.a`
+  color: inherit;
+  font-weight: bold;
+`;
+
 export function DingA1({ onNext }: BaseEventProps) {
   const [choice, setChoice] = useRecoilState(termsChoiceState);
 
@@ -23,7 +29,14 @@ export function DingA1({ onNext }: BaseEventProps) {
       <p>
         Your Ding video doorbell has arrived! When you go to set it up, it has
         you install an app. Do you agree to the{" "}
-        <a href="https://ring.com/ca/en/terms">Terms and Conditions</a>?
+        <Link
+          href="https://ring.com/ca/en/terms"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Terms and Conditions
+        </Link>
+        ?
       </p>
       <Choices
         choices={[

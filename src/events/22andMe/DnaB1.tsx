@@ -14,7 +14,7 @@ export function TwentyTwoandMeB1({ onNext }: BaseEventProps) {
           process to pay back creditors, including you and your family's DNA
           data, which makes it easy to identify you in the future.
         </p>
-        <AddScore category={ScoreCategory.CAREER} amount={-20} />
+        <AddScore category={ScoreCategory.PRIVACY} amount={-20} />
       </InfoProvider>
 
       {onNext && <Button onClick={onNext}>Continue</Button>}

@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Button, ButtonPanel } from "../components/Button";
 import { BaseEventProps } from "../model/Event";
@@ -8,6 +9,14 @@ const BadText = styled.p`
 `;
 
 export function BadEnd({ onNext, onReset }: BaseEventProps) {
+  const [didContinue, setContinue] = useState<boolean | null>(null);
+  const onContinue = useCallback(() => {
+    setContinue(true);
+    if (onNext !== undefined) {
+      onNext();
+    }
+  }, [onNext, setContinue]);
+
   return (
     <>
       <BadText>
@@ -23,8 +32,16 @@ export function BadEnd({ onNext, onReset }: BaseEventProps) {
       </p>
 
       <ButtonPanel>
-        {onNext && <Button onClick={onNext}>Continue Anyway</Button>}
-        <Button onClick={onReset}>Play Again</Button>
+        <Button
+          onClick={onContinue}
+          disabled={didContinue !== null}
+          isSelected={didContinue === true}
+        >
+          Continue Anyway
+        </Button>
+        <Button onClick={onReset} disabled={didContinue !== null}>
+          Play Again
+        </Button>
       </ButtonPanel>
     </>
   );

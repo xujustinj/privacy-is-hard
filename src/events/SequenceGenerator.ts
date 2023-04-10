@@ -40,6 +40,7 @@ import { MoogleA1 } from "./Moogle/MoogleA1";
 import { MoogleA2 } from "./Moogle/MoogleA2";
 import { MoogleA3 } from "./Moogle/MoogleA3";
 import { MoogleB1 } from "./Moogle/MoogleB1";
+import { NeutralEnd } from "./NeutralEnd";
 import { Pedalton } from "./Pedalton";
 import { PlankChallenge } from "./PlankChallenge";
 import { QRCode } from "./QRCode";
@@ -279,9 +280,17 @@ export class SequenceGenerator implements EventGenerator {
     }
 
     // out of scenarios, player has won
-    if (this.queue.length === 0 && this.outcome === null) {
-      this.outcome = GameOutcome.WIN;
-      this.queue = [{ id: "goodending", eventRender: { Component: GoodEnd } }];
+    if (this.queue.length === 0) {
+      if (this.outcome === null) {
+        this.outcome = GameOutcome.WIN;
+        this.queue = [
+          { id: "goodending", eventRender: { Component: GoodEnd } },
+        ];
+      } else if (this.outcome === GameOutcome.LOSE) {
+        this.queue = [
+          { id: "neutralending", eventRender: { Component: NeutralEnd } },
+        ];
+      }
     }
 
     if (this.queue.length > 0) {

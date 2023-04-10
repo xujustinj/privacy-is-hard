@@ -64,8 +64,8 @@ export function Start({ onNext }: BaseEventProps) {
       <br />
       <p>
         Hi there! Welcome to the life of a celebrity. Your biggest fans are
-        always watching - will you be able to keep up with privacy and still be
-        relevant? Let's find out!
+        always watching &ndash; will you be able to keep up with privacy and
+        still be relevant? Let's find out!
       </p>
 
       {onNext && <Button onClick={onNext}>Start</Button>}
